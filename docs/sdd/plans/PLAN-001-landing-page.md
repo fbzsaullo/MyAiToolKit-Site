@@ -220,7 +220,7 @@ Layout com `lang`, `hreflang` (pt-BR, en, x-default com URL absoluta), `head-sni
 
 #### T-06 — Modelar as coleções de conteúdo e os dados das duas demandas fictícias
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Média
 - **Estimativa:**
 - **Depende de:** T-01
@@ -237,8 +237,8 @@ Layout com `lang`, `hreflang` (pt-BR, en, x-default com URL absoluta), `head-sni
 Esquemas para textos de interface e para as demandas (fases, documentos, IDs, ligações pai-filho, tarefas, review, teste). Conteúdo do Anexo A do PRD.
 
 **Critério de aceite (testável):**
-- [ ] pt-BR e en têm exatamente as mesmas chaves
-- [ ] Todos os IDs dos exemplos seguem os formatos do kit (`ADR-XXX`, `RN-XX`, `CA-XX`, `UI-XX.estado`, `T-XX`, `R-XX (REVIEW-T-XX-AAAA-MM-DD)`)
+- [x] pt-BR e en têm exatamente as mesmas chaves
+- [x] Todos os IDs dos exemplos seguem os formatos do kit (`ADR-XXX`, `RN-XX`, `CA-XX`, `UI-XX.estado`, `T-XX`, `R-XX (REVIEW-T-XX-AAAA-MM-DD)`)
 
 **Testes a escrever:**
 - *Conteúdo:* `test("idiomas com as mesmas chaves")`, `test("IDs no formato do kit")`
@@ -698,4 +698,5 @@ Autonomia concedida pelo responsável: viram autoverificações registradas no h
 | T-02 | Concluído | 2026-10-06 | `e397a1a` | Review aprovado |
 | T-03 | Concluído | 2026-10-06 | `0d2513f` | Aprovado com ressalvas: R-01 (/en/ na T-05), R-02 (404 na T-22) |
 | T-04 | Concluído | 2026-10-06 | `f84e441` | Aprovado com ressalvas: R-01 (preload na T-05); fontes via ADR-013 |
-| T-05 | Concluído | 2026-10-06 | (ver T-06) | Aprovado com ressalvas: R-01 (CA-07 completado nas T-12 e T-17) |
+| T-05 | Concluído | 2026-10-06 | `6beda28` | Aprovado com ressalvas: R-01 (CA-07 completado nas T-12 e T-17) |
+| T-06 | Concluído | 2026-10-06 | (ver T-07) | Review aprovado |

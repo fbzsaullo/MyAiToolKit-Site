@@ -1,0 +1,204 @@
+{
+  "order": 2,
+  "startOption": "B",
+  "entryPhase": 2,
+  "tab": { "pt-BR": "Recuperação de senha", "en": "Password recovery" },
+  "title": { "pt-BR": "Recuperação de senha", "en": "Password recovery" },
+  "summary": {
+    "pt-BR": "Funcionalidade num sistema que já existe: /sdd-start opção B, direto para o PRD.",
+    "en": "A feature in an existing system: /sdd-start option B, straight to the PRD."
+  },
+  "phases": [
+    {
+      "phase": 1,
+      "used": false,
+      "command": "/sdd-architect",
+      "input": { "pt-BR": "Não usada: a arquitetura do sistema já está decidida.", "en": "Not used: the system architecture is already decided." },
+      "document": {
+        "path": "—",
+        "lines": [{ "pt-BR": "A demanda entra pelo PRD (opção B).", "en": "The request enters through the PRD (option B)." }]
+      },
+      "ids": [],
+      "date": "2026-09-14"
+    },
+    {
+      "phase": 2,
+      "used": true,
+      "command": "/sdd-prd",
+      "input": { "pt-BR": "\"Usuários esquecem a senha e abrem chamado.\"", "en": "\"Users forget their password and open a ticket.\"" },
+      "document": {
+        "path": "docs/sdd/prds/PRD-007-recuperacao-de-senha.md",
+        "lines": [
+          { "pt-BR": "## 8. Regras de negócio", "en": "## 8. Business rules" },
+          { "pt-BR": "- RN-01: O link usa um token de uso único", "en": "- RN-01: The link uses a single-use token" },
+          { "pt-BR": "- RN-02: O token expira em 30 minutos", "en": "- RN-02: The token expires in 30 minutes" },
+          { "pt-BR": "- RN-03: A resposta é a mesma para e-mail cadastrado ou não", "en": "- RN-03: The response is the same whether the e-mail exists or not" },
+          { "pt-BR": "- RN-04: A nova senha encerra as sessões ativas", "en": "- RN-04: The new password ends active sessions" },
+          { "pt-BR": "Cenário [CA-03]: Link expirado é recusado (RN-02)", "en": "Scenario [CA-03]: Expired link is rejected (RN-02)" }
+        ]
+      },
+      "ids": [
+        { "id": "RN-01", "label": { "pt-BR": "token de uso único", "en": "single-use token" }, "parent": null },
+        { "id": "RN-02", "label": { "pt-BR": "expira em 30 min", "en": "expires in 30 min" }, "parent": null },
+        { "id": "RN-03", "label": { "pt-BR": "resposta neutra", "en": "neutral response" }, "parent": null },
+        { "id": "RN-04", "label": { "pt-BR": "encerra sessões", "en": "ends sessions" }, "parent": null },
+        { "id": "CA-01", "label": { "pt-BR": "e-mail cadastrado recebe o link", "en": "known e-mail gets the link" }, "parent": "RN-01" },
+        { "id": "CA-02", "label": { "pt-BR": "e-mail desconhecido, mesma mensagem", "en": "unknown e-mail, same message" }, "parent": "RN-03" },
+        { "id": "CA-03", "label": { "pt-BR": "link expirado é recusado", "en": "expired link is rejected" }, "parent": "RN-02" },
+        { "id": "CA-04", "label": { "pt-BR": "link já usado é recusado", "en": "used link is rejected" }, "parent": "RN-01" },
+        { "id": "CA-05", "label": { "pt-BR": "nova senha encerra sessões", "en": "new password ends sessions" }, "parent": "RN-04" }
+      ],
+      "date": "2026-09-14"
+    },
+    {
+      "phase": 3,
+      "used": true,
+      "command": "/sdd-prototype",
+      "input": { "pt-BR": "PRD-007 + telas atuais de login", "en": "PRD-007 + current login screens" },
+      "document": {
+        "path": "docs/sdd/prototype/SPEC-UI-007-recuperacao-de-senha.md",
+        "lines": [
+          { "pt-BR": "### UI-01 — Pedido de recuperação", "en": "### UI-01 — Recovery request" },
+          { "pt-BR": "| Enviado | UI-01.enviado | após o pedido (RN-03) |", "en": "| Sent | UI-01.enviado | after the request (RN-03) |" },
+          { "pt-BR": "### UI-02 — Nova senha", "en": "### UI-02 — New password" },
+          { "pt-BR": "| Expirado | UI-02.expirado | Derivado do CA-03 |", "en": "| Expired | UI-02.expirado | Derived from CA-03 |" },
+          { "pt-BR": "| Usado | UI-02.usado | Derivado do CA-04 |", "en": "| Used | UI-02.usado | Derived from CA-04 |" }
+        ]
+      },
+      "ids": [
+        { "id": "UI-01.enviado", "label": { "pt-BR": "\"Se o e-mail existir, enviamos o link\"", "en": "\"If the e-mail exists, we sent the link\"" }, "parent": "CA-01" },
+        { "id": "UI-02.expirado", "label": { "pt-BR": "link expirado", "en": "expired link" }, "parent": "CA-03" },
+        { "id": "UI-02.usado", "label": { "pt-BR": "link já usado", "en": "link already used" }, "parent": "CA-04" }
+      ],
+      "date": "2026-09-15"
+    },
+    {
+      "phase": 4,
+      "used": true,
+      "command": "/sdd-plan",
+      "input": { "pt-BR": "PRD-007 + SPEC-UI-007", "en": "PRD-007 + SPEC-UI-007" },
+      "document": {
+        "path": "docs/sdd/plans/PLAN-007-recuperacao-de-senha.md",
+        "lines": [
+          { "pt-BR": "#### T-03 — Validar token e trocar a senha", "en": "#### T-03 — Validate token and change password" },
+          { "pt-BR": "- **Status:** Pendente", "en": "- **Status:** Pending" },
+          { "pt-BR": "- **Implementa:** RN-01, RN-02", "en": "- **Implements:** RN-01, RN-02" },
+          { "pt-BR": "- **Valida:** CA-03, CA-04", "en": "- **Validates:** CA-03, CA-04" },
+          { "pt-BR": "- **Telas:** UI-02 (expirado, usado)", "en": "- **Screens:** UI-02 (expirado, usado)" }
+        ]
+      },
+      "ids": [
+        { "id": "T-01", "label": { "pt-BR": "tabela de tokens", "en": "tokens table" }, "parent": null },
+        { "id": "T-02", "label": { "pt-BR": "gerar token e enviar e-mail", "en": "create token and send e-mail" }, "parent": "CA-01" },
+        { "id": "T-03", "label": { "pt-BR": "validar token e trocar senha", "en": "validate token and change password" }, "parent": "CA-03" },
+        { "id": "T-04", "label": { "pt-BR": "telas de pedido e nova senha", "en": "request and new password screens" }, "parent": "UI-02.expirado" },
+        { "id": "T-05", "label": { "pt-BR": "encerrar sessões", "en": "end sessions" }, "parent": "CA-05" }
+      ],
+      "date": "2026-09-16"
+    },
+    {
+      "phase": 5,
+      "used": true,
+      "command": "/sdd-execute",
+      "input": { "pt-BR": "T-03 e o contexto que ela declara", "en": "T-03 and the context it declares" },
+      "document": {
+        "path": "spec/requests/password_resets_spec.rb",
+        "lines": [
+          { "pt-BR": "it \"CA-03: link expira após 30 minutos\" do", "en": "it \"CA-03: link expires after 30 minutes\" do" },
+          { "pt-BR": "  travel 31.minutes", "en": "  travel 31.minutes" },
+          { "pt-BR": "  get edit_password_reset_path(token)", "en": "  get edit_password_reset_path(token)" },
+          { "pt-BR": "  expect(response.body).to include(\"Link expirado\")", "en": "  expect(response.body).to include(\"Link expired\")" },
+          { "pt-BR": "end", "en": "end" }
+        ]
+      },
+      "ids": [
+        { "id": "T-03", "label": { "pt-BR": "Em andamento → Concluído", "en": "In progress → Done" }, "parent": "CA-03" }
+      ],
+      "date": "2026-09-17"
+    },
+    {
+      "phase": 6,
+      "used": true,
+      "command": "/sdd-review",
+      "input": { "pt-BR": "Diff da T-03 + PLAN-007 + PRD-007 + SPEC-UI-007", "en": "T-03 diff + PLAN-007 + PRD-007 + SPEC-UI-007" },
+      "document": {
+        "path": "docs/sdd/reviews/REVIEW-T-03-2026-09-18.md",
+        "lines": [
+          { "pt-BR": "- **Recomendação:** ⛔ Bloqueado", "en": "- **Recommendation:** ⛔ Blocked" },
+          { "pt-BR": "#### R-01 — Token comparado com == e gravado sem hash", "en": "#### R-01 — Token compared with == and stored without hash" },
+          { "pt-BR": "- **Eixo:** 6 Segurança", "en": "- **Axis:** 6 Security" },
+          { "pt-BR": "- **Caminho sugerido:** secure_compare + digest do token", "en": "- **Suggested fix:** secure_compare + token digest" }
+        ]
+      },
+      "ids": [
+        { "id": "R-01 (REVIEW-T-03-2026-09-18)", "label": { "pt-BR": "segurança — volta para a T-03", "en": "security — back to T-03" }, "parent": "T-03" }
+      ],
+      "date": "2026-09-18"
+    }
+  ],
+  "loop": {
+    "tasks": [
+      { "id": "T-01", "title": { "pt-BR": "Tabela de tokens", "en": "Tokens table" }, "finding": null },
+      { "id": "T-02", "title": { "pt-BR": "Gerar token e enviar e-mail", "en": "Create token and send e-mail" }, "finding": null },
+      {
+        "id": "T-03",
+        "title": { "pt-BR": "Validar token e trocar a senha", "en": "Validate token and change password" },
+        "finding": {
+          "id": "R-01 (REVIEW-T-03-2026-09-18)",
+          "severity": "Bloqueante",
+          "text": { "pt-BR": "Token comparado com == e gravado sem hash. Corrigido no round 2 (2026-09-19).", "en": "Token compared with == and stored without hash. Fixed in round 2 (2026-09-19)." }
+        }
+      },
+      { "id": "T-04", "title": { "pt-BR": "Telas de pedido e de nova senha", "en": "Request and new password screens" }, "finding": null },
+      { "id": "T-05", "title": { "pt-BR": "Encerrar sessões ao trocar a senha", "en": "End sessions on password change" }, "finding": null }
+    ]
+  },
+  "trace": {
+    "chain": [
+      { "id": "RN-02", "kind": "rn", "label": { "pt-BR": "O token expira em 30 minutos", "en": "The token expires in 30 minutes" } },
+      { "id": "CA-03", "kind": "ca", "label": { "pt-BR": "Link expirado é recusado", "en": "Expired link is rejected" } },
+      { "id": "UI-02.expirado", "kind": "ui", "label": { "pt-BR": "Tela de link expirado", "en": "Expired link screen" } },
+      { "id": "T-03", "kind": "t", "label": { "pt-BR": "Validar token e trocar a senha", "en": "Validate token and change password" } },
+      { "id": "R-01 (REVIEW-T-03-2026-09-18)", "kind": "r", "label": { "pt-BR": "Apontamento de segurança, resolvido no round 2", "en": "Security finding, fixed in round 2" } },
+      { "id": "it \"CA-03: link expira após 30 minutos\"", "kind": "test", "label": { "pt-BR": "Teste com o ID no nome", "en": "Test with the ID in its name" } }
+    ],
+    "matrix": [
+      {
+        "rn": "RN-01",
+        "rule": { "pt-BR": "Token de uso único", "en": "Single-use token" },
+        "ca": ["CA-01", "CA-04"],
+        "ui": ["UI-01.enviado", "UI-02.usado"],
+        "tasks": ["T-02", "T-03"],
+        "tests": ["CA-01", "CA-04"],
+        "broken": null
+      },
+      {
+        "rn": "RN-02",
+        "rule": { "pt-BR": "Expira em 30 minutos", "en": "Expires in 30 minutes" },
+        "ca": ["CA-03"],
+        "ui": ["UI-02.expirado"],
+        "tasks": ["T-03"],
+        "tests": ["CA-03"],
+        "broken": null
+      },
+      {
+        "rn": "RN-03",
+        "rule": { "pt-BR": "Resposta neutra", "en": "Neutral response" },
+        "ca": ["CA-02"],
+        "ui": ["UI-01.enviado"],
+        "tasks": ["T-02"],
+        "tests": ["CA-02"],
+        "broken": null
+      },
+      {
+        "rn": "RN-04",
+        "rule": { "pt-BR": "Nova senha encerra sessões", "en": "New password ends sessions" },
+        "ca": ["CA-05"],
+        "ui": [],
+        "tasks": ["T-05"],
+        "tests": [],
+        "broken": { "pt-BR": "RN-04 sem teste", "en": "RN-04 has no test" }
+      }
+    ]
+  }
+}

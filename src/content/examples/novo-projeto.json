@@ -1,0 +1,150 @@
+{
+  "order": 1,
+  "startOption": "A",
+  "entryPhase": 1,
+  "tab": { "pt-BR": "Novo projeto", "en": "New project" },
+  "title": { "pt-BR": "Criação de um novo projeto", "en": "Creating a new project" },
+  "summary": {
+    "pt-BR": "Um sistema do zero — inscrições em eventos acadêmicos: /sdd-start opção A, começando pela arquitetura.",
+    "en": "A system from scratch — sign-ups for academic events: /sdd-start option A, starting with architecture."
+  },
+  "phases": [
+    {
+      "phase": 1,
+      "used": true,
+      "command": "/sdd-architect",
+      "input": { "pt-BR": "\"Precisamos de inscrições online para os eventos do campus.\"", "en": "\"We need online sign-ups for campus events.\"" },
+      "document": {
+        "path": "docs/sdd/architecture/adrs/ADR-002-emails-em-fila.md",
+        "lines": [
+          { "pt-BR": "# ADR-002: Enviar e-mails de confirmação em fila", "en": "# ADR-002: Send confirmation e-mails through a queue" },
+          { "pt-BR": "- **Status:** Aceito", "en": "- **Status:** Accepted" },
+          { "pt-BR": "## Decisão", "en": "## Decision" },
+          { "pt-BR": "Usamos Solid Queue; a inscrição não espera o e-mail.", "en": "We use Solid Queue; sign-up does not wait for the e-mail." }
+        ]
+      },
+      "ids": [
+        { "id": "ADR-001", "label": { "pt-BR": "monolito modular em Rails", "en": "modular Rails monolith" }, "parent": null },
+        { "id": "ADR-002", "label": { "pt-BR": "e-mails em fila", "en": "queued e-mails" }, "parent": null }
+      ],
+      "date": "2026-09-01"
+    },
+    {
+      "phase": 2,
+      "used": true,
+      "command": "/sdd-prd",
+      "input": { "pt-BR": "Proposta + ADR-001 e ADR-002", "en": "Proposal + ADR-001 and ADR-002" },
+      "document": {
+        "path": "docs/sdd/prds/PRD-001-inscricoes-em-eventos.md",
+        "lines": [
+          { "pt-BR": "- RN-01: Cada evento tem limite de vagas", "en": "- RN-01: Each event has a seat limit" },
+          { "pt-BR": "- RN-02: A inscrição é confirmada por e-mail (ADR-002)", "en": "- RN-02: Sign-up is confirmed by e-mail (ADR-002)" },
+          { "pt-BR": "Cenário [CA-01]: Inscrição em evento com vaga", "en": "Scenario [CA-01]: Sign-up for an event with seats" },
+          { "pt-BR": "Cenário [CA-02]: Evento lotado recusa a inscrição", "en": "Scenario [CA-02]: Full event rejects sign-up" }
+        ]
+      },
+      "ids": [
+        { "id": "RN-01", "label": { "pt-BR": "limite de vagas", "en": "seat limit" }, "parent": null },
+        { "id": "RN-02", "label": { "pt-BR": "confirmação por e-mail", "en": "e-mail confirmation" }, "parent": "ADR-002" },
+        { "id": "CA-01", "label": { "pt-BR": "inscrição com vaga", "en": "sign-up with seats" }, "parent": "RN-01" },
+        { "id": "CA-02", "label": { "pt-BR": "evento lotado", "en": "full event" }, "parent": "RN-01" }
+      ],
+      "date": "2026-09-02"
+    },
+    {
+      "phase": 3,
+      "used": true,
+      "command": "/sdd-prototype",
+      "input": { "pt-BR": "PRD-001 (tem telas)", "en": "PRD-001 (has screens)" },
+      "document": {
+        "path": "docs/sdd/prototype/SPEC-UI-001-inscricoes-em-eventos.md",
+        "lines": [
+          { "pt-BR": "### UI-01 — Lista de eventos", "en": "### UI-01 — Event list" },
+          { "pt-BR": "| Vazio | UI-01.vazio | nenhum evento aberto |", "en": "| Empty | UI-01.vazio | no open events |" },
+          { "pt-BR": "### UI-02 — Inscrição", "en": "### UI-02 — Sign-up" },
+          { "pt-BR": "| Lotado | UI-02.lotado | Derivado do CA-02 |", "en": "| Full | UI-02.lotado | Derived from CA-02 |" }
+        ]
+      },
+      "ids": [
+        { "id": "UI-01.vazio", "label": { "pt-BR": "nenhum evento aberto", "en": "no open events" }, "parent": "CA-01" },
+        { "id": "UI-02.lotado", "label": { "pt-BR": "evento lotado", "en": "event full" }, "parent": "CA-02" }
+      ],
+      "date": "2026-09-03"
+    },
+    {
+      "phase": 4,
+      "used": true,
+      "command": "/sdd-plan",
+      "input": { "pt-BR": "PRD-001 + SPEC-UI-001", "en": "PRD-001 + SPEC-UI-001" },
+      "document": {
+        "path": "docs/sdd/plans/PLAN-001-inscricoes-em-eventos.md",
+        "lines": [
+          { "pt-BR": "#### T-02 — Serviço de inscrição com limite de vagas", "en": "#### T-02 — Sign-up service with seat limit" },
+          { "pt-BR": "- **Status:** Pendente", "en": "- **Status:** Pending" },
+          { "pt-BR": "- **Implementa:** RN-01, RN-02", "en": "- **Implements:** RN-01, RN-02" },
+          { "pt-BR": "- **Valida:** CA-01, CA-02", "en": "- **Validates:** CA-01, CA-02" },
+          { "pt-BR": "- **Decisões base:** ADR-002", "en": "- **Base decisions:** ADR-002" }
+        ]
+      },
+      "ids": [
+        { "id": "T-01", "label": { "pt-BR": "model de inscrição", "en": "sign-up model" }, "parent": "RN-01" },
+        { "id": "T-02", "label": { "pt-BR": "serviço de inscrição", "en": "sign-up service" }, "parent": "CA-01" },
+        { "id": "T-03", "label": { "pt-BR": "tela de inscrição", "en": "sign-up screen" }, "parent": "UI-02.lotado" }
+      ],
+      "date": "2026-09-04"
+    },
+    {
+      "phase": 5,
+      "used": true,
+      "command": "/sdd-execute",
+      "input": { "pt-BR": "T-02 e o contexto que ela declara", "en": "T-02 and the context it declares" },
+      "document": {
+        "path": "spec/services/inscrever_spec.rb",
+        "lines": [
+          { "pt-BR": "it \"CA-02: evento lotado recusa a inscrição\" do", "en": "it \"CA-02: full event rejects sign-up\" do" },
+          { "pt-BR": "  evento = create(:evento, vagas: 0)", "en": "  event = create(:event, seats: 0)" },
+          { "pt-BR": "  expect(Inscrever.call(evento:).erro).to eq(:lotado)", "en": "  expect(SignUp.call(event:).error).to eq(:full)" },
+          { "pt-BR": "end", "en": "end" }
+        ]
+      },
+      "ids": [
+        { "id": "T-02", "label": { "pt-BR": "Em andamento → Concluído", "en": "In progress → Done" }, "parent": "CA-01" }
+      ],
+      "date": "2026-09-09"
+    },
+    {
+      "phase": 6,
+      "used": true,
+      "command": "/sdd-review",
+      "input": { "pt-BR": "Diff da T-02 + PLAN-001 + PRD-001 + ADR-002", "en": "T-02 diff + PLAN-001 + PRD-001 + ADR-002" },
+      "document": {
+        "path": "docs/sdd/reviews/REVIEW-T-02-2026-09-10.md",
+        "lines": [
+          { "pt-BR": "- **Recomendação:** ⚠️ Aprovado com ressalvas", "en": "- **Recommendation:** ⚠️ Approved with remarks" },
+          { "pt-BR": "#### R-01 — Falta índice único em inscrições", "en": "#### R-01 — Missing unique index on sign-ups" },
+          { "pt-BR": "- **Eixo:** 5 Qualidade", "en": "- **Axis:** 5 Quality" }
+        ]
+      },
+      "ids": [
+        { "id": "R-01 (REVIEW-T-02-2026-09-10)", "label": { "pt-BR": "índice ausente", "en": "missing index" }, "parent": "T-02" }
+      ],
+      "date": "2026-09-10"
+    }
+  ],
+  "loop": {
+    "tasks": [
+      { "id": "T-01", "title": { "pt-BR": "Model de inscrição", "en": "Sign-up model" }, "finding": null },
+      {
+        "id": "T-02",
+        "title": { "pt-BR": "Serviço de inscrição", "en": "Sign-up service" },
+        "finding": {
+          "id": "R-01 (REVIEW-T-02-2026-09-10)",
+          "severity": "Importante",
+          "text": { "pt-BR": "Falta índice único em inscrições; ajustado antes de fechar.", "en": "Missing unique index on sign-ups; fixed before closing." }
+        }
+      },
+      { "id": "T-03", "title": { "pt-BR": "Tela de inscrição", "en": "Sign-up screen" }, "finding": null }
+    ]
+  },
+  "trace": null
+}
