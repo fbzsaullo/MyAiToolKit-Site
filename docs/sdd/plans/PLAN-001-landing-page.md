@@ -370,7 +370,7 @@ Script sem dependências: lê `KIT_PATH` (padrão `../MyAiToolKit`) ou clona `KI
 
 #### T-12 — Montar as seções O problema, O que é e Por que assim
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Baixa
 - **Estimativa:**
 - **Depende de:** T-08
@@ -382,7 +382,7 @@ Script sem dependências: lê `KIT_PATH` (padrão `../MyAiToolKit`) ou clona `KI
   - `src/sections/Problem.astro`, `src/sections/WhatIs.astro`, `src/sections/Why.astro` *(novos)*
 
 **Critério de aceite (testável):**
-- [ ] Alternância do problema roda uma vez e vira lista com movimento reduzido
+- [x] Alternância do problema roda uma vez e vira lista com movimento reduzido
 
 **Testes a escrever:**
 - *E2E:* `test("problema vira lista com movimento reduzido")`
@@ -704,4 +704,5 @@ Autonomia concedida pelo responsável: viram autoverificações registradas no h
 | T-08 | Concluído | 2026-10-06 | `b3c2792` | Aprovado com ressalvas: R-01 (GitHub em texto) |
 | T-09 | Concluído | 2026-10-06 | `fcf0dab` | Aprovado com ressalvas: R-01 (Terminal e FileTree testados na T-11) |
 | T-10 | Concluído | 2026-10-06 | `8de2c69` | Aprovado com ressalvas: R-01 (seção ativa testada na T-23) |
-| T-11 | Concluído | 2026-10-06 | (ver T-12) | Review aprovado |
+| T-11 | Concluído | 2026-10-06 | `243a16a` | Review aprovado |
+| T-12 | Concluído | 2026-10-06 | (ver T-13) | Review aprovado |

@@ -33,7 +33,11 @@ test('CA-07: as duas versões se declaram uma à outra', async ({ browser }) => 
       ]),
     );
     await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', lang === 'en' ? `${SITE}/en/` : `${SITE}/`);
+    // As duas versões explicam o idioma dos artefatos; a en destaca project.language: en.
+    await expect(page.locator('[data-language-note] code')).toHaveText('project.language: en');
   }
+  const en = await visit(browser, { path: '/en/', locale: 'en-US' });
+  await expect(en.locator('[data-language-note]')).toContainText('Portuguese by default');
 });
 
 test('link direto para /en/ não é redirecionado sem escolha salva', async ({ browser }) => {

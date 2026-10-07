@@ -141,5 +141,76 @@
     "pause": "Pausar animação",
     "resume": "Continuar animação",
     "replay": "Repetir animação"
+  },
+  "problem": {
+    "loose": {
+      "label": "Pedido solto",
+      "request": "\"Adicione recuperação de senha.\"",
+      "resultsLabel": "Resultado adivinhado — muda a cada vez",
+      "results": [
+        "Link de recuperação que nunca expira",
+        "Token na URL, gravado no log do servidor",
+        "Mensagem que revela se o e-mail está cadastrado"
+      ]
+    },
+    "spec": {
+      "label": "Especificação",
+      "request": "PRD-007 — Recuperação de senha",
+      "rules": [
+        "RN-01: token de uso único",
+        "RN-02: expira em 30 minutos",
+        "RN-03: resposta igual para e-mail cadastrado ou não"
+      ],
+      "resultLabel": "Resultado decidido — sempre o mesmo",
+      "result": "Link de uso único, válido por 30 minutos, com resposta neutra."
+    }
+  },
+  "whatIs": {
+    "cards": [
+      {
+        "number": "01",
+        "title": "Documentação antes do código",
+        "text": "Cada demanda passa por arquitetura, requisitos, interface e plano antes da primeira linha de código. A IA recebe decisões, não um pedido solto."
+      },
+      {
+        "number": "02",
+        "title": "Rastreabilidade de ponta a ponta",
+        "text": "Decisões, regras, cenários, telas, tarefas, reviews e testes se ligam por IDs. Dá para seguir uma regra até o teste que a garante."
+      },
+      {
+        "number": "03",
+        "title": "O dev no controle",
+        "text": "Você aprova cada fase, decide as estimativas e valida as entregas. A IA sugere; você decide."
+      }
+    ],
+    "academic": "Projeto de faculdade, open source, com licença MIT.",
+    "language": "As skills e os artefatos do kit são em português por padrão. Com project.language: en no docs/sdd/config.yml, os artefatos são gerados em inglês."
+  },
+  "why": {
+    "groups": [
+      {
+        "title": "Qualidade",
+        "items": [
+          "IA sem contexto improvisa. Com a especificação pronta, ela implementa o que foi decidido.",
+          "O review usa o mesmo critério para código humano e de IA — e inclui segurança.",
+          "A rastreabilidade mostra o que falta: regra sem teste, tarefa sem review."
+        ]
+      },
+      {
+        "title": "Controle",
+        "items": [
+          "Toda decisão fica registrada com o motivo.",
+          "Uma tarefa por vez gera mudanças pequenas, fáceis de revisar e de desfazer.",
+          "Você aprova cada fase, decide as estimativas e valida as entregas."
+        ]
+      },
+      {
+        "title": "Portabilidade",
+        "items": [
+          "Não prende a uma IA só: o AGENTS.md é o contexto comum que Claude Code, Codex, Cursor e outras leem.",
+          "Perfis por stack: Rails completo (6.1 → 8.x); Node.js/TypeScript, Python, .NET, Go, Java/Kotlin e PHP com perfil e permissões; genérico para o resto."
+        ]
+      }
+    ]
   }
 }

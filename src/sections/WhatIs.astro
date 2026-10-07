@@ -1,0 +1,71 @@
+---
+// UI-04 — O que é: o kit em três ideias, nota de projeto de faculdade e idioma dos artefatos.
+import Section from '../components/Section.astro';
+import Callout from '../components/Callout.astro';
+import { t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const ui = t(locale);
+const w = ui.whatIs;
+// O trecho `project.language: en` aparece como código dentro do texto.
+const [before, after] = w.language.split('project.language: en');
+---
+<Section id="o-que-e" {...ui.sections['o-que-e']}>
+  <ol class="what-is" role="list">
+    {w.cards.map((card) => (
+      <li class="what-is__card">
+        <p class="label tabular">{card.number}</p>
+        <h3>{card.title}</h3>
+        <p>{card.text}</p>
+      </li>
+    ))}
+  </ol>
+  <div class="what-is__notes">
+    <Callout icon="Scale">{w.academic}</Callout>
+    <Callout icon="Languages" class={locale === 'en' ? 'what-is__lang--strong' : undefined}>
+      <span data-language-note>{before}<code>project.language: en</code>{after}</span>
+    </Callout>
+  </div>
+</Section>
+
+<style>
+  .what-is {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin: 0;
+    border: var(--border) solid var(--line-strong);
+  }
+  .what-is__card {
+    display: grid;
+    align-content: start;
+    gap: var(--space-3);
+    padding: var(--space-6);
+  }
+  .what-is__card + .what-is__card {
+    border-left: var(--border) solid var(--line-strong);
+  }
+  .what-is__card p:last-child {
+    color: var(--text-2);
+  }
+  .what-is__notes {
+    display: grid;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+  }
+  .what-is__notes :global(.what-is__lang--strong) {
+    border-color: var(--ink);
+  }
+  @media (max-width: 899px) {
+    .what-is {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .what-is__card + .what-is__card {
+      border-left: 0;
+      border-top: var(--border) solid var(--line-strong);
+    }
+  }
+</style>

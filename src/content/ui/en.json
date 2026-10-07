@@ -141,5 +141,76 @@
     "pause": "Pause animation",
     "resume": "Resume animation",
     "replay": "Replay animation"
+  },
+  "problem": {
+    "loose": {
+      "label": "Loose request",
+      "request": "\"Add password recovery.\"",
+      "resultsLabel": "Guessed result — changes every time",
+      "results": [
+        "Recovery link that never expires",
+        "Token in the URL, written to the server log",
+        "Message that reveals whether the e-mail is registered"
+      ]
+    },
+    "spec": {
+      "label": "Specification",
+      "request": "PRD-007 — Password recovery",
+      "rules": [
+        "RN-01: single-use token",
+        "RN-02: expires in 30 minutes",
+        "RN-03: same response whether the e-mail exists or not"
+      ],
+      "resultLabel": "Decided result — always the same",
+      "result": "Single-use link, valid for 30 minutes, with a neutral response."
+    }
+  },
+  "whatIs": {
+    "cards": [
+      {
+        "number": "01",
+        "title": "Documentation before code",
+        "text": "Every request goes through architecture, requirements, interface and plan before the first line of code. The AI receives decisions, not a loose request."
+      },
+      {
+        "number": "02",
+        "title": "End-to-end traceability",
+        "text": "Decisions, rules, scenarios, screens, tasks, reviews and tests link by IDs. You can follow a rule all the way to the test that guarantees it."
+      },
+      {
+        "number": "03",
+        "title": "The developer in control",
+        "text": "You approve every phase, decide the estimates and validate the deliveries. The AI suggests; you decide."
+      }
+    ],
+    "academic": "College project, open source, MIT licensed.",
+    "language": "The kit skills and artifacts are in Portuguese by default. With project.language: en in docs/sdd/config.yml, artifacts are generated in English — which is how the document excerpts on this page are shown."
+  },
+  "why": {
+    "groups": [
+      {
+        "title": "Quality",
+        "items": [
+          "AI without context improvises. With the specification ready, it builds what was decided.",
+          "Review applies the same criteria to human and AI code — and includes security.",
+          "Traceability shows what is missing: a rule without a test, a task without a review."
+        ]
+      },
+      {
+        "title": "Control",
+        "items": [
+          "Every decision is recorded with its reason.",
+          "One task at a time means small changes, easy to review and to undo.",
+          "You approve every phase, decide the estimates and validate the deliveries."
+        ]
+      },
+      {
+        "title": "Portability",
+        "items": [
+          "No lock-in to one AI: AGENTS.md is the shared context that Claude Code, Codex, Cursor and others read.",
+          "Stack profiles: full Rails (6.1 → 8.x); Node.js/TypeScript, Python, .NET, Go, Java/Kotlin and PHP with profile and permissions; generic profile for the rest."
+        ]
+      }
+    ]
   }
 }

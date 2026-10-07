@@ -1,0 +1,64 @@
+---
+// UI-08 — Por que assim: os 8 motivos em Qualidade, Controle e Portabilidade.
+import Section from '../components/Section.astro';
+import { t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const ui = t(locale);
+---
+<Section id="por-que" {...ui.sections['por-que']}>
+  <div class="why">
+    {ui.why.groups.map((group) => (
+      <section class="why__group" aria-label={group.title}>
+        <h3 class="why__title">{group.title}</h3>
+        <ul class="why__list" role="list">
+          {group.items.map((item) => (
+            <li><span class="why__mark" aria-hidden="true"></span><span>{item}</span></li>
+          ))}
+        </ul>
+      </section>
+    ))}
+  </div>
+</Section>
+
+<style>
+  .why {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+  .why__group {
+    display: grid;
+    align-content: start;
+    gap: var(--space-4);
+    padding-top: var(--space-4);
+    border-top: 2px solid var(--ink);
+  }
+  .why__list {
+    display: grid;
+    gap: var(--space-4);
+    margin: 0;
+  }
+  .why__list li {
+    display: flex;
+    gap: var(--space-3);
+    align-items: baseline;
+    color: var(--text-2);
+  }
+  .why__mark {
+    flex: none;
+    width: 0.5rem;
+    height: 0.5rem;
+    background: var(--ink);
+    transform: translateY(-0.1rem);
+  }
+  @media (max-width: 899px) {
+    .why {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+</style>
