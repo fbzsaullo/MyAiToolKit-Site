@@ -6,6 +6,13 @@ import preact from '@astrojs/preact';
 export default defineConfig({
   site: 'https://myaitoolkit.netlify.app',
   output: 'static',
-  trailingSlash: 'ignore',
+  // Uma forma única de URL (/en/) para canonical e hreflang (R-01 do REVIEW-T-01).
+  trailingSlash: 'always',
+  build: { format: 'directory' },
+  i18n: {
+    locales: ['pt-BR', 'en'],
+    defaultLocale: 'pt-BR',
+    routing: { prefixDefaultLocale: false },
+  },
   integrations: [preact()],
 });

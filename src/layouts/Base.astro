@@ -1,0 +1,43 @@
+---
+// Layout base: <head> completo, idioma, tema e ícones (ADR-008, ADR-009, ADR-013).
+import '../styles/global.css';
+import boot from '../scripts/boot.inline.js?raw';
+import headSnippet from '../../brand/icons/head-snippet.html?raw';
+import geist600 from '../assets/fonts/geist-600-latin.woff2?url';
+import { absolute, homePath, t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const ui = t(locale);
+const site = Astro.site;
+const canonical = absolute(site, homePath(locale));
+---
+<!doctype html>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script is:inline set:html={boot} />
+    <title>{ui.meta.title}</title>
+    <meta name="description" content={ui.meta.description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="pt-BR" href={absolute(site, homePath('pt-BR'))} />
+    <link rel="alternate" hreflang="en" href={absolute(site, homePath('en'))} />
+    <link rel="alternate" hreflang="x-default" href={absolute(site, homePath('pt-BR'))} />
+    <meta name="color-scheme" content="light dark" />
+    <link rel="preload" href={geist600} as="font" type="font/woff2" crossorigin />
+    <Fragment set:html={headSnippet} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={ui.meta.title} />
+    <meta property="og:description" content={ui.meta.description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={ui.meta.ogLocale} />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">{ui.a11y.skipToContent}</a>
+    <slot />
+  </body>
+</html>

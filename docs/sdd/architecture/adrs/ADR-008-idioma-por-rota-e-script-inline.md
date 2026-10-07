@@ -49,6 +49,15 @@ O site tem pt-BR em `/` e en em `/en/`. No primeiro acesso, o idioma segue o nav
 - Script inline compartilhado com o do tema (ADR-009), com o mínimo de bytes possível e permitido na CSP por hash (ADR-011).
 - Testes: navegador em `en-US` vai para `/en/`; em `pt-BR` fica em `/`; escolha manual vence a detecção (ADR-012).
 
+## Esclarecimento (2026-10-06, T-05)
+
+Na implementação, a regra do item 3 ficou mais precisa:
+
+- **Com preferência salva:** se ela difere da página atual, redireciona — em `/` ou em `/en/`.
+- **Sem preferência salva:** a detecção pelo navegador só redireciona a partir de `/`. Quem chega por um link direto para `/en/` permanece em `/en/`, mesmo com navegador em português.
+
+Motivo: respeitar links compartilhados em inglês e evitar que a página em inglês seja inalcançável para quem não escolheu idioma. Continua valendo que a escolha manual sempre vence. Testado em `tests/i18n.spec.ts`.
+
 ## Referências
 
 - Astro — roteamento i18n: https://docs.astro.build/en/guides/internationalization/

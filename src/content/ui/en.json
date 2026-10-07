@@ -1,0 +1,10 @@
+{
+  "meta": {
+    "title": "MyAiToolKit — Specify first. The AI builds what was decided.",
+    "description": "Open source skill kit for AI coding assistants (Claude Code, Codex and others) that guides development through Spec-Driven Development: the request becomes documentation before it becomes code.",
+    "ogLocale": "en_US"
+  },
+  "a11y": {
+    "skipToContent": "Skip to content"
+  }
+}

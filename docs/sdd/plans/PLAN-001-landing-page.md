@@ -188,7 +188,7 @@ Nove tokens de cor (claro/escuro por `prefers-color-scheme` e `[data-theme]`), e
 
 #### T-05 — Montar layout, rotas pt-BR e en, `<head>` e o script inline de idioma e tema
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Alta
 - **Estimativa:**
 - **Depende de:** T-04
@@ -206,9 +206,9 @@ Nove tokens de cor (claro/escuro por `prefers-color-scheme` e `[data-theme]`), e
 Layout com `lang`, `hreflang` (pt-BR, en, x-default com URL absoluta), `head-snippet.html`, `color-scheme`, script inline síncrono que aplica `data-theme` e decide o idioma (salvo > navegador). Utilitário de troca que grava `matk-lang`/`matk-theme`.
 
 **Critério de aceite (testável):**
-- [ ] CA-04 verde: navegador en-US em `/` vai para `/en/`
-- [ ] CA-05 verde: navegador pt-BR fica em `/`
-- [ ] CA-07 verde: `lang` e `hreflang` corretos nas duas rotas
+- [x] CA-04 verde: navegador en-US em `/` vai para `/en/`
+- [x] CA-05 verde: navegador pt-BR fica em `/`
+- [x] CA-07 verde: `lang` e `hreflang` corretos nas duas rotas
 
 **Testes a escrever:**
 - *E2E:* `test("CA-04: …")`, `test("CA-05: …")`, `test("CA-07: …")`
@@ -682,7 +682,7 @@ Não há migration nem dados. Reverter é publicar o deploy anterior na Netlify.
 
 Autonomia concedida pelo responsável: viram autoverificações registradas no histórico.
 
-- [ ] Depois da **T-05** — conferir na prática que não há flash de tema nem de idioma
+- [x] Depois da **T-05** — conferir na prática que não há flash de tema nem de idioma
 - [ ] Depois da **T-14** — medir o JS da ilha e o CLS antes de seguir para as demais ilhas
 - [ ] Antes da **T-24** — revisar a página inteira nos dois idiomas e temas
 
@@ -697,4 +697,5 @@ Autonomia concedida pelo responsável: viram autoverificações registradas no h
 | T-01 | Concluído | 2026-10-06 | `693bda6` | Review aprovado com ressalvas (R-01 para a T-05) |
 | T-02 | Concluído | 2026-10-06 | `e397a1a` | Review aprovado |
 | T-03 | Concluído | 2026-10-06 | `0d2513f` | Aprovado com ressalvas: R-01 (/en/ na T-05), R-02 (404 na T-22) |
-| T-04 | Concluído | 2026-10-06 | (ver T-05) | Aprovado com ressalvas: R-01 (preload na T-05); fontes via ADR-013 |
+| T-04 | Concluído | 2026-10-06 | `f84e441` | Aprovado com ressalvas: R-01 (preload na T-05); fontes via ADR-013 |
+| T-05 | Concluído | 2026-10-06 | (ver T-06) | Aprovado com ressalvas: R-01 (CA-07 completado nas T-12 e T-17) |

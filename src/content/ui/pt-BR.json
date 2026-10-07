@@ -1,0 +1,10 @@
+{
+  "meta": {
+    "title": "MyAiToolKit — Especifique antes. A IA implementa o que foi decidido.",
+    "description": "Kit open source de skills para assistentes de IA de programação (Claude Code, Codex e outros) que guia o desenvolvimento por Spec-Driven Development: a demanda vira documentação antes de virar código.",
+    "ogLocale": "pt_BR"
+  },
+  "a11y": {
+    "skipToContent": "Pular para o conteúdo"
+  }
+}
