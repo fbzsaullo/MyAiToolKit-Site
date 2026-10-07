@@ -1,0 +1,4 @@
+* text=auto eol=lf
+brand/** -text
+*.png binary
+*.ico binary
