@@ -1,7 +1,7 @@
 {
   "repository": "https://github.com/fbzsaullo/MyAiToolKit",
-  "version": "0.1.0",
-  "commit": "10bb848",
+  "version": "0.3.1",
+  "commit": "e283458",
   "commands": [
     {
       "name": "code-review",
@@ -10,10 +10,40 @@
       "description": "Code review avulso e configurável, para código próprio ou de colegas — pergunta contra qual branch comparar (detecta main/master/develop e sugere), pergunta se o review está ligado a uma história (aceitando o XML/JSON do card, a descrição em texto, o número da issue ou nenhuma), monta um roteiro de review sob medida a partir do docs/sdd/config.yml e dos checklists da stack (qualidade + segurança), verifica a cobertura dos critérios de aceite da história e entrega um relatório em que cada apontamento tem severidade (Bloqueante/Importante/Sugestão) e quadrante de urgência × importância (Q1 a Q4), além de comentários prontos para colar no PR. Use quando o usuário pedir \"code review\", \"revisar meu código\", \"revisar a branch/PR do fulano\", \"review antes de abrir o PR\" ou chamar /code-review (no Claude Code, /my-ai-toolkit:code-review se houver conflito com o comando nativo). Para revisar uma tarefa T-XX do plano SDD, use sdd-review."
     },
     {
+      "name": "commit-message",
+      "claude": "/commit-message",
+      "codex": "$commit-message",
+      "description": "Escreve a mensagem de commit das alterações atuais no padrão do projeto (Conventional Commits, ID da tarefa primeiro ou o padrão definido pelo usuário no /sdd-setup) e entrega em texto — nunca roda git commit, git add nem git push. Lê o diff preparado (staged) ou, sem ele, as alterações da árvore de trabalho; acha a tarefa T-XX quando há plano SDD; escolhe tipo e escopo pelo efeito da mudança; e sugere dividir em mais de um commit quando o diff mistura assuntos. Use quando o usuário pedir \"mensagem de commit\", \"escreve o commit\", \"como fica o commit disso\", \"sugere um commit\" ou chamar /commit-message (ou $commit-message), dentro ou fora do pipeline SDD."
+    },
+    {
+      "name": "pr-description",
+      "claude": "/pr-description",
+      "codex": "$pr-description",
+      "description": "Escreve o título e a descrição de um Pull Request a partir do diff da branch contra a base — o que muda e por quê, a rastreabilidade (T-XX, RN, CA, UI, ADR, card, BUG), como testar com os comandos reais do projeto, os cenários cobertos por teste, o resultado do review e os riscos de implantação — e entrega em texto, pronto para colar. Usa o modelo de PR do próprio repositório quando existe. Nunca abre, edita nem comenta PR, e nunca faz push. Use quando o usuário pedir \"descrição do PR\", \"escreve o PR\", \"texto do pull request\", \"resumo para o PR\" ou chamar /pr-description (ou $pr-description)."
+    },
+    {
+      "name": "sdd-adr",
+      "claude": "/sdd-adr",
+      "codex": "$sdd-adr",
+      "description": "Registra uma decisão de arquitetura avulsa sem rodar a fase de arquitetura inteira — escreve um ADR novo (próximo número livre, um arquivo por decisão, status Proposto até o usuário aceitar), substitui um ADR existente (o novo diz o que substitui; o antigo passa a \"Substituído por ADR-XXX\") ou descontinua um ADR, mantendo o índice da proposta arquitetural em dia e avisando quais tarefas do plano se apoiam na decisão que mudou. Use quando o usuário pedir \"registrar uma decisão\", \"criar um ADR\", \"trocar a decisão do ADR-004\", \"essa decisão não vale mais\", \"documentar por que escolhemos X\" ou chamar /sdd-adr. Para desenhar ou revisar a arquitetura de um sistema, use sdd-architect."
+    },
+    {
       "name": "sdd-architect",
       "claude": "/sdd-architect",
       "codex": "$sdd-architect",
       "description": "Desenha ou revisa a arquitetura de um sistema e entrega uma proposta arquitetural com decisões justificadas (um arquivo de ADR por decisão), atributos de qualidade, restrições, trade-offs e diagramas C4 em Mermaid. Use quando o usuário pedir para \"desenhar a arquitetura\", \"propor uma solução técnica\", \"escolher a stack\", \"como estruturar esse sistema\", \"revisar esta arquitetura\", \"qual arquitetura usar para…\", ou quando descrever um sistema novo e quiser saber como construí-lo. Fase 1 do pipeline SDD do MyAiToolKit. Não fixa tecnologia, a menos que ela seja uma restrição declarada. Não produz estimativa de custo, prazo ou esforço, nem código."
+    },
+    {
+      "name": "sdd-bug",
+      "claude": "/sdd-bug",
+      "codex": "$sdd-bug",
+      "description": "Fluxo curto do pipeline SDD para corrigir um defeito — recebe o relato (texto, card do Jira/GitHub, issue), separa o observado do esperado, descobre qual regra ou cenário do PRD o defeito descumpre (ou se falta especificação), investiga a causa provável no código sem alterá-lo, e transforma a correção em UMA tarefa T-XX de plano com teste de regressão, pronta para o /sdd-execute e o /sdd-review. Grava o relatório em docs/sdd/bugs/BUG-<CHAVE>-<tema>.md. Use quando o usuário pedir \"corrigir um bug\", \"tem um defeito\", \"isso está quebrado\", \"investigar esse erro\", \"abrir uma correção\" ou chamar /sdd-bug. Para mudança de escopo (o comportamento atual está certo, mas o pedido mudou), use sdd-change."
+    },
+    {
+      "name": "sdd-change",
+      "claude": "/sdd-change",
+      "codex": "$sdd-change",
+      "description": "Aplica uma mudança de escopo a um PRD já aprovado e propaga o efeito pelo pipeline — analisa o impacto em cada ID (RN, CA, UI, T, ADR, testes), mostra a tabela de impacto antes de editar, registra a revisão no PRD e na SPEC-UI (IDs novos continuam a numeração, alterados mantêm o número, revogados ficam riscados), ajusta o plano (tarefas pendentes editadas, concluídas nunca reabertas, uma fase nova para o que muda, tarefas que perderam o sentido marcadas Cancelado) e indica o que conferir no fim com o /sdd-trace. Use quando o usuário pedir \"mudar o escopo\", \"o cliente pediu uma alteração\", \"acrescentar uma regra ao PRD aprovado\", \"tirar isso do escopo\", \"revisar o PRD\" ou chamar /sdd-change. Para registrar só uma decisão de arquitetura, use sdd-adr; para corrigir um defeito, sdd-bug."
     },
     {
       "name": "sdd-execute",
@@ -49,13 +79,13 @@
       "name": "sdd-review",
       "claude": "/sdd-review",
       "codex": "$sdd-review",
-      "description": "Revisa a implementação de uma tarefa T-XX do plano SDD comparando o código com o plano, o PRD, os ADRs e a SPEC-UI, e gera o relatório REVIEW-T-XX com apontamentos R-XX classificados em Bloqueante, Importante ou Sugestão. Avalia aderência ao plano, rastreabilidade, aderência à especificação, testes, qualidade do código, segurança (com checklist por stack) e, quando há SPEC-UI, conformidade de interface. Um apontamento Bloqueante devolve a tarefa como Bloqueado no plano. Use quando o usuário pedir \"review da T-XX\", \"revisar a tarefa\", \"validar a implementação contra o plano\", \"fechar a T-XX\" ou trouxer um diff dizendo qual tarefa ele entrega. Fase 6 do pipeline SDD do MyAiToolKit. Para review avulso, sem plano SDD (código próprio ou de colegas, ligado ou não a um card), use a skill code-review."
+      "description": "Revisa a implementação de uma tarefa T-XX do plano SDD comparando o código com o plano, o PRD, os ADRs e a SPEC-UI, e gera o relatório REVIEW-T-XX com apontamentos R-XX classificados em Bloqueante, Importante ou Sugestão. Avalia aderência ao plano, rastreabilidade, aderência à especificação, testes, qualidade do código, segurança (com checklist por stack) e, quando há SPEC-UI, conformidade de interface. Um apontamento Bloqueante devolve a tarefa como Bloqueado no plano. Use quando o usuário pedir \"review da T-XX\", \"revisar a tarefa\", \"validar a implementação contra o plano\", \"fechar a T-XX\" ou trouxer um diff dizendo qual tarefa ele entrega. Fase 6 do pipeline SDD do MyAiToolKit. Quando aprova, entrega a mensagem de commit pronta no padrão do projeto (o kit nunca commita) e preenche no histórico do plano o hash dos commits já feitos. Para review avulso, sem plano SDD (código próprio ou de colegas, ligado ou não a um card), use a skill code-review."
     },
     {
       "name": "sdd-setup",
       "claude": "/sdd-setup",
       "codex": "$sdd-setup",
-      "description": "Analisa o repositório (uma ou várias linguagens, inclusive monorepo), lê as versões reais de cada stack, carrega o perfil da stack (Rails é a referência; há perfis para Node, Python, .NET, Go, Java e PHP e um genérico para o resto), formula recomendações conforme as versões e gera a configuração do projeto para os agentes — docs/sdd/config.yml, AGENTS.md (contexto canônico), CLAUDE.md, permissões do Claude Code (.claude/settings.json) e do Codex (.codex/), e o relatório docs/sdd/stack-report.md. Modos — completo, audit (somente leitura), module <nome>, permissions, refresh. Nunca sobrescreve conteúdo escrito por pessoas e sempre mostra o diff antes de gravar. Use apenas quando o usuário chamar /sdd-setup (ou $sdd-setup) ou pedir explicitamente para configurar o toolkit, gerar AGENTS.md/CLAUDE.md, analisar a stack ou configurar permissões."
+      "description": "Analisa o repositório (uma ou várias linguagens, inclusive monorepo), lê as versões reais de cada stack, carrega o perfil da stack (Rails é a referência; há perfis para Node, Python, .NET, Go, Java e PHP e um genérico para o resto), formula recomendações conforme as versões e gera a configuração do projeto para os agentes — docs/sdd/config.yml, AGENTS.md (contexto canônico), CLAUDE.md, permissões do Claude Code (.claude/settings.json) e do Codex (.codex/), e o relatório docs/sdd/stack-report.md. Pergunta também o padrão das mensagens de commit (o kit nunca commita, só entrega a mensagem pronta em texto). Modos — completo, audit (somente leitura), module <nome>, permissions, refresh. Nunca sobrescreve conteúdo escrito por pessoas e sempre mostra o diff antes de gravar. Use apenas quando o usuário chamar /sdd-setup (ou $sdd-setup) ou pedir explicitamente para configurar o toolkit, gerar AGENTS.md/CLAUDE.md, analisar a stack ou configurar permissões."
     },
     {
       "name": "sdd-start",

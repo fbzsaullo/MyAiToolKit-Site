@@ -12,10 +12,12 @@ type Snapshot = {
 const snapshot: Snapshot = JSON.parse(readFileSync('src/data/kit.json', 'utf8'));
 const KIT = resolve(process.env.KIT_PATH ?? '../MyAiToolKit');
 
-test('snapshot do kit com 12 comandos', () => {
+// RN-04 fixa o kit 0.3.1 (17 comandos): se o kit crescer, este teste lembra de revisar o PRD.
+test('snapshot do kit 0.3.1 com 17 comandos', () => {
   expect(snapshot.repository).toBe('https://github.com/fbzsaullo/MyAiToolKit');
   expect(snapshot.version).toMatch(/^\d+\.\d+\.\d+$/);
-  expect(snapshot.commands).toHaveLength(12);
+  expect(snapshot.version).toBe('0.3.1');
+  expect(snapshot.commands).toHaveLength(17);
   for (const command of snapshot.commands) {
     expect(command.claude).toBe(`/${command.name}`);
     expect(command.codex).toBe(`$${command.name}`);

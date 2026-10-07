@@ -50,7 +50,7 @@ graph TD
 
 #### T-27 — Sincronizar o snapshot do kit 0.3.1 e mostrar os comandos em quatro grupos
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Média
 - **Estimativa:**
 - **Depende de:** —
@@ -63,7 +63,7 @@ graph TD
   - `tests/kit.spec.ts`, `tests/commands.spec.ts` *(editados)*
 
 **Critério de aceite (testável):**
-- [ ] Snapshot em 0.3.1 com 17 comandos; seção Comandos com Fases, Navegação, Mudança e Apoio, um chip por comando do snapshot, com quando usar, o que gera, chamada no Codex e prévia de 2 a 3 linhas
+- [x] Snapshot em 0.3.1 com 17 comandos; seção Comandos com Fases, Navegação, Mudança e Apoio, um chip por comando do snapshot, com quando usar, o que gera, chamada no Codex e prévia de 2 a 3 linhas
 
 **Testes a escrever:**
 - *E2E:* `test("CA-28: …")` — substitui o teste do CA-14 do PRD-001
@@ -127,6 +127,6 @@ Autonomia concedida pelo responsável (2026-10-06): viram autoverificações reg
 
 | Tarefa | Status | Data | Commit | Observação |
 | --- | --- | --- | --- | --- |
-| T-27 | Pendente | — | — | — |
+| T-27 | Concluído | 2026-10-07 | — | Review aprovado |
 | T-28 | Pendente | — | — | — |
 | T-29 | Pendente | — | — | — |

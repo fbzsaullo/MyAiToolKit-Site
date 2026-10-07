@@ -5,18 +5,21 @@ import { axeViolations, visit } from './helpers';
 const kit: { commands: { name: string; codex: string }[] } = JSON.parse(readFileSync('src/data/kit.json', 'utf8'));
 const kitNames = kit.commands.map((c) => c.name).sort();
 
-test('CA-14: referência dos 12 comandos', async ({ browser }) => {
+// CA-28 (PRD-002) substitui o CA-14 do PRD-001: comandos do kit 0.3.1 em quatro grupos.
+test('CA-28: comandos do kit 0.3.1 em quatro grupos', async ({ browser }) => {
   const page = await visit(browser);
   const section = page.locator('#comandos');
   const cards = section.locator('[data-command]');
-  await expect(cards).toHaveCount(12);
+  await expect(cards).toHaveCount(kitNames.length);
+  expect(kitNames).toHaveLength(17);
 
-  // Três grupos com título, na ordem Fases, Navegação, Apoio.
-  await expect(section.locator('.commands__group-title')).toHaveText(['Fases', 'Navegação', 'Apoio']);
+  // Quatro grupos com título, na ordem Fases, Navegação, Mudança, Apoio.
+  await expect(section.locator('.commands__group-title')).toHaveText(['Fases', 'Navegação', 'Mudança', 'Apoio']);
   const names = (group: string) => section.locator(`[data-group="${group}"] [data-command]`).evaluateAll((els) => els.map((el) => el.getAttribute('data-command')));
   expect(await names('fases')).toEqual(['sdd-architect', 'sdd-prd', 'sdd-prototype', 'sdd-plan', 'sdd-execute', 'sdd-review']);
   expect(await names('navegacao')).toEqual(['sdd-start', 'sdd-next', 'sdd-trace']);
-  expect(await names('apoio')).toEqual(['sdd-setup', 'spike', 'code-review']);
+  expect(await names('mudanca')).toEqual(['sdd-change', 'sdd-bug', 'sdd-adr']);
+  expect(await names('apoio')).toEqual(['sdd-setup', 'spike', 'code-review', 'commit-message', 'pr-description']);
 
   // Cada chip diz quando usar, o que gera e a chamada no Codex.
   for (const card of await cards.all()) {
@@ -97,5 +100,5 @@ test('CA-07: nomes dos comandos iguais em pt-BR e en', async ({ browser }) => {
   const pt = await read('/', 'pt-BR');
   const en = await read('/en/', 'en-US');
   expect(en).toEqual(pt);
-  expect(pt).toHaveLength(12);
+  expect(pt).toHaveLength(kitNames.length);
 });

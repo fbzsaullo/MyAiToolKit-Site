@@ -2,13 +2,14 @@
 // aqui só se decide em que grupo cada um aparece. Se o kit ganhar ou perder um comando, o build falha.
 import kit from '../data/kit.json';
 
-export type CommandGroup = 'fases' | 'navegacao' | 'apoio';
+export type CommandGroup = 'fases' | 'navegacao' | 'mudanca' | 'apoio';
 export type KitCommand = { name: string; claude: string; codex: string };
 
 export const GROUPS: Record<CommandGroup, string[]> = {
   fases: ['sdd-architect', 'sdd-prd', 'sdd-prototype', 'sdd-plan', 'sdd-execute', 'sdd-review'],
   navegacao: ['sdd-start', 'sdd-next', 'sdd-trace'],
-  apoio: ['sdd-setup', 'spike', 'code-review'],
+  mudanca: ['sdd-change', 'sdd-bug', 'sdd-adr'],
+  apoio: ['sdd-setup', 'spike', 'code-review', 'commit-message', 'pr-description'],
 };
 
 // No Claude Code, o code-review do kit é chamado pelo nome do plugin, para não colidir com o nativo.

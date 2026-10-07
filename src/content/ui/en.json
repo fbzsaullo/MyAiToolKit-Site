@@ -289,11 +289,13 @@
     "groups": {
       "fases": "Phases",
       "navegacao": "Navigation",
+      "mudanca": "Change",
       "apoio": "Support"
     },
     "groupNotes": {
       "fases": "One at a time, in pipeline order. The prototype is optional.",
       "navegacao": "They tell you where you are and what is missing.",
+      "mudanca": "When scope changes, a defect shows up or a decision comes up.",
       "apoio": "Outside the phase loop, when you need them."
     },
     "labels": {
@@ -410,6 +412,51 @@
           "Compare with: main · story: PROJ-123",
           "CR-01 Bloqueante · Q1 — fix before merge",
           "docs/sdd/code-reviews/CR-feature-reset-2026-09-20.md"
+        ]
+      },
+      "sdd-change": {
+        "when": "The scope of an approved PRD changed",
+        "generates": "Impact per ID, recorded revision and adjusted plan",
+        "preview": [
+          "Impact: ~RN-02 → CA-03, UI-02.expirado, T-03",
+          "PRD-007 · Revision 1: ~RN-02, −RN-07, +RN-12",
+          "Plan: T-06 Cancelado · Phase 5 with T-09 and T-10"
+        ]
+      },
+      "sdd-bug": {
+        "when": "A defect showed up",
+        "generates": "Diagnosis and one fix task with a regression test",
+        "preview": [
+          "docs/sdd/bugs/BUG-PROJ-88-link-expirado-aceito.md",
+          "Breaks CA-03 · likely cause in app/models/token.rb",
+          "T-11 in the Correções phase · regression test for CA-03"
+        ]
+      },
+      "sdd-adr": {
+        "when": "An architecture decision came up mid-project",
+        "generates": "A new, replacing or discontinued ADR",
+        "preview": [
+          "docs/sdd/architecture/adrs/ADR-005-cache-com-solid-cache.md",
+          "Status: Proposto · replaces ADR-003",
+          "Relying on ADR-003: T-08 (Pendente)"
+        ]
+      },
+      "commit-message": {
+        "when": "Time to commit any change",
+        "generates": "The commit message in the project pattern, as text",
+        "preview": [
+          "feat(agenda): bloqueia horário já ocupado (T-03)",
+          "Type feat: the schedule now rejects a request",
+          "The kit does not commit — the commit is yours"
+        ]
+      },
+      "pr-description": {
+        "when": "The branch is ready for a PR",
+        "generates": "PR title and description, with traceability and how to test",
+        "preview": [
+          "Compare with: main · T-03 and T-04",
+          "Traceability: RN-04 · CA-05 · ADR-002",
+          "How to test · covered scenarios · risks"
         ]
       }
     }

@@ -289,11 +289,13 @@
     "groups": {
       "fases": "Fases",
       "navegacao": "Navegação",
+      "mudanca": "Mudança",
       "apoio": "Apoio"
     },
     "groupNotes": {
       "fases": "Uma por vez, na ordem do pipeline. O protótipo é opcional.",
       "navegacao": "Dizem onde você está e o que falta.",
+      "mudanca": "Quando o escopo muda, aparece um defeito ou surge uma decisão.",
       "apoio": "Fora do laço das fases, quando precisar."
     },
     "labels": {
@@ -410,6 +412,51 @@
           "Comparar com: main · história: PROJ-123",
           "CR-01 Bloqueante · Q1 — corrigir antes do merge",
           "docs/sdd/code-reviews/CR-feature-reset-2026-09-20.md"
+        ]
+      },
+      "sdd-change": {
+        "when": "O escopo de um PRD aprovado mudou",
+        "generates": "Impacto por ID, revisão registrada e plano ajustado",
+        "preview": [
+          "Impacto: ~RN-02 → CA-03, UI-02.expirado, T-03",
+          "PRD-007 · Revisão 1: ~RN-02, −RN-07, +RN-12",
+          "Plano: T-06 Cancelado · Fase 5 com T-09 e T-10"
+        ]
+      },
+      "sdd-bug": {
+        "when": "Apareceu um defeito",
+        "generates": "Diagnóstico e uma tarefa de correção com teste de regressão",
+        "preview": [
+          "docs/sdd/bugs/BUG-PROJ-88-link-expirado-aceito.md",
+          "Descumpre o CA-03 · causa provável em app/models/token.rb",
+          "T-11 na fase Correções · teste de regressão do CA-03"
+        ]
+      },
+      "sdd-adr": {
+        "when": "Surgiu uma decisão de arquitetura no meio do caminho",
+        "generates": "Um ADR novo, substituto ou descontinuado",
+        "preview": [
+          "docs/sdd/architecture/adrs/ADR-005-cache-com-solid-cache.md",
+          "Status: Proposto · substitui o ADR-003",
+          "Apoiadas no ADR-003: T-08 (Pendente)"
+        ]
+      },
+      "commit-message": {
+        "when": "Hora de commitar qualquer mudança",
+        "generates": "A mensagem de commit no padrão do projeto, em texto",
+        "preview": [
+          "feat(agenda): bloqueia horário já ocupado (T-03)",
+          "Tipo feat: a agenda passa a recusar um pedido",
+          "O kit não commita — o commit é seu"
+        ]
+      },
+      "pr-description": {
+        "when": "A branch está pronta para o PR",
+        "generates": "Título e descrição do PR, com rastreabilidade e como testar",
+        "preview": [
+          "Comparar com: main · T-03 e T-04",
+          "Rastreabilidade: RN-04 · CA-05 · ADR-002",
+          "Como testar · cenários cobertos · riscos"
         ]
       }
     }
