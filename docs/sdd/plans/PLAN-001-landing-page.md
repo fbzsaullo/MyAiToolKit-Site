@@ -5,7 +5,7 @@
 - **Stack:** Node 24 · Astro 7 · Preact · Motion · Shiki · CSS próprio · Playwright + axe · Netlify
 - **Responsável:** Fabrizio
 - **Data:** 2026-10-06
-- **Status:** Em execução
+- **Status:** Concluído
 - **Estimativa total (informada pelo usuário):**
 
 ---
@@ -377,7 +377,7 @@ Script sem dependências: lê `KIT_PATH` (padrão `../MyAiToolKit`) ou clona `KI
 - **Implementa:** RN-08
 - **Valida:** —
 - **Decisões base:** ADR-004
-- **Telas:** UI-03 (default, reduzido, celular), UI-04, UI-08
+- **Telas:** UI-03 (default, reduzido, celular), UI-04 (default, celular), UI-08 (default, celular)
 - **Arquivos/camadas:**
   - `src/sections/Problem.astro`, `src/sections/WhatIs.astro`, `src/sections/Why.astro` *(novos)*
 
@@ -717,4 +717,4 @@ Autonomia concedida pelo responsável: viram autoverificações registradas no h
 | T-21 | Concluído | 2026-10-07 | `23fb36b` | Review aprovado; bloco provisório da instalação removido |
 | T-22 | Concluído | 2026-10-07 | `70efb08` | Review aprovado; R-02 da T-03 resolvido (404 no verificador de links) |
 | T-23 | Concluído | 2026-10-07 | `f0817ce` | Review aprovado; R-01 da T-10 resolvido (seção ativa testada); validação antes da T-24 feita |
-| T-24 | Concluído | 2026-10-07 | (ver matriz de rastreabilidade) | Review aprovado |
+| T-24 | Concluído | 2026-10-07 | `0956390` | Review aprovado |
