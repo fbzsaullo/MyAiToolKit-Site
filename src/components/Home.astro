@@ -9,6 +9,7 @@ import Problem from '../sections/Problem.astro';
 import WhatIs from '../sections/WhatIs.astro';
 import Why from '../sections/Why.astro';
 import Pipeline from '../sections/Pipeline.astro';
+import Traceability from '../sections/Traceability.astro';
 import CodeBlock from './CodeBlock.astro';
 import { t, type Locale } from '../i18n';
 
@@ -27,7 +28,7 @@ const s = ui.sections;
     <Problem locale={locale} />
     <WhatIs locale={locale} />
     <Pipeline locale={locale} />
-    <Section id="rastreabilidade" {...s.rastreabilidade} />
+    <Traceability locale={locale} />
     <Section id="comandos" {...s.comandos} />
     <Why locale={locale} />
     <Section id="arquitetura" {...s.arquitetura} />

@@ -257,5 +257,30 @@
     "returned": "voltou 1× por",
     "label": "Tarefas do plano",
     "summary": "Estado final"
+  },
+  "trace": {
+    "intro": "Cada regra vira cenário, tela, tarefa, review e teste — sempre com o mesmo ID. Foque um ID para ver o que se liga a ele. O exemplo é a demanda de recuperação de senha.",
+    "chainLabel": "Cadeia de um requisito",
+    "matrixLabel": "Mini matriz no estilo /sdd-trace",
+    "matrixCaption": "Matriz de rastreabilidade da recuperação de senha: regra, cenários, telas, tarefas e testes",
+    "columns": {
+      "rn": "Regra",
+      "rule": "Descrição",
+      "ca": "Cenários",
+      "ui": "Telas",
+      "t": "Tarefas",
+      "test": "Testes"
+    },
+    "kinds": {
+      "rn": "Regra",
+      "ca": "Cenário",
+      "ui": "Tela",
+      "t": "Tarefa",
+      "r": "Review",
+      "test": "Teste"
+    },
+    "none": "nenhuma",
+    "brokenLabel": "Elo quebrado",
+    "status": "{id}: {n} IDs ligados destacados"
   }
 }

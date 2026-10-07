@@ -1,0 +1,20 @@
+---
+// UI-06 — Rastreabilidade. Ilha Preact hidratada ao ficar visível (ADR-003); o HTML do servidor é a camada estática.
+import Section from '../components/Section.astro';
+import TraceIsland from '../components/islands/TraceIsland';
+import { t, type Locale } from '../i18n';
+import { getExamples } from '../lib/examples';
+import { toTrace } from '../lib/trace';
+import '../styles/trace.css';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const ui = t(locale);
+const data = toTrace(await getExamples(), locale);
+---
+<Section id="rastreabilidade" {...ui.sections.rastreabilidade} lead={ui.trace.intro}>
+  <TraceIsland client:visible data={data} labels={ui.trace} />
+</Section>

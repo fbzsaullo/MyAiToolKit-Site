@@ -257,5 +257,30 @@
     "returned": "sent back 1× by",
     "label": "Plan tasks",
     "summary": "Final state"
+  },
+  "trace": {
+    "intro": "Each rule becomes a scenario, screen, task, review and test — always with the same ID. Focus an ID to see what links to it. The example is the password recovery demand.",
+    "chainLabel": "Chain of one requirement",
+    "matrixLabel": "Mini matrix in the /sdd-trace style",
+    "matrixCaption": "Traceability matrix for password recovery: rule, scenarios, screens, tasks and tests",
+    "columns": {
+      "rn": "Rule",
+      "rule": "Description",
+      "ca": "Scenarios",
+      "ui": "Screens",
+      "t": "Tasks",
+      "test": "Tests"
+    },
+    "kinds": {
+      "rn": "Rule",
+      "ca": "Scenario",
+      "ui": "Screen",
+      "t": "Task",
+      "r": "Review",
+      "test": "Test"
+    },
+    "none": "none",
+    "brokenLabel": "Broken link",
+    "status": "{id}: {n} linked IDs highlighted"
   }
 }
