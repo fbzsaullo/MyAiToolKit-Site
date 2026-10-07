@@ -1,0 +1,74 @@
+---
+// Árvore de pastas. Itens novos recebem o marcador ■; a ordem (`--i`) permite revelar um a um (T-11).
+export type TreeNode = { name: string; dir?: boolean; isNew?: boolean; note?: string; children?: TreeNode[] };
+
+interface Props {
+  nodes: TreeNode[];
+  label: string;
+  class?: string;
+  /** Uso interno da recursão. */
+  depth?: number;
+  start?: number;
+}
+
+const { nodes, label, class: className, depth = 0 } = Astro.props;
+
+// Índice sequencial de exibição, para animar na ordem em que os itens aparecem na árvore.
+let counter = Astro.props.start ?? 0;
+const flat = (list: TreeNode[]): number => list.reduce((n, node) => n + 1 + flat(node.children ?? []), 0);
+const items = nodes.map((node) => {
+  const index = counter++;
+  const childStart = counter;
+  counter += flat(node.children ?? []);
+  return { node, index, childStart };
+});
+---
+<ul class:list={[depth === 0 ? 'file-tree' : 'file-tree__children', className]} role="list" aria-label={depth === 0 ? label : undefined}>
+  {items.map(({ node, index, childStart }) => (
+    <li class:list={['file-tree__item', { 'file-tree__item--new': node.isNew, 'file-tree__item--dir': node.dir }]} style={`--i: ${index}`}>
+      <span class="file-tree__row">
+        <span class="file-tree__mark" aria-hidden="true"></span>
+        <span class="file-tree__name">{node.name}{node.dir ? '/' : ''}</span>
+        {node.note && <span class="file-tree__note">{node.note}</span>}
+      </span>
+      {node.children && node.children.length > 0 && (
+        <Astro.self nodes={node.children} label={label} depth={depth + 1} start={childStart} />
+      )}
+    </li>
+  ))}
+</ul>
+
+<style is:global>
+  .file-tree,
+  .file-tree__children {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-code);
+    line-height: var(--lh-code);
+  }
+  .file-tree__children {
+    margin-left: 0.625rem;
+    padding-left: var(--space-4);
+    border-left: var(--border) solid currentColor;
+    border-left-color: color-mix(in srgb, currentColor 25%, transparent);
+  }
+  .file-tree__row {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+  }
+  .file-tree__mark {
+    flex: none;
+    width: 0.5rem;
+    height: 0.5rem;
+    border: var(--border) solid currentColor;
+    transform: translateY(-0.05rem);
+  }
+  .file-tree__item--new > .file-tree__row .file-tree__mark {
+    background: currentColor;
+  }
+  .file-tree__note {
+    opacity: 0.7;
+    font-size: var(--fs-label);
+  }
+</style>

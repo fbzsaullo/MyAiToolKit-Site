@@ -1,0 +1,93 @@
+---
+// Janela de terminal, sempre escura. As linhas aparecem completas no HTML; animações (T-11)
+// apenas revelam o que já está escrito, e leitores de tela recebem tudo de uma vez.
+export type TerminalLine = { kind: 'cmd' | 'out' | 'note'; text: string };
+
+interface Props {
+  title: string;
+  lines: TerminalLine[];
+  label: string;
+  class?: string;
+}
+
+const { title, lines, label, class: className } = Astro.props;
+---
+<figure class:list={['terminal', className]}>
+  <div class="terminal__bar">
+    <span class="terminal__dots" aria-hidden="true"><span></span><span></span><span></span></span>
+    <span class="terminal__title">{title}</span>
+  </div>
+  <div class="terminal__body">
+    <p class="visually-hidden">{label}: {lines.map((line) => line.text).join(' — ')}</p>
+    <ol class="terminal__lines" role="list" aria-hidden="true">
+      {lines.map((line, index) => (
+        <li class:list={['terminal__line', `terminal__line--${line.kind}`]} style={`--i: ${index}`}>
+          {line.kind === 'cmd' && <span class="terminal__prompt">›</span>}
+          <span class="terminal__text">{line.text}</span>
+        </li>
+      ))}
+    </ol>
+    <slot />
+  </div>
+</figure>
+
+<style is:global>
+  .terminal {
+    margin: 0;
+    background: var(--term-bg);
+    color: var(--term-text);
+    border: var(--border) solid var(--term-line);
+    font-family: var(--font-mono);
+    font-size: var(--fs-code);
+    line-height: var(--lh-code);
+    min-width: 0;
+  }
+  .terminal__bar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-4);
+    border-bottom: var(--border) solid var(--term-line);
+    color: var(--term-muted);
+    font-size: var(--fs-label);
+    letter-spacing: var(--ls-id);
+  }
+  .terminal__dots {
+    display: inline-flex;
+    gap: 0.375rem;
+  }
+  .terminal__dots span {
+    width: 0.5rem;
+    height: 0.5rem;
+    border: var(--border) solid var(--term-muted);
+  }
+  .terminal__body {
+    padding: var(--space-4);
+    overflow-x: auto;
+  }
+  .terminal__lines {
+    display: grid;
+    gap: 0.125rem;
+    margin: 0;
+  }
+  .terminal__line {
+    display: flex;
+    gap: var(--space-2);
+    white-space: pre;
+  }
+  .terminal__line--out {
+    color: var(--term-muted);
+  }
+  .terminal__line--note {
+    color: var(--term-muted);
+    font-style: normal;
+  }
+  .terminal__prompt {
+    color: var(--term-muted);
+  }
+  .terminal__line--cmd .terminal__text {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+  }
+</style>

@@ -2,6 +2,7 @@
 // Página única, renderizada nas duas rotas. As seções entram nas tarefas T-10 a T-21.
 import Base from '../layouts/Base.astro';
 import Logo from './Logo.astro';
+import CodeBlock from './CodeBlock.astro';
 import type { Locale } from '../i18n';
 
 interface Props {
@@ -13,5 +14,13 @@ const { locale } = Astro.props;
 <Base locale={locale}>
   <main id="conteudo" class="container">
     <h1><Logo height={64} /></h1>
+    <CodeBlock
+      locale={locale}
+      filename="terminal"
+      highlight={[2]}
+      code={`# provisório: substituído pela seção de instalação (T-21)
+claude plugin marketplace add ./MyAiToolKit
+/sdd-start`}
+    />
   </main>
 </Base>

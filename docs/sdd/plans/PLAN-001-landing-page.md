@@ -300,7 +300,7 @@ Script sem dependências: lê `KIT_PATH` (padrão `../MyAiToolKit`) ou clona `KI
 
 #### T-09 — Construir CodeBlock com Shiki e copiar, Terminal e FileTree
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Média
 - **Estimativa:**
 - **Depende de:** T-08
@@ -313,8 +313,8 @@ Script sem dependências: lê `KIT_PATH` (padrão `../MyAiToolKit`) ou clona `KI
   - `src/scripts/copy.ts` *(novo)*
 
 **Critério de aceite (testável):**
-- [ ] Realce monocromático por variáveis; `/sdd-*` sublinhado
-- [ ] Copiar grava o texto exato e mostra ■ → ✓ com anúncio
+- [x] Realce monocromático por variáveis; `/sdd-*` sublinhado
+- [x] Copiar grava o texto exato e mostra ■ → ✓ com anúncio
 
 **Testes a escrever:**
 - *E2E:* cobertos pelo CA-20 na T-21
@@ -701,4 +701,5 @@ Autonomia concedida pelo responsável: viram autoverificações registradas no h
 | T-05 | Concluído | 2026-10-06 | `6beda28` | Aprovado com ressalvas: R-01 (CA-07 completado nas T-12 e T-17) |
 | T-06 | Concluído | 2026-10-06 | `1e0915a` | Review aprovado |
 | T-07 | Concluído | 2026-10-06 | `e0febd8` | Review aprovado |
-| T-08 | Concluído | 2026-10-06 | (ver T-09) | Aprovado com ressalvas: R-01 (GitHub em texto) |
+| T-08 | Concluído | 2026-10-06 | `b3c2792` | Aprovado com ressalvas: R-01 (GitHub em texto) |
+| T-09 | Concluído | 2026-10-06 | (ver T-10) | Aprovado com ressalvas: R-01 (Terminal e FileTree testados na T-11) |

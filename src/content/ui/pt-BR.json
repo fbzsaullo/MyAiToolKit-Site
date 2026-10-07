@@ -6,5 +6,10 @@
   },
   "a11y": {
     "skipToContent": "Pular para o conteúdo"
+  },
+  "code": {
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "copyFailed": "Selecionado — use Ctrl+C"
   }
 }

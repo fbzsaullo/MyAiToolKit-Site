@@ -1,0 +1,195 @@
+---
+// Bloco de código: cabeçalho (nome do arquivo ou abas), copiar com retorno ■ → ✓ e linha destacada.
+// Segue o tema; a variante `terminal` é sempre escura. Rolagem horizontal só dentro do bloco.
+import { highlight, type CodeLang } from '../lib/shiki';
+import { t, type Locale } from '../i18n';
+
+interface Props {
+  code: string;
+  lang?: CodeLang;
+  locale: Locale;
+  filename?: string;
+  highlight?: number[];
+  copy?: boolean;
+  variant?: 'default' | 'terminal';
+  class?: string;
+}
+
+const {
+  code,
+  lang = 'bash',
+  locale,
+  filename,
+  highlight: lines = [],
+  copy = true,
+  variant = 'default',
+  class: className,
+} = Astro.props;
+const ui = t(locale);
+const html = await highlight(code.trim(), lang, lines);
+const hasHeader = Boolean(filename) || Astro.slots.has('header') || copy;
+---
+<div class:list={['code-block', `code-block--${variant}`, className]} data-code-block>
+  {hasHeader && (
+    <div class="code-block__header">
+      <div class="code-block__title">
+        {filename && <span class="code-block__filename">{filename}</span>}
+        <slot name="header" />
+      </div>
+      {copy && (
+        <button type="button" class="code-block__copy" data-copy data-label={ui.code.copy} data-copied={ui.code.copied}>
+          <span class="code-block__mark" aria-hidden="true"></span>
+          <span class="code-block__copy-text">{ui.code.copy}</span>
+        </button>
+      )}
+    </div>
+  )}
+  <Fragment set:html={html} />
+  {copy && <p class="code-block__status visually-hidden" role="status" aria-live="polite" data-failed={ui.code.copyFailed}></p>}
+</div>
+
+<script>
+  import { setupCopyButtons } from '../scripts/copy';
+  setupCopyButtons();
+</script>
+
+<style is:global>
+  .code-block {
+    --block-bg: var(--surface);
+    --block-line: var(--line);
+    --block-text: var(--text);
+    --block-text-2: var(--text-2);
+    --block-muted: var(--text-muted);
+    --block-highlight: var(--surface-2);
+    --block-ink: var(--ink);
+    border: var(--border) solid var(--line-strong);
+    background: var(--block-bg);
+    color: var(--block-text);
+    min-width: 0;
+  }
+  .code-block--terminal {
+    --block-bg: var(--term-bg);
+    --block-line: var(--term-line);
+    --block-text: var(--term-text);
+    --block-text-2: var(--term-muted);
+    --block-muted: var(--term-muted);
+    --block-highlight: var(--term-surface);
+    --block-ink: var(--term-text);
+    border-color: var(--term-line);
+  }
+
+  /* Tema do Shiki ligado aos tokens (ADR-005) */
+  .code-block {
+    --shiki-foreground: var(--block-text);
+    --shiki-token-keyword: var(--block-text);
+    --shiki-token-constant: var(--block-text);
+    --shiki-token-function: var(--block-text);
+    --shiki-token-parameter: var(--block-text);
+    --shiki-token-punctuation: var(--block-text-2);
+    --shiki-token-string: var(--block-text-2);
+    --shiki-token-string-expression: var(--block-text-2);
+    --shiki-token-link: var(--block-text-2);
+    --shiki-token-comment: var(--block-muted);
+  }
+  .code-block .tk-keyword {
+    font-weight: 500;
+  }
+  .code-block .tk-cmd {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+  }
+
+  .code-block__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+    min-height: 2.75rem;
+    padding: 0 var(--space-2) 0 var(--space-4);
+    border-bottom: var(--border) solid var(--block-line);
+  }
+  .code-block__title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-width: 0;
+  }
+  .code-block__filename {
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    letter-spacing: var(--ls-id);
+    color: var(--block-muted);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .code-block__copy {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 44px;
+    min-width: 44px;
+    padding: 0 var(--space-3);
+    border-radius: var(--radius-sm);
+    color: var(--block-text);
+    font-size: var(--fs-small);
+    font-weight: 500;
+    transition: background-color var(--dur-fast) var(--ease);
+  }
+  .code-block__copy:hover {
+    background: var(--block-highlight);
+  }
+  .code-block__copy:focus-visible {
+    outline-color: var(--block-ink);
+  }
+  /* Retorno ■ → ✓, desenhado em CSS (não depende de glifo da fonte) */
+  .code-block__mark {
+    position: relative;
+    width: 0.625rem;
+    height: 0.625rem;
+    background: currentColor;
+    transition: background-color var(--dur-fast) var(--ease);
+  }
+  .code-block__copy[data-state='copied'] .code-block__mark {
+    background: transparent;
+  }
+  .code-block__copy[data-state='copied'] .code-block__mark::after {
+    content: '';
+    position: absolute;
+    left: 0.15rem;
+    top: -0.05rem;
+    width: 0.3rem;
+    height: 0.55rem;
+    border: solid currentColor;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  .code-block pre {
+    margin: 0;
+    padding: var(--space-4) 0;
+    overflow-x: auto;
+    font-size: var(--fs-code);
+    line-height: var(--lh-code);
+    background: transparent !important;
+  }
+  .code-block pre:focus-visible {
+    outline-offset: -2px;
+  }
+  .code-block code {
+    display: block;
+    min-width: max-content;
+  }
+  .code-block .line {
+    display: inline-block;
+    min-width: 100%;
+    padding: 0 var(--space-4);
+    border-left: 2px solid transparent;
+  }
+  .code-block .line.is-highlighted {
+    background: var(--block-highlight);
+    border-left-color: var(--block-ink);
+  }
+</style>
