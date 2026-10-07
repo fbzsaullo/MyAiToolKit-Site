@@ -1,0 +1,62 @@
+---
+// Página 404 (ADR-011), uma por idioma. Fora do índice de busca e sem canonical/alternates.
+import Base from '../layouts/Base.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import { homePath, t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const ui = t(locale);
+const nf = ui.notFound;
+---
+<Base locale={locale} page="404">
+  <Header locale={locale} standalone />
+  <main id="conteudo" class="not-found">
+    <div class="container not-found__inner">
+      <p class="label not-found__code tabular">{nf.code}</p>
+      <h1>{nf.title}</h1>
+      <p class="lead not-found__text">{nf.text}</p>
+      <ul class="not-found__links" role="list">
+        <li><a class="not-found__primary" href={homePath(locale)}>{nf.back}</a></li>
+        <li><a href={`${homePath(locale)}#instalar`}>{nf.install}</a></li>
+      </ul>
+    </div>
+  </main>
+  <Footer locale={locale} />
+</Base>
+
+<style>
+  .not-found {
+    padding-block: var(--space-10);
+  }
+  .not-found__inner {
+    display: grid;
+    gap: var(--space-5);
+    justify-items: start;
+  }
+  .not-found__text {
+    max-width: var(--measure);
+    color: var(--text-2);
+  }
+  .not-found__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-5);
+    align-items: center;
+  }
+  .not-found__primary {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 var(--space-5);
+    border-radius: var(--radius-sm);
+    background: var(--ink);
+    color: var(--bg);
+    font-weight: 600;
+    text-decoration: none;
+  }
+</style>

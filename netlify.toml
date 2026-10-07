@@ -1,7 +1,29 @@
-# Configuração da Netlify (ADR-011). Cabeçalhos de cache e de segurança entram na T-22.
+# Configuração da Netlify (ADR-011). A CSP com os hashes dos scripts inline é gerada no pós-build
+# em dist/_headers (scripts/csp-hash.mjs); aqui ficam o build, o cache e os demais cabeçalhos.
 [build]
   command = "npm run build"
   publish = "dist"
 
 [build.environment]
   NODE_VERSION = "24"
+
+# Segurança em todas as rotas. O HTML usa o cache padrão da Netlify (max-age=0, must-revalidate);
+# um Cache-Control aqui seria somado ao de /_astro/* nas rotas que casam com as duas regras.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), browsing-topics=()"
+
+# Assets com hash no nome (JS, CSS e fontes): cache imutável.
+[[headers]]
+  for = "/_astro/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Página 404 em inglês para o que não existir sob /en/; o resto cai no /404.html em pt-BR.
+[[redirects]]
+  from = "/en/*"
+  to = "/en/404/"
+  status = 404

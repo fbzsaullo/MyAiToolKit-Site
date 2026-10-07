@@ -12,6 +12,7 @@
     "dev": "astro dev",
     "prebuild": "npm run copy:brand",
     "build": "astro build",
+    "postbuild": "node scripts/csp-hash.mjs",
     "preview": "astro preview",
     "check:budget": "node scripts/check-budget.mjs",
     "check:links": "node scripts/check-links.mjs",

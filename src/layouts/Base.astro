@@ -8,9 +8,12 @@ import { absolute, homePath, t, type Locale } from '../i18n';
 
 interface Props {
   locale: Locale;
+  /** "404": fora do índice, sem canonical nem alternates. */
+  page?: 'home' | '404';
 }
 
-const { locale } = Astro.props;
+const { locale, page = 'home' } = Astro.props;
+const isHome = page === 'home';
 const ui = t(locale);
 const site = Astro.site;
 const canonical = absolute(site, homePath(locale));
@@ -21,19 +24,25 @@ const canonical = absolute(site, homePath(locale));
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script is:inline set:html={boot} />
-    <title>{ui.meta.title}</title>
+    <title>{isHome ? ui.meta.title : ui.notFound.metaTitle}</title>
     <meta name="description" content={ui.meta.description} />
-    <link rel="canonical" href={canonical} />
-    <link rel="alternate" hreflang="pt-BR" href={absolute(site, homePath('pt-BR'))} />
-    <link rel="alternate" hreflang="en" href={absolute(site, homePath('en'))} />
-    <link rel="alternate" hreflang="x-default" href={absolute(site, homePath('pt-BR'))} />
+    {isHome ? (
+      <>
+        <link rel="canonical" href={canonical} />
+        <link rel="alternate" hreflang="pt-BR" href={absolute(site, homePath('pt-BR'))} />
+        <link rel="alternate" hreflang="en" href={absolute(site, homePath('en'))} />
+        <link rel="alternate" hreflang="x-default" href={absolute(site, homePath('pt-BR'))} />
+      </>
+    ) : (
+      <meta name="robots" content="noindex" />
+    )}
     <meta name="color-scheme" content="light dark" />
     <link rel="preload" href={geist600} as="font" type="font/woff2" crossorigin />
     <Fragment set:html={headSnippet} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={ui.meta.title} />
     <meta property="og:description" content={ui.meta.description} />
-    <meta property="og:url" content={canonical} />
+    {isHome && <meta property="og:url" content={canonical} />}
     <meta property="og:locale" content={ui.meta.ogLocale} />
   </head>
   <body>

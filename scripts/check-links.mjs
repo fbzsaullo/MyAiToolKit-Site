@@ -23,8 +23,10 @@ function htmlFiles(dir) {
 let problems = 0;
 
 // 1. Internos e âncoras.
+// As páginas 404 não são linkadas por nenhuma outra; entram como pontos de partida.
 const result = await check({
-  path: DIST,
+  serverRoot: DIST,
+  path: ['index.html', '404.html', 'en/404/index.html'],
   recurse: true,
   checkFragments: true,
   linksToSkip: [String.raw`^https?://(?!localhost|127\.0\.0\.1)`],

@@ -716,5 +716,13 @@
       "codexPs": "./MyAiToolKit/adapters/codex/install.ps1 -Scope user",
       "firstUse": "/sdd-setup\n/sdd-start"
     }
+  },
+  "notFound": {
+    "metaTitle": "Page not found — MyAiToolKit",
+    "code": "404",
+    "title": "This page does not exist",
+    "text": "The address may have changed or been mistyped. All of the site’s content lives on a single page.",
+    "back": "Back to the start",
+    "install": "Go to installation"
   }
 }

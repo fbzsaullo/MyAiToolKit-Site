@@ -602,7 +602,7 @@ As 6 fases como lista completa (comando, entrada, documento, IDs), para as duas 
 
 #### T-22 — Configurar cabeçalhos da Netlify, CSP com hash e páginas 404
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Média
 - **Estimativa:**
 - **Depende de:** T-05
@@ -614,8 +614,8 @@ As 6 fases como lista completa (comando, entrada, documento, IDs), para as duas 
   - `src/pages/404.astro`, `src/pages/en/404.astro` *(novos)*
 
 **Critério de aceite (testável):**
-- [ ] CSP sem terceiros com o hash do script inline gerado no build
-- [ ] Cache imutável em `/_astro/*`
+- [x] CSP sem terceiros com o hash do script inline gerado no build
+- [x] Cache imutável em `/_astro/*`
 
 **Testes a escrever:**
 - *Build:* `test("CSP contém o hash do script inline")`
@@ -714,4 +714,5 @@ Autonomia concedida pelo responsável: viram autoverificações registradas no h
 | T-18 | Concluído | 2026-10-07 | `7d04f1a` | Aprovado com ressalvas: R-01 (acordeão abaixo de 1024 px, não só ≤ 767 px) |
 | T-19 | Concluído | 2026-10-07 | `30758d4` | Review aprovado; ilha 10,4 KB |
 | T-20 | Concluído | 2026-10-07 | `2b3ba81` | Review aprovado |
-| T-21 | Concluído | 2026-10-07 | (ver T-22) | Review aprovado; bloco provisório da instalação removido |
+| T-21 | Concluído | 2026-10-07 | `23fb36b` | Review aprovado; bloco provisório da instalação removido |
+| T-22 | Concluído | 2026-10-07 | (ver T-23) | Review aprovado; R-02 da T-03 resolvido (404 no verificador de links) |
