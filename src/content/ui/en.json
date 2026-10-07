@@ -212,5 +212,39 @@
         ]
       }
     ]
+  },
+  "pipeline": {
+    "intro": "Pick a request and scroll: each phase shows the command, the input, the generated document and the IDs it creates — and each ID links to its parent ID.",
+    "selectorLabel": "Example request",
+    "phaseLabel": "Phase",
+    "command": "Command",
+    "input": "Input",
+    "document": "Generated document",
+    "ids": "IDs created",
+    "parent": "links to",
+    "optional": "optional — only with screens",
+    "notUsed": "not used in this request",
+    "entry": "starts here",
+    "trackLabel": "Pipeline phases",
+    "phases": [
+      {
+        "name": "Architecture"
+      },
+      {
+        "name": "Requirements"
+      },
+      {
+        "name": "Interface"
+      },
+      {
+        "name": "Plan"
+      },
+      {
+        "name": "Execution"
+      },
+      {
+        "name": "Review"
+      }
+    ]
   }
 }

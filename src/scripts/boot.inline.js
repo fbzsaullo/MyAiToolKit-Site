@@ -1,5 +1,6 @@
 (function () {
   var root = document.documentElement;
+  root.classList.add('js');
   var store = null;
   try { store = window.localStorage; } catch (e) {}
   var get = function (key) { try { return store && store.getItem(key); } catch (e) { return null; } };

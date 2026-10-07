@@ -40,3 +40,19 @@ test('nenhuma cor fora dos tokens', () => {
   }
   expect(offenders).toEqual([]);
 });
+
+test('nenhum emoji colorido nas páginas (site monocromático)', () => {
+  const offenders: string[] = [];
+  const read = (dir: string): string[] =>
+    readdirSync(dir).flatMap((name) => {
+      const path = join(dir, name);
+      if (statSync(path).isDirectory()) return read(path);
+      return path.endsWith('.html') ? [path] : [];
+    });
+  for (const file of read('dist')) {
+    const text = readFileSync(file, 'utf8');
+    const found = text.match(/\p{Emoji_Presentation}|\uFE0F/gu);
+    if (found) offenders.push(`${file}: ${[...new Set(found)].join(' ')}`);
+  }
+  expect(offenders).toEqual([]);
+});

@@ -391,7 +391,7 @@ Script sem dependências: lê `KIT_PATH` (padrão `../MyAiToolKit`) ou clona `KI
 
 #### T-13 — Montar a camada estática do pipeline
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Média
 - **Estimativa:**
 - **Depende de:** T-06, T-08
@@ -406,7 +406,7 @@ Script sem dependências: lê `KIT_PATH` (padrão `../MyAiToolKit`) ou clona `KI
 As 6 fases como lista completa (comando, entrada, documento, IDs), para as duas demandas, fase 3 opcional — é o que existe sem JS e com movimento reduzido.
 
 **Critério de aceite (testável):**
-- [ ] Sem JS, as duas demandas aparecem completas
+- [x] Sem JS, as duas demandas aparecem completas
 
 **Testes a escrever:**
 - *E2E:* `test("pipeline completo sem JavaScript")`
@@ -705,4 +705,5 @@ Autonomia concedida pelo responsável: viram autoverificações registradas no h
 | T-09 | Concluído | 2026-10-06 | `fcf0dab` | Aprovado com ressalvas: R-01 (Terminal e FileTree testados na T-11) |
 | T-10 | Concluído | 2026-10-06 | `8de2c69` | Aprovado com ressalvas: R-01 (seção ativa testada na T-23) |
 | T-11 | Concluído | 2026-10-06 | `243a16a` | Review aprovado |
-| T-12 | Concluído | 2026-10-06 | (ver T-13) | Review aprovado |
+| T-12 | Concluído | 2026-10-06 | `44b44bf` | Review aprovado |
+| T-13 | Concluído | 2026-10-06 | (ver T-14) | Aprovado com ressalvas: R-01 (ilha criada já na T-13 para evitar CLS) |

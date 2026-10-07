@@ -212,5 +212,39 @@
         ]
       }
     ]
+  },
+  "pipeline": {
+    "intro": "Escolha uma demanda e role: cada fase mostra o comando, a entrada, o documento gerado e os IDs criados — e cada ID se liga ao ID-pai.",
+    "selectorLabel": "Demanda de exemplo",
+    "phaseLabel": "Fase",
+    "command": "Comando",
+    "input": "Entrada",
+    "document": "Documento gerado",
+    "ids": "IDs criados",
+    "parent": "liga a",
+    "optional": "opcional — só com telas",
+    "notUsed": "não usada nesta demanda",
+    "entry": "entra aqui",
+    "trackLabel": "Fases do pipeline",
+    "phases": [
+      {
+        "name": "Arquitetura"
+      },
+      {
+        "name": "Requisitos"
+      },
+      {
+        "name": "Interface"
+      },
+      {
+        "name": "Plano"
+      },
+      {
+        "name": "Execução"
+      },
+      {
+        "name": "Review"
+      }
+    ]
   }
 }

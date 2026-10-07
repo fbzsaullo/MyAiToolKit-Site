@@ -124,7 +124,7 @@
       "document": {
         "path": "docs/sdd/reviews/REVIEW-T-03-2026-09-18.md",
         "lines": [
-          { "pt-BR": "- **Recomendação:** ⛔ Bloqueado", "en": "- **Recommendation:** ⛔ Blocked" },
+          { "pt-BR": "- **Recomendação:** Bloqueado", "en": "- **Recommendation:** Blocked" },
           { "pt-BR": "#### R-01 — Token comparado com == e gravado sem hash", "en": "#### R-01 — Token compared with == and stored without hash" },
           { "pt-BR": "- **Eixo:** 6 Segurança", "en": "- **Axis:** 6 Security" },
           { "pt-BR": "- **Caminho sugerido:** secure_compare + digest do token", "en": "- **Suggested fix:** secure_compare + token digest" }

@@ -120,7 +120,7 @@
       "document": {
         "path": "docs/sdd/reviews/REVIEW-T-02-2026-09-10.md",
         "lines": [
-          { "pt-BR": "- **Recomendação:** ⚠️ Aprovado com ressalvas", "en": "- **Recommendation:** ⚠️ Approved with remarks" },
+          { "pt-BR": "- **Recomendação:** Aprovado com ressalvas", "en": "- **Recommendation:** Approved with remarks" },
           { "pt-BR": "#### R-01 — Falta índice único em inscrições", "en": "#### R-01 — Missing unique index on sign-ups" },
           { "pt-BR": "- **Eixo:** 5 Qualidade", "en": "- **Axis:** 5 Quality" }
         ]

@@ -1,0 +1,56 @@
+/* Componentes usados tanto em páginas Astro quanto nas ilhas Preact (só as classes). */
+@layer components {
+  .id-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: 0.125rem 0.375rem;
+    border: var(--border) solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: var(--fs-id);
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: var(--ls-id);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .id-tag--active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--bg);
+  }
+  .id-tag--muted {
+    color: var(--text-muted);
+    border-color: var(--line);
+  }
+  .id-tag--broken {
+    border-style: dashed;
+    color: var(--text-2);
+  }
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+    border: var(--border) solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: var(--fs-code);
+    font-weight: 500;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+  .chip--sm {
+    padding: 0.125rem 0.375rem;
+    font-size: var(--fs-id);
+  }
+  .chip--sdd {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+  }
+}

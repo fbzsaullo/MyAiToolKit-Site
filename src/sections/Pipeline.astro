@@ -1,0 +1,22 @@
+---
+// UI-05 — Como funciona. Nesta etapa (T-13) a ilha é só renderizada no servidor (camada estática);
+// a T-14 liga a interação com `client:visible`.
+import Section from '../components/Section.astro';
+import PipelineIsland from '../components/islands/PipelineIsland';
+import { t, type Locale } from '../i18n';
+import { getExamples } from '../lib/examples';
+import { toPipelineDemands } from '../lib/pipeline';
+import '../styles/pipeline.css';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const ui = t(locale);
+const demands = toPipelineDemands(await getExamples(), locale);
+---
+<Section id="pipeline" {...ui.sections.pipeline} lead={ui.pipeline.intro} grid>
+  <PipelineIsland demands={demands} labels={ui.pipeline} />
+  <slot />
+</Section>

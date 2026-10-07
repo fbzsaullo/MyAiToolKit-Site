@@ -1,0 +1,295 @@
+/* UI-05 — Como funciona. Global porque a marcação vem do componente Preact (sem escopo do Astro). */
+@layer components {
+  /* Sem JS: as duas demandas aparecem em sequência e o seletor some (SPEC-UI UI-05.semJs).
+     Com JS (classe `js` aplicada no boot, antes da pintura): uma demanda por vez, sem salto na hidratação. */
+  .pipeline__tabs {
+    display: none;
+  }
+  .js .pipeline__tabs {
+    display: inline-flex;
+    gap: 0;
+    margin-bottom: var(--space-6);
+    border: var(--border) solid var(--line-strong);
+    border-radius: var(--radius-sm);
+  }
+  .js .pipeline__demand:not([data-active]) {
+    display: none;
+  }
+  .pipeline__demand + .pipeline__demand {
+    margin-top: var(--space-9);
+  }
+
+  .pipeline__tab {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 44px;
+    padding: 0 var(--space-4);
+    font-weight: 500;
+    color: var(--text-2);
+    background: var(--bg);
+    transition:
+      background-color var(--dur-fast) var(--ease),
+      color var(--dur-fast) var(--ease);
+  }
+  .pipeline__tab + .pipeline__tab {
+    border-left: var(--border) solid var(--line-strong);
+  }
+  .pipeline__tab-mark {
+    width: 0.5rem;
+    height: 0.5rem;
+    border: var(--border) solid currentColor;
+  }
+  .pipeline__tab[aria-selected='true'] {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .pipeline__tab[aria-selected='true'] .pipeline__tab-mark {
+    background: currentColor;
+  }
+
+  .pipeline__demand-header {
+    display: grid;
+    gap: var(--space-2);
+    margin-bottom: var(--space-6);
+  }
+  .pipeline__demand-summary {
+    color: var(--text-2);
+  }
+
+  .pipeline__layout {
+    display: grid;
+    grid-template-columns: 13rem minmax(0, 1fr);
+    gap: var(--space-7);
+    align-items: start;
+  }
+
+  /* Trilha fixa (desktop) */
+  .pipeline__track {
+    position: sticky;
+    top: calc(var(--header-h) + var(--space-5));
+    display: grid;
+    gap: 0;
+    margin: 0;
+  }
+  .pipeline__node {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding-block: var(--space-2);
+    color: var(--text-2);
+  }
+  .pipeline__node + .pipeline__node::before {
+    content: '';
+    position: absolute;
+    left: 1.125rem;
+    top: -0.5rem;
+    height: 1rem;
+    border-left: var(--border) solid var(--line-strong);
+  }
+  .pipeline__node-box {
+    display: inline-grid;
+    place-items: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: var(--border) solid var(--line-strong);
+    background: var(--bg);
+    transition:
+      background-color var(--dur-fast) var(--ease),
+      color var(--dur-fast) var(--ease),
+      border-color var(--dur-fast) var(--ease);
+  }
+  .pipeline__node-text {
+    display: grid;
+  }
+  .pipeline__node-name {
+    font-size: var(--fs-small);
+    font-weight: 500;
+  }
+  .pipeline__node[data-optional='true'] .pipeline__node-box,
+  .pipeline__node[data-used='false'] .pipeline__node-box {
+    border-style: dashed;
+  }
+  .pipeline__node[data-used='false'] {
+    color: var(--text-muted);
+  }
+  /* Fase ativa: bloco invertido (RN-02) */
+  .pipeline__node[data-active='true'] {
+    color: var(--text);
+  }
+  .pipeline__node[data-active='true'] .pipeline__node-box {
+    background: var(--ink);
+    border-color: var(--ink);
+    border-style: solid;
+    color: var(--bg);
+  }
+
+  /* Lista das fases */
+  .pipeline__phases {
+    display: grid;
+    gap: var(--space-5);
+    margin: 0;
+  }
+  .phase {
+    display: grid;
+    gap: var(--space-4);
+    padding: var(--space-5);
+    border: var(--border) solid var(--line-strong);
+    background: var(--bg);
+  }
+  .phase[data-optional='true'],
+  .phase[data-used='false'] {
+    border-style: dashed;
+  }
+  .phase[data-used='false'] {
+    color: var(--text-muted);
+  }
+  .phase[data-active='true'] {
+    border-color: var(--ink);
+    border-style: solid;
+  }
+  .phase__header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-3);
+  }
+  .phase__node {
+    display: none;
+  }
+  .phase__name {
+    font-size: var(--fs-h3);
+    line-height: var(--lh-h3);
+    letter-spacing: var(--ls-h3);
+    font-weight: 600;
+  }
+  .phase__tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.125rem 0.5rem;
+    border: var(--border) dashed var(--line-strong);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    letter-spacing: var(--ls-id);
+    color: var(--text-2);
+  }
+  .phase__tag--entry {
+    border: var(--border) solid var(--ink);
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .phase__facts {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: var(--space-4) var(--space-6);
+    margin: 0;
+  }
+  .phase__facts > div {
+    display: grid;
+    gap: var(--space-1);
+  }
+  .phase__facts dd {
+    margin: 0;
+    color: var(--text-2);
+  }
+  .phase__doc {
+    margin: 0;
+    border: var(--border) solid var(--line);
+    background: var(--surface);
+    min-width: 0;
+  }
+  .phase__doc-path {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    align-items: baseline;
+    padding: var(--space-2) var(--space-4);
+    border-bottom: var(--border) solid var(--line);
+    font-size: var(--fs-small);
+  }
+  .phase__doc-path code {
+    font-size: var(--fs-id);
+    overflow-wrap: anywhere;
+  }
+  .phase__doc-lines {
+    margin: 0;
+    padding: var(--space-3) var(--space-4);
+    overflow-x: auto;
+    font-size: var(--fs-code);
+    line-height: var(--lh-code);
+    color: var(--text);
+  }
+  .phase__doc-line {
+    display: block;
+  }
+  .phase__ids {
+    display: grid;
+    gap: var(--space-2);
+  }
+  .phase__id-list {
+    display: grid;
+    gap: var(--space-2);
+    margin: 0;
+  }
+  .phase__id {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2) var(--space-3);
+  }
+  .phase__id-label {
+    color: var(--text-2);
+    font-size: var(--fs-small);
+  }
+  .phase__id-parent {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+  }
+
+  /* Celular: trilha vertical à esquerda de cada fase, sem rolagem presa (UI-05.celular) */
+  @media (max-width: 899px) {
+    .pipeline__layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .pipeline__track {
+      display: none;
+    }
+    .pipeline__phases {
+      gap: 0;
+      border-left: var(--border) solid var(--line-strong);
+      margin-left: 1.125rem;
+    }
+    .phase {
+      position: relative;
+      margin-left: var(--space-5);
+      margin-bottom: var(--space-4);
+      padding: var(--space-4);
+    }
+    .phase__node {
+      position: absolute;
+      left: calc(-1 * var(--space-5) - 1.125rem - 1px);
+      top: var(--space-4);
+      display: inline-grid;
+      place-items: center;
+      width: 2.25rem;
+      height: 2.25rem;
+      border: var(--border) solid var(--line-strong);
+      background: var(--bg);
+      color: var(--text-2);
+    }
+    .phase[data-active='true'] .phase__node {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--bg);
+    }
+    .phase__facts {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+}
