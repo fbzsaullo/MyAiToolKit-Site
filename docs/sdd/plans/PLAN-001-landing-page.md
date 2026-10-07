@@ -694,3 +694,4 @@ Autonomia concedida pelo responsável: viram autoverificações registradas no h
 
 | Tarefa | Status | Data | Commit | Observação |
 | --- | --- | --- | --- | --- |
+| T-01 | Concluído | 2026-10-06 | `693bda6` | Review aprovado com ressalvas (R-01 para a T-05) |
