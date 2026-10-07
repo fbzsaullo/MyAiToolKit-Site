@@ -80,7 +80,7 @@ graph TD
 
 #### T-01 — Criar o projeto Astro com Preact e a cópia dos ícones da marca
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Baixa
 - **Estimativa:**
 - **Depende de:** nenhuma
@@ -98,8 +98,8 @@ graph TD
 Projeto Astro 7 estático com `@astrojs/preact`, TypeScript estrito, `site: https://myaitoolkit.netlify.app`. Script `prebuild`/`predev` copia os ícones de `brand/icons/` para `public/` sem alterar os arquivos (o `head-snippet.html` aponta para a raiz). `public/` copiado fica no `.gitignore`.
 
 **Critério de aceite (testável):**
-- [ ] `npm run dev` e `npm run build` funcionam e geram `dist/`
-- [ ] `dist/favicon.ico`, `dist/site.webmanifest` e `dist/icon-512.png` são idênticos aos de `brand/icons/`
+- [x] `npm run dev` e `npm run build` funcionam e geram `dist/`
+- [x] `dist/favicon.ico`, `dist/site.webmanifest` e `dist/icon-512.png` são idênticos aos de `brand/icons/`
 
 **Testes a escrever:**
 - *Não se aplica* — estrutura. A verificação de cópia byte a byte entra no script como checagem.

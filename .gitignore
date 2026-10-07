@@ -1,0 +1,25 @@
+# dependências e build
+node_modules/
+dist/
+.astro/
+
+# ícones copiados de brand/icons por scripts/copy-brand.mjs (a fonte é brand/)
+/public/apple-touch-icon.png
+/public/favicon*
+/public/icon-*
+/public/maskable-512.png
+/public/site.webmanifest
+
+# testes
+/test-results/
+/playwright-report/
+/blob-report/
+
+# sistema e editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# configurações pessoais dos agentes
+.claude/settings.local.json

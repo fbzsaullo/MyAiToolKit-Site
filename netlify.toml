@@ -1,0 +1,7 @@
+# Configuração da Netlify (ADR-011). Cabeçalhos de cache e de segurança entram na T-22.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "24"
