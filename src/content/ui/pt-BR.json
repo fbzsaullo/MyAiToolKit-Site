@@ -562,5 +562,120 @@
         "command": "/sdd-next"
       }
     }
+  },
+  "stacks": {
+    "intro": "O /sdd-setup lê as versões reais do projeto e carrega o perfil da stack. Rails é a referência completa; as outras têm perfis leves, e o que não tiver perfil usa o genérico. A IA pode mudar: o contexto fica num arquivo só.",
+    "stacksTitle": "Stacks com perfil",
+    "stacksLabel": "Stacks com perfil no kit",
+    "stacks": [
+      "Ruby on Rails",
+      "Node.js / TypeScript",
+      "Python",
+      ".NET",
+      "Go",
+      "Java / Kotlin",
+      "PHP"
+    ],
+    "reference": "referência",
+    "generic": "genérico",
+    "genericNote": "qualquer outra stack",
+    "hubTitle": "Um contexto, várias IAs",
+    "hubLabel": "AGENTS.md ligado às IAs de programação",
+    "agentsNote": "contexto canônico",
+    "ais": [
+      {
+        "name": "Claude Code",
+        "note": "suportado · principal",
+        "supported": true
+      },
+      {
+        "name": "Codex",
+        "note": "suportado",
+        "supported": true
+      },
+      {
+        "name": "Cursor",
+        "note": "lê AGENTS.md",
+        "supported": false
+      },
+      {
+        "name": "Outras IAs",
+        "note": "lê AGENTS.md",
+        "supported": false
+      }
+    ],
+    "hubNote": "Suportado quer dizer que as skills rodam como comandos. Nas outras IAs, o AGENTS.md já dá o contexto; um adaptador próprio pode chegar pelo contrato de adapters/."
+  },
+  "openSource": {
+    "intro": "Código aberto sob licença MIT. Dá para usar, adaptar e contribuir — o kit foi pensado para crescer por perfis de stack e adaptadores.",
+    "contributeTitle": "Como contribuir",
+    "contribute": [
+      {
+        "text": "Leia o guia de contribuição",
+        "code": "CONTRIBUTING.md",
+        "link": "contributing"
+      },
+      {
+        "text": "Abra uma issue com bug, dúvida ou ideia",
+        "code": "issues",
+        "link": "issues"
+      },
+      {
+        "text": "Adicione o perfil de uma stack",
+        "code": "stacks/<stack>/profile.md"
+      },
+      {
+        "text": "Leve o kit para outra IA",
+        "code": "adapters/README.md",
+        "link": "adapters"
+      },
+      {
+        "text": "Toda mudança passa pela verificação no CI",
+        "code": "scripts/check.sh"
+      }
+    ],
+    "treeTitle": "O repositório do kit",
+    "treeLabel": "Estrutura do repositório MyAiToolKit",
+    "tree": [
+      {
+        "name": ".claude-plugin",
+        "dir": true,
+        "note": "plugin.json · marketplace.json"
+      },
+      {
+        "name": "skills",
+        "dir": true,
+        "note": "12 SKILL.md"
+      },
+      {
+        "name": "templates",
+        "dir": true
+      },
+      {
+        "name": "stacks",
+        "dir": true,
+        "note": "rails/ · node/ · python/ · …"
+      },
+      {
+        "name": "adapters",
+        "dir": true,
+        "note": "claude-code/ · codex/"
+      },
+      {
+        "name": "scripts/check.sh"
+      },
+      {
+        "name": "CONTRIBUTING.md"
+      },
+      {
+        "name": "LICENSE"
+      }
+    ],
+    "licenseTitle": "Licença",
+    "license": "MIT: uso livre, inclusive comercial, mantendo o aviso de copyright.",
+    "licenseLink": "Ler a licença",
+    "madeTitle": "Este site foi feito com o MyAiToolKit",
+    "madeText": "Arquitetura, ADRs, PRD, SPEC-UI, plano, um review por tarefa e a matriz de rastreabilidade desta página estão versionados no repositório do site.",
+    "madeLink": "Ver docs/sdd/ deste site"
   }
 }

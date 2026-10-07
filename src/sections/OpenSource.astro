@@ -1,0 +1,152 @@
+---
+// UI-12 — Open source: como contribuir, árvore do repositório do kit, licença e o bloco
+// "Este site foi feito com o MyAiToolKit" com link para o docs/sdd/ do site (RN-14).
+import Section from '../components/Section.astro';
+import FileTree, { type TreeNode } from '../components/FileTree.astro';
+import Icon from '../components/Icon.astro';
+import { t, type Locale } from '../i18n';
+import { KIT_ADAPTERS, KIT_CONTRIBUTING, KIT_ISSUES, KIT_LICENSE, SITE_DOCS } from '../lib/links';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const ui = t(locale);
+const o = ui.openSource;
+const LINKS: Record<string, string> = { contributing: KIT_CONTRIBUTING, issues: KIT_ISSUES, adapters: KIT_ADAPTERS };
+---
+<Section id="contribuir" {...ui.sections.contribuir} lead={o.intro}>
+  <div class="oss">
+    <div class="oss__col">
+      <h3 class="oss__title">{o.contributeTitle}</h3>
+      <ul class="oss__steps" role="list">
+        {o.contribute.map((item) => (
+          <li class="oss__step">
+            <span class="oss__mark" aria-hidden="true"></span>
+            <span>
+              {item.text}
+              {' — '}
+              {item.link ? (
+                <a href={LINKS[item.link]} rel="noopener"><code>{item.code}</code></a>
+              ) : (
+                <code>{item.code}</code>
+              )}
+            </span>
+          </li>
+        ))}
+      </ul>
+
+      <h3 class="oss__title oss__title--spaced">{o.licenseTitle}</h3>
+      <p class="oss__text">{o.license}</p>
+      <p><a href={KIT_LICENSE} rel="noopener">{o.licenseLink}</a></p>
+    </div>
+
+    <div class="oss__col">
+      <h3 class="oss__title">{o.treeTitle}</h3>
+      <div class="oss__tree">
+        <FileTree nodes={o.tree as TreeNode[]} label={o.treeLabel} />
+      </div>
+    </div>
+
+    <aside class="oss__made" data-made-with>
+      <p class="oss__made-title">{o.madeTitle}</p>
+      <p class="oss__made-text">{o.madeText}</p>
+      <a class="oss__made-link" href={SITE_DOCS} rel="noopener">
+        <span>{o.madeLink}</span>
+        <Icon name="ArrowUpRight" size={18} />
+      </a>
+    </aside>
+  </div>
+</Section>
+
+<style>
+  .oss {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--space-7) var(--space-8);
+    align-items: start;
+  }
+  .oss__title {
+    margin-bottom: var(--space-4);
+    font-size: var(--fs-h3);
+    line-height: var(--lh-h3);
+    letter-spacing: var(--ls-h3);
+  }
+  .oss__title--spaced {
+    margin-top: var(--space-7);
+  }
+  .oss__steps {
+    display: grid;
+    gap: var(--space-3);
+  }
+  .oss__step {
+    display: grid;
+    grid-template-columns: 0.625rem minmax(0, 1fr);
+    gap: var(--space-3);
+    align-items: baseline;
+    overflow-wrap: anywhere;
+  }
+  .oss__mark {
+    width: 0.5rem;
+    height: 0.5rem;
+    border: var(--border) solid var(--ink);
+  }
+  .oss__step code {
+    font-family: var(--font-mono);
+    font-size: var(--fs-id);
+  }
+  .oss__text {
+    color: var(--text-2);
+    margin-bottom: var(--space-2);
+  }
+  .oss__tree {
+    padding: var(--space-5);
+    border: var(--border) solid var(--line-strong);
+    background: var(--surface);
+    overflow-wrap: anywhere;
+  }
+
+  /* Bloco invertido (RN-14). */
+  .oss__made {
+    grid-column: 1 / -1;
+    display: grid;
+    gap: var(--space-3);
+    padding: var(--space-6);
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .oss__made-title {
+    font-size: var(--fs-h2);
+    line-height: var(--lh-h2);
+    letter-spacing: var(--ls-h2);
+    font-weight: 600;
+  }
+  .oss__made-text {
+    max-width: var(--measure);
+    opacity: 0.85;
+  }
+  .oss__made-link {
+    justify-self: start;
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 44px;
+    color: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
+  .oss__made-link:focus-visible {
+    outline-color: var(--bg);
+  }
+
+  @media (max-width: 47.99rem) {
+    .oss {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .oss__made {
+      padding: var(--space-5);
+    }
+  }
+</style>

@@ -552,7 +552,7 @@ As 6 fases como lista completa (comando, entrada, documento, IDs), para as duas 
 
 #### T-20 — Montar Stacks e IAs e a seção Open source
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Média
 - **Estimativa:**
 - **Depende de:** T-08
@@ -565,8 +565,8 @@ As 6 fases como lista completa (comando, entrada, documento, IDs), para as duas 
   - `tests/footer-open-source.spec.ts` *(novo)*
 
 **Critério de aceite (testável):**
-- [ ] CA-25 verde: versão, links e bloco "feito com o MyAiToolKit"
-- [ ] Cursor e "outras" nunca rotulados como suportados
+- [x] CA-25 verde: versão, links e bloco "feito com o MyAiToolKit"
+- [x] Cursor e "outras" nunca rotulados como suportados
 
 **Testes a escrever:**
 - *E2E:* `test("CA-25: …")`
@@ -712,4 +712,5 @@ Autonomia concedida pelo responsável: viram autoverificações registradas no h
 | T-16 | Concluído | 2026-10-07 | `660f23a` | Review aprovado; ilha 8,3 KB |
 | T-17 | Concluído | 2026-10-07 | `06fa405` | Review aprovado; CA-07 completado (nomes iguais em pt e en) |
 | T-18 | Concluído | 2026-10-07 | `7d04f1a` | Aprovado com ressalvas: R-01 (acordeão abaixo de 1024 px, não só ≤ 767 px) |
-| T-19 | Concluído | 2026-10-07 | (ver T-20) | Review aprovado; ilha 10,4 KB |
+| T-19 | Concluído | 2026-10-07 | `30758d4` | Review aprovado; ilha 10,4 KB |
+| T-20 | Concluído | 2026-10-07 | (ver T-21) | Review aprovado |

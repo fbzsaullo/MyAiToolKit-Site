@@ -1,0 +1,257 @@
+---
+// UI-10 — Stacks e IAs. Selos das stacks com perfil e o AGENTS.md ligado às IAs.
+// Cursor e "outras" aparecem como "lê AGENTS.md" — nunca como suportados (RN-03).
+import Section from '../components/Section.astro';
+import StackBadge from '../components/StackBadge.astro';
+import { t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const ui = t(locale);
+const s = ui.stacks;
+---
+<Section id="stacks" {...ui.sections.stacks} lead={s.intro}>
+  <div class="stacks">
+    <div class="stacks__col">
+      <h3 class="stacks__title">{s.stacksTitle}</h3>
+      <ul class="stacks__badges" role="list" aria-label={s.stacksLabel}>
+        {s.stacks.map((name, i) => (
+          <li data-stack={name}><StackBadge name={name} reference={i === 0} referenceLabel={s.reference} /></li>
+        ))}
+        <li data-stack="generic" class="stacks__generic">
+          <span class="stacks__generic-name">{s.generic}</span>
+          <span class="stacks__generic-note">{s.genericNote}</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="stacks__col">
+      <h3 class="stacks__title">{s.hubTitle}</h3>
+      <figure class="hub" data-hub aria-label={s.hubLabel}>
+        <p class="hub__center">
+          <code>AGENTS.md</code>
+          <span class="hub__center-note">{s.agentsNote}</span>
+        </p>
+        <span class="hub__bus" aria-hidden="true"></span>
+        <ul class="hub__ais" role="list">
+          {s.ais.map((ai, i) => (
+            <li class="hub__ai" data-ai={ai.name} data-supported={ai.supported ? 'true' : 'false'} style={`--i: ${i}`}>
+              <span class="hub__link" aria-hidden="true"></span>
+              <span class="hub__ai-box">
+                <span class="hub__ai-mark" aria-hidden="true"></span>
+                <strong class="hub__ai-name">{ai.name}</strong>
+                <span class="hub__ai-note" data-ai-note>{ai.note}</span>
+              </span>
+            </li>
+          ))}
+        </ul>
+        <figcaption class="hub__caption">{s.hubNote}</figcaption>
+      </figure>
+    </div>
+  </div>
+</Section>
+
+<script>
+  import { setupStacks } from '../scripts/stacks';
+  setupStacks();
+</script>
+
+<style>
+  .stacks {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr);
+    gap: var(--space-8);
+    align-items: start;
+  }
+  .stacks__title {
+    margin-bottom: var(--space-5);
+    font-size: var(--fs-h3);
+    line-height: var(--lh-h3);
+    letter-spacing: var(--ls-h3);
+  }
+  .stacks__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+  .stacks__generic {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border: var(--border) dashed var(--line-strong);
+    border-radius: var(--radius-sm);
+    font-size: var(--fs-small);
+  }
+  .stacks__generic-name {
+    font-weight: 500;
+  }
+  .stacks__generic-note {
+    color: var(--text-muted);
+  }
+
+  /* AGENTS.md ao centro (invertido), barramento e uma ligação para cada IA. */
+  .hub {
+    margin: 0;
+    display: grid;
+    justify-items: center;
+  }
+  .hub__center {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-1);
+    padding: var(--space-4) var(--space-6);
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .hub__center code {
+    font-family: var(--font-mono);
+    font-size: var(--fs-lead);
+    font-weight: 600;
+  }
+  .hub__center-note {
+    font-size: var(--fs-small);
+  }
+  .hub__bus {
+    width: 1px;
+    height: var(--space-5);
+    background: var(--ink);
+  }
+  .hub__ais {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: var(--space-3);
+    width: 100%;
+    border-top: var(--border) solid var(--ink);
+  }
+  .hub__ai {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    justify-items: center;
+  }
+  .hub__link {
+    width: 2px;
+    height: var(--space-5);
+    background: var(--ink);
+    transform-origin: top;
+    transition: transform var(--dur-explain) var(--ease);
+    transition-delay: calc(var(--i) * 220ms);
+  }
+  .hub__ai[data-supported='false'] .hub__link {
+    width: 0;
+    border-left: 2px dashed var(--ink);
+    background: none;
+  }
+  .hub__ai-box {
+    display: grid;
+    justify-items: center;
+    gap: var(--space-1);
+    width: 100%;
+    padding: var(--space-4) var(--space-2);
+    border: var(--border) solid var(--line-strong);
+    background: var(--bg);
+    text-align: center;
+    transition: border-color var(--dur-fast) var(--ease);
+    transition-delay: calc(var(--i) * 220ms + 300ms);
+  }
+  .hub__ai[data-supported='true'] .hub__ai-box {
+    border-color: var(--ink);
+  }
+  .hub__ai[data-supported='false'] .hub__ai-box {
+    border-style: dashed;
+  }
+  .hub__ai-mark {
+    width: 0.625rem;
+    height: 0.625rem;
+    border: var(--border) solid var(--ink);
+  }
+  .hub__ai[data-supported='true'] .hub__ai-mark {
+    background: var(--ink);
+  }
+  .hub__ai-name {
+    font-weight: 600;
+  }
+  .hub__ai-note {
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+  }
+  .hub__caption {
+    margin-top: var(--space-5);
+    color: var(--text-2);
+    font-size: var(--fs-small);
+    line-height: var(--lh-small);
+    max-width: var(--measure);
+  }
+  .hub[data-state='pending'] .hub__link {
+    transform: scaleY(0);
+  }
+  .hub[data-state='pending'] .hub__ai-box {
+    border-color: var(--line);
+  }
+
+  @media (max-width: 63.99rem) {
+    .stacks {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  /* Celular (UI-10.celular): AGENTS.md em cima, IAs em lista abaixo. */
+  @media (max-width: 47.99rem) {
+    .hub {
+      justify-items: stretch;
+    }
+    .hub__center {
+      justify-self: start;
+    }
+    .hub__bus {
+      display: none;
+    }
+    .hub__ais {
+      width: auto;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 0;
+      margin-left: var(--space-4);
+      padding-top: var(--space-3);
+      border-top: 0;
+      border-left: var(--border) solid var(--ink);
+    }
+    .hub__ai {
+      grid-template-rows: none;
+      grid-template-columns: var(--space-5) minmax(0, 1fr);
+      align-items: center;
+      padding-block: var(--space-2);
+    }
+    .hub__link {
+      width: var(--space-5);
+      height: 2px;
+      transform-origin: left;
+    }
+    .hub__ai[data-supported='false'] .hub__link {
+      width: var(--space-5);
+      height: 0;
+      border-left: 0;
+      border-top: 2px dashed var(--ink);
+    }
+    .hub[data-state='pending'] .hub__link {
+      transform: scaleX(0);
+    }
+    .hub__ai-box {
+      grid-template-columns: auto auto minmax(0, 1fr);
+      justify-items: start;
+      align-items: center;
+      gap: var(--space-3);
+      text-align: left;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hub__link,
+    .hub__ai-box {
+      transition: none;
+    }
+  }
+</style>

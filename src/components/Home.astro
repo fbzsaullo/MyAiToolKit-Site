@@ -12,6 +12,8 @@ import Pipeline from '../sections/Pipeline.astro';
 import Traceability from '../sections/Traceability.astro';
 import Commands from '../sections/Commands.astro';
 import Architecture from '../sections/Architecture.astro';
+import StacksAndAIs from '../sections/StacksAndAIs.astro';
+import OpenSource from '../sections/OpenSource.astro';
 import CodeBlock from './CodeBlock.astro';
 import { t, type Locale } from '../i18n';
 
@@ -34,7 +36,7 @@ const s = ui.sections;
     <Commands locale={locale} />
     <Why locale={locale} />
     <Architecture locale={locale} />
-    <Section id="stacks" {...s.stacks} />
+    <StacksAndAIs locale={locale} />
     <Section id="instalar" {...s.instalar}>
       <CodeBlock
         locale={locale}
@@ -45,7 +47,7 @@ claude plugin marketplace add ./MyAiToolKit
 /sdd-start`}
       />
     </Section>
-    <Section id="contribuir" {...s.contribuir} />
+    <OpenSource locale={locale} />
   </main>
   <Footer locale={locale} />
 </Base>
