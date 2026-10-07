@@ -3,6 +3,7 @@
 // já traz o SVG completo e a lista equivalente.
 import ArchitectureIsland from './islands/ArchitectureIsland';
 import { t, type Locale } from '../i18n';
+import { withKitFacts } from '../lib/kit';
 import '../styles/architecture.css';
 
 interface Props {
@@ -12,4 +13,4 @@ interface Props {
 const { locale } = Astro.props;
 const ui = t(locale);
 ---
-<ArchitectureIsland client:visible labels={ui.architecture} phases={ui.pipeline.phases} motion={ui.motion} />
+<ArchitectureIsland client:visible labels={withKitFacts(ui.architecture)} phases={ui.pipeline.phases} motion={ui.motion} />

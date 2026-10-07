@@ -94,7 +94,7 @@ graph TD
 
 #### T-29 — Ler do snapshot os textos que descrevem o kit
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Baixa
 - **Estimativa:**
 - **Depende de:** T-27
@@ -108,7 +108,7 @@ graph TD
   - `tests/kit.spec.ts` *(editado)*
 
 **Critério de aceite (testável):**
-- [ ] Terminal do hero com "A · B · C · D · E · F"; bloco Skills, conferência do `/plugin` e nota de `skills/` mostram a contagem do snapshot, sem número escrito à mão nos textos
+- [x] Terminal do hero com "A · B · C · D · E · F"; bloco Skills, conferência do `/plugin` e nota de `skills/` mostram a contagem do snapshot, sem número escrito à mão nos textos
 
 **Testes a escrever:**
 - *E2E:* `test("CA-30: …")`, nos dois idiomas
@@ -121,12 +121,12 @@ graph TD
 
 Autonomia concedida pelo responsável (2026-10-06): viram autoverificações registradas no histórico.
 
-- [ ] Depois da **T-29** — revisar a seção Comandos e o hero nos dois idiomas, no desktop e no celular
+- [x] Depois da **T-29** — revisar a seção Comandos e o hero nos dois idiomas, no desktop e no celular
 
 ## 11. Histórico de execução — preenchido durante a execução
 
 | Tarefa | Status | Data | Commit | Observação |
 | --- | --- | --- | --- | --- |
 | T-27 | Concluído | 2026-10-07 | `61fa6be` | Review aprovado |
-| T-28 | Concluído | 2026-10-07 | — | Review aprovado |
-| T-29 | Pendente | — | — | — |
+| T-28 | Concluído | 2026-10-07 | `6bcd1d0` | Review aprovado |
+| T-29 | Concluído | 2026-10-07 | — | Review aprovado; validação da Fase 1 feita (autoverificação) |

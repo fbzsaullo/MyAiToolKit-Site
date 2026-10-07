@@ -5,6 +5,7 @@ import Section from '../components/Section.astro';
 import CodeBlock from '../components/CodeBlock.astro';
 import { t, type Locale } from '../i18n';
 import { KIT_ADAPTERS } from '../lib/links';
+import { withKitFacts } from '../lib/kit';
 
 interface Props {
   locale: Locale;
@@ -33,7 +34,7 @@ const TABS = ['claude', 'codex', 'others'] as const;
       <CodeBlock locale={locale} code={i.code.claudeInstall} filename="terminal" />
       <p class="label">{i.claude.update}</p>
       <CodeBlock locale={locale} code={i.code.claudeUpdate} filename="terminal" />
-      <p class="install__note">{i.claude.check}</p>
+      <p class="install__note">{withKitFacts(i.claude.check)}</p>
     </section>
 
     <section class="install__panel" id="instalar-painel-codex" data-tab-panel="codex">

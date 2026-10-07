@@ -124,7 +124,7 @@
         },
         {
           "kind": "out",
-          "text": "Esta demanda é: A · B · C · D"
+          "text": "Esta demanda é: A · B · C · D · E · F"
         },
         {
           "kind": "note",
@@ -498,7 +498,7 @@
     "blocks": {
       "skills": {
         "title": "Skills",
-        "sub": "12 comandos, um SKILL.md cada",
+        "sub": "{kit.commands} comandos, um SKILL.md cada",
         "text": "Cada comando é uma skill: um SKILL.md com o roteiro e uma pasta references/ com modelos. É o mesmo arquivo no Claude Code e no Codex.",
         "files": [
           "skills/sdd-prd/SKILL.md",
@@ -693,7 +693,7 @@
       {
         "name": "skills",
         "dir": true,
-        "note": "12 SKILL.md"
+        "note": "{kit.commands} SKILL.md"
       },
       {
         "name": "templates",
@@ -737,7 +737,7 @@
     "claude": {
       "install": "Instalar",
       "update": "Atualizar depois",
-      "check": "Depois de instalar, rode /plugin dentro do Claude Code para conferir que as 12 skills foram carregadas."
+      "check": "Depois de instalar, rode /plugin dentro do Claude Code para conferir que as {kit.commands} skills foram carregadas."
     },
     "codex": {
       "sh": "Linux, macOS e Git Bash",
