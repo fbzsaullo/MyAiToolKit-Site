@@ -64,7 +64,7 @@
     "comandos": {
       "number": "05",
       "label": "Comandos",
-      "title": "Doze comandos, três grupos"
+      "title": "Os comandos, em quatro grupos"
     },
     "por-que": {
       "number": "06",
@@ -285,7 +285,7 @@
     "status": "{id}: {n} IDs ligados destacados"
   },
   "commands": {
-    "intro": "Os nomes são os mesmos em qualquer idioma. No Claude Code, chame com barra; no Codex, com cifrão. Passe o mouse ou foque um comando para ver uma prévia do que ele entrega.",
+    "intro": "Os nomes são os mesmos em qualquer idioma. No Claude Code, chame com barra; no Codex, com cifrão. O kit nunca commita nem abre PR: o /commit-message e o /pr-description entregam o texto pronto. Passe o mouse ou foque um comando para ver uma prévia do que ele entrega.",
     "groups": {
       "fases": "Fases",
       "navegacao": "Navegação",
@@ -348,7 +348,7 @@
         "preview": [
           "T-03 — Validar token e trocar a senha",
           "bin/rspec spec/requests/password_resets_spec.rb — 0 falhas",
-          "Status: Concluído · commit sugerido: T-03: …"
+          "Status: Concluído · próximo: /sdd-review T-03"
         ]
       },
       "sdd-review": {
@@ -393,7 +393,7 @@
         "preview": [
           "Rails 8.0 · Ruby 3.4 · rspec · Solid Queue",
           "docs/sdd/config.yml · AGENTS.md · CLAUDE.md",
-          ".claude/settings.json — diff mostrado antes de gravar"
+          "Commits em Conventional Commits — o kit não commita"
         ]
       },
       "spike": {

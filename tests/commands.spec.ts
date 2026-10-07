@@ -102,3 +102,22 @@ test('CA-07: nomes dos comandos iguais em pt-BR e en', async ({ browser }) => {
   expect(en).toEqual(pt);
   expect(pt).toHaveLength(kitNames.length);
 });
+
+test('CA-29: o kit nunca commita', async ({ browser }) => {
+  for (const [path, locale, never, noCommit] of [
+    ['/', 'pt-BR', /nunca commita nem abre PR/, /não commita/],
+    ['/en/', 'en-US', /never commits or opens a PR/, /does not commit/],
+  ] as const) {
+    const page = await visit(browser, { path, locale });
+    const section = page.locator('#comandos');
+    // A introdução diz que o kit entrega texto e o commit é do usuário (RN-18).
+    await expect(section.locator('.section__lead')).toContainText(never);
+    // A prévia do /sdd-execute não sugere commit: a mensagem sai do review aprovado.
+    const execute = await section.locator('[data-command="sdd-execute"] [data-preview]').innerText();
+    expect(execute).not.toMatch(/commit/i);
+    expect(execute).toContain('/sdd-review');
+    // /commit-message e /pr-description entregam texto, sem commitar nem abrir PR.
+    await expect(section.locator('[data-command="commit-message"] [data-preview]')).toContainText(noCommit);
+    await expect(section.locator('[data-command="pr-description"] [data-preview] .cmd__preview-line')).toHaveCount(3);
+  }
+});

@@ -72,7 +72,7 @@ graph TD
 
 #### T-28 — Explicar que o kit nunca commita
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Baixa
 - **Estimativa:**
 - **Depende de:** T-27
@@ -85,7 +85,7 @@ graph TD
   - `tests/commands.spec.ts` *(editado)*
 
 **Critério de aceite (testável):**
-- [ ] A introdução da seção Comandos diz que o kit nunca commita nem abre PR; a prévia do `/sdd-execute` não sugere commit; as do `/commit-message` e do `/pr-description` mostram texto entregue
+- [x] A introdução da seção Comandos diz que o kit nunca commita nem abre PR; a prévia do `/sdd-execute` não sugere commit; as do `/commit-message` e do `/pr-description` mostram texto entregue
 
 **Testes a escrever:**
 - *E2E:* `test("CA-29: …")`, nos dois idiomas
@@ -127,6 +127,6 @@ Autonomia concedida pelo responsável (2026-10-06): viram autoverificações reg
 
 | Tarefa | Status | Data | Commit | Observação |
 | --- | --- | --- | --- | --- |
-| T-27 | Concluído | 2026-10-07 | — | Review aprovado |
-| T-28 | Pendente | — | — | — |
+| T-27 | Concluído | 2026-10-07 | `61fa6be` | Review aprovado |
+| T-28 | Concluído | 2026-10-07 | — | Review aprovado |
 | T-29 | Pendente | — | — | — |
