@@ -247,7 +247,7 @@ Esquemas para textos de interface e para as demandas (fases, documentos, IDs, li
 
 #### T-07 — Sincronizar comandos e versão do kit em um snapshot
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Baixa
 - **Estimativa:**
 - **Depende de:** T-01
@@ -262,8 +262,8 @@ Esquemas para textos de interface e para as demandas (fases, documentos, IDs, li
 Script sem dependências: lê `KIT_PATH` (padrão `../MyAiToolKit`) ou clona `KIT_REPO`; extrai `name`/`description` dos `SKILL.md` e `version` do `plugin.json`; grava o snapshot.
 
 **Critério de aceite (testável):**
-- [ ] Snapshot com 12 comandos e versão `0.1.0`
-- [ ] Teste avisa se o snapshot divergir do kit disponível
+- [x] Snapshot com 12 comandos e versão `0.1.0`
+- [x] Teste avisa se o snapshot divergir do kit disponível
 
 **Testes a escrever:**
 - *Conteúdo:* `test("snapshot do kit com 12 comandos")`
@@ -699,4 +699,5 @@ Autonomia concedida pelo responsável: viram autoverificações registradas no h
 | T-03 | Concluído | 2026-10-06 | `0d2513f` | Aprovado com ressalvas: R-01 (/en/ na T-05), R-02 (404 na T-22) |
 | T-04 | Concluído | 2026-10-06 | `f84e441` | Aprovado com ressalvas: R-01 (preload na T-05); fontes via ADR-013 |
 | T-05 | Concluído | 2026-10-06 | `6beda28` | Aprovado com ressalvas: R-01 (CA-07 completado nas T-12 e T-17) |
-| T-06 | Concluído | 2026-10-06 | (ver T-07) | Review aprovado |
+| T-06 | Concluído | 2026-10-06 | `1e0915a` | Review aprovado |
+| T-07 | Concluído | 2026-10-06 | (ver T-08) | Review aprovado |

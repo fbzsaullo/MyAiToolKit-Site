@@ -1,0 +1,79 @@
+{
+  "repository": "https://github.com/fbzsaullo/MyAiToolKit",
+  "version": "0.1.0",
+  "commit": "10bb848",
+  "commands": [
+    {
+      "name": "code-review",
+      "claude": "/code-review",
+      "codex": "$code-review",
+      "description": "Code review avulso e configurável, para código próprio ou de colegas — pergunta contra qual branch comparar (detecta main/master/develop e sugere), pergunta se o review está ligado a uma história (aceitando o XML/JSON do card, a descrição em texto, o número da issue ou nenhuma), monta um roteiro de review sob medida a partir do docs/sdd/config.yml e dos checklists da stack (qualidade + segurança), verifica a cobertura dos critérios de aceite da história e entrega um relatório em que cada apontamento tem severidade (Bloqueante/Importante/Sugestão) e quadrante de urgência × importância (Q1 a Q4), além de comentários prontos para colar no PR. Use quando o usuário pedir \"code review\", \"revisar meu código\", \"revisar a branch/PR do fulano\", \"review antes de abrir o PR\" ou chamar /code-review (no Claude Code, /my-ai-toolkit:code-review se houver conflito com o comando nativo). Para revisar uma tarefa T-XX do plano SDD, use sdd-review."
+    },
+    {
+      "name": "sdd-architect",
+      "claude": "/sdd-architect",
+      "codex": "$sdd-architect",
+      "description": "Desenha ou revisa a arquitetura de um sistema e entrega uma proposta arquitetural com decisões justificadas (um arquivo de ADR por decisão), atributos de qualidade, restrições, trade-offs e diagramas C4 em Mermaid. Use quando o usuário pedir para \"desenhar a arquitetura\", \"propor uma solução técnica\", \"escolher a stack\", \"como estruturar esse sistema\", \"revisar esta arquitetura\", \"qual arquitetura usar para…\", ou quando descrever um sistema novo e quiser saber como construí-lo. Fase 1 do pipeline SDD do MyAiToolKit. Não fixa tecnologia, a menos que ela seja uma restrição declarada. Não produz estimativa de custo, prazo ou esforço, nem código."
+    },
+    {
+      "name": "sdd-execute",
+      "claude": "/sdd-execute",
+      "codex": "$sdd-execute",
+      "description": "Executa UMA tarefa T-XX do plano SDD — carrega o contexto que a tarefa declara (RN, CA, ADR, UI), implementa somente o escopo dela, escreve os testes no formato do projeto, roda build/typecheck e testes, e atualiza o Status e o histórico no plano. Use apenas quando o usuário chamar /sdd-execute (ou $sdd-execute) ou pedir explicitamente para executar uma tarefa do plano."
+    },
+    {
+      "name": "sdd-next",
+      "claude": "/sdd-next",
+      "codex": "$sdd-next",
+      "description": "Olha os artefatos do pipeline SDD do projeto (arquitetura, ADRs, PRDs, SPEC-UI, planos, reviews, contexto do agente) e diz em que ponto o projeto está e qual é a próxima ação — priorizando bloqueios, depois reviews pendentes, depois execução e por fim novas fases. Use quando o usuário perguntar \"o que eu faço agora?\", \"onde paramos?\", \"qual o próximo passo?\", \"status do pipeline\" ou chamar /sdd-next. Só sugere; não executa nada sem confirmação."
+    },
+    {
+      "name": "sdd-plan",
+      "claude": "/sdd-plan",
+      "codex": "$sdd-plan",
+      "description": "Quebra um PRD aprovado em um plano de execução incremental, com tarefas T-XX pequenas (30min–4h), critérios de aceite testáveis, dependências, testes a escrever, complexidade e pontos de validação humana. Cada tarefa declara o que implementa (RN-XX), o que valida (CA-XX), em que decisões se apoia (ADR-XXX) e, se houver interface, quais telas e estados entrega (UI-XX). Opcionalmente registra uma estimativa por tarefa — sugerida pela IA, mas decidida e informada pelo usuário. Use quando o usuário pedir para \"criar o plano\", \"quebrar o PRD em tarefas\", \"planejar a implementação\", \"decompor a funcionalidade\" ou \"fazer o planning técnico\". Fase 4 do pipeline SDD do MyAiToolKit; o plano é o que o sdd-execute consome. Não inclui datas, cronograma nem alocação de pessoas."
+    },
+    {
+      "name": "sdd-prd",
+      "claude": "/sdd-prd",
+      "codex": "$sdd-prd",
+      "description": "Transforma uma demanda (ideia, conversa com cliente, card do board, funcionalidade pedida) em um PRD completo, com regras de negócio numeradas (RN-XX), critérios de aceite em Gherkin com IDs (CA-XX), hierarquia épico → funcionalidade → história e diagramas Mermaid. Use quando o usuário pedir para \"escrever um PRD\", \"levantar requisitos\", \"especificar essa funcionalidade\", \"documentar a demanda\", \"detalhar essa história\" ou quando trouxer uma demanda que precisa virar documento para o time implementar. Fase 2 do pipeline SDD do MyAiToolKit; os IDs RN/CA são consumidos pelo plano (sdd-plan) e pelo review (sdd-review). Não inclui estimativa, pontos ou complexidade."
+    },
+    {
+      "name": "sdd-prototype",
+      "claude": "/sdd-prototype",
+      "codex": "$sdd-prototype",
+      "description": "Especifica a interface de um PRD na SPEC-UI — inventário de telas (UI-XX), estados de cada tela (UI-XX.estado) e o cruzamento de cada tela com as regras (RN-XX) e cenários (CA-XX) do PRD. Indexa um protótipo existente (views no repositório, HTML exportado, imagens, Figma via MCP, export de ferramentas de protótipo) ou gera um quando não houver. Use quando o usuário pedir para \"especificar as telas\", \"documentar o protótipo\", \"criar um protótipo\", \"mapear as telas contra o PRD\", \"gerar a SPEC-UI\" ou \"ler o Figma\", ou quando aceitar a sugestão de especificar a interface antes do plano. Fase 3 do pipeline SDD do MyAiToolKit, opcional — PRD sem interface (API, job, integração, biblioteca) pula a fase. Não faz design visual — delega tipografia, cores e composição a skills de frontend do ambiente. Nunca inventa tela ou estado que não veio do protótipo nem do PRD."
+    },
+    {
+      "name": "sdd-review",
+      "claude": "/sdd-review",
+      "codex": "$sdd-review",
+      "description": "Revisa a implementação de uma tarefa T-XX do plano SDD comparando o código com o plano, o PRD, os ADRs e a SPEC-UI, e gera o relatório REVIEW-T-XX com apontamentos R-XX classificados em Bloqueante, Importante ou Sugestão. Avalia aderência ao plano, rastreabilidade, aderência à especificação, testes, qualidade do código, segurança (com checklist por stack) e, quando há SPEC-UI, conformidade de interface. Um apontamento Bloqueante devolve a tarefa como Bloqueado no plano. Use quando o usuário pedir \"review da T-XX\", \"revisar a tarefa\", \"validar a implementação contra o plano\", \"fechar a T-XX\" ou trouxer um diff dizendo qual tarefa ele entrega. Fase 6 do pipeline SDD do MyAiToolKit. Para review avulso, sem plano SDD (código próprio ou de colegas, ligado ou não a um card), use a skill code-review."
+    },
+    {
+      "name": "sdd-setup",
+      "claude": "/sdd-setup",
+      "codex": "$sdd-setup",
+      "description": "Analisa o repositório (uma ou várias linguagens, inclusive monorepo), lê as versões reais de cada stack, carrega o perfil da stack (Rails é a referência; há perfis para Node, Python, .NET, Go, Java e PHP e um genérico para o resto), formula recomendações conforme as versões e gera a configuração do projeto para os agentes — docs/sdd/config.yml, AGENTS.md (contexto canônico), CLAUDE.md, permissões do Claude Code (.claude/settings.json) e do Codex (.codex/), e o relatório docs/sdd/stack-report.md. Modos — completo, audit (somente leitura), module <nome>, permissions, refresh. Nunca sobrescreve conteúdo escrito por pessoas e sempre mostra o diff antes de gravar. Use apenas quando o usuário chamar /sdd-setup (ou $sdd-setup) ou pedir explicitamente para configurar o toolkit, gerar AGENTS.md/CLAUDE.md, analisar a stack ou configurar permissões."
+    },
+    {
+      "name": "sdd-start",
+      "claude": "/sdd-start",
+      "codex": "$sdd-start",
+      "description": "Ponto de entrada do pipeline SDD do MyAiToolKit para uma demanda nova — descobre em que fase a demanda está (sistema novo, funcionalidade num sistema existente, PRD pronto esperando plano) e encaminha para a skill certa (sdd-architect, sdd-prd ou sdd-plan), parando para revisão ao fim de cada fase. Use quando o usuário disser \"começar o SDD\", \"iniciar o pipeline\", \"tenho uma demanda nova\", \"por onde começo\" ou chamar /sdd-start."
+    },
+    {
+      "name": "sdd-trace",
+      "claude": "/sdd-trace",
+      "codex": "$sdd-trace",
+      "description": "Monta a matriz de rastreabilidade do pipeline SDD — ADR ↔ RN ↔ CA ↔ UI ↔ T ↔ R ↔ teste — lendo PRD, ADRs, SPEC-UI, plano e reviews, e aponta os elos quebrados (regra sem cenário, cenário sem tarefa, tarefa concluída sem review, ADR citado que não existe, status fora do vocabulário, entre outros). Use quando o usuário pedir \"matriz de rastreabilidade\", \"rastrear o PRD\", \"o que está faltando no pipeline\", \"auditar a cobertura\" ou \"quais cenários estão sem teste\". Faz parte do pipeline SDD do MyAiToolKit. Somente leitura, exceto se o usuário pedir para salvar a matriz."
+    },
+    {
+      "name": "spike",
+      "claude": "/spike",
+      "codex": "$spike",
+      "description": "Analisa uma atividade e sugere quantas horas ela leva — recebe a demanda escrita em texto ou um card exportado do board (XML do Jira, JSON/issue do GitHub, Azure DevOps, Trello, outros), entende o que é pedido, olha o código afetado, quebra em partes (análise, implementação, testes, review, QA, deploy), sugere horas por parte e o total com faixa, riscos e nível de confiança, e então pede ao usuário o tempo que ELE acha que leva — gravando somente o valor do usuário em docs/sdd/spikes/. Use quando o usuário pedir \"spike\", \"estimar esse card\", \"quantas horas leva\", \"analisar o esforço dessa história\", \"dimensionar essa atividade\" ou colar/anexar um card pedindo estimativa."
+    }
+  ]
+}
