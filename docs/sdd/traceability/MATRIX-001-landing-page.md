@@ -6,7 +6,7 @@
 - **ADRs:** [`architecture/adrs/`](../architecture/adrs/) — 14 arquivos (13 Aceito, ADR-010 Substituído por ADR-013)
 - **Reviews:** [`reviews/`](../reviews/) — 26 arquivos, um por tarefa
 - **Testes:** `tests/*.spec.ts`, nome no formato `test("CA-XX: …")`
-- **Gerada por:** skill `sdd-trace` do MyAiToolKit, em 2026-10-07, depois da T-26 (commit `d662b86`), sobre o PRD revisado (RN-16, CA-27) e o ADR-014
+- **Gerada por:** skill `sdd-trace` do MyAiToolKit (regras da 0.3.x), em 2026-10-07, sobre a revisão 2 do PRD-001 (RN-04 e CA-14 substituídos pelo PRD-002). Plano concluído, sem mudança desde a T-26 (commit `d662b86`)
 
 > A matriz é uma fotografia. Quando PRD, SPEC-UI ou plano mudarem, gere de novo.
 
@@ -16,8 +16,8 @@
 
 | Conjunto | Total | Ligado |
 | --- | --- | --- |
-| Regras (RN) | 16 | 16 com cenário e com tarefa |
-| Cenários (CA) | 27 | 27 com tarefa e 27 com teste |
+| Regras (RN) | 16 | 15 em vigor, todas com cenário e com tarefa; 1 revogada (RN-04) |
+| Cenários (CA) | 27 | 26 em vigor, todos com tarefa e com teste; 1 revogado (CA-14) |
 | Telas (UI) | 13 | 13 com tarefa |
 | Estados de tela | 54 | 54 declarados em alguma tarefa |
 | Tarefas (T) | 26 | 26 `Concluído`, 26 com review |
@@ -31,7 +31,7 @@
 | RN-01 | Logo SVG original; ícone MA/TK só no navegador | CA-01, CA-08 | T-08, T-10, T-11 | ADR-002 | T-08 ⚠️ · T-10 ⚠️ · T-11 ✅ |
 | RN-02 | Monocromático; estado nunca só por cor | CA-10, CA-13 | T-04, T-08, T-14, T-16 | ADR-002 | T-04 ⚠️ · T-08 ⚠️ · T-14 ✅ · T-16 ✅ |
 | RN-03 | Comandos, IDs e pastas exatos do kit | CA-19 | T-17, T-20, T-21 | — | T-17 ✅ · T-20 ✅ · T-21 ✅ |
-| RN-04 | 12 comandos em três grupos | CA-14 | T-17 | ADR-007 | T-17 ✅ |
+| ~~RN-04~~ | ~~12 comandos em três grupos~~ — revogada, ver RN-17 do PRD-002 | ~~CA-14~~ | T-17 (histórico) | ADR-007 | T-17 ✅ |
 | RN-05 | Duas demandas de exemplo, IDs escritos uma vez | CA-09, CA-10 | T-06, T-13, T-14, T-16 | ADR-006 | T-06 ✅ · T-13 ⚠️ · T-14 ✅ · T-16 ✅ |
 | RN-06 | pt-BR em `/`, en em `/en/`, escolha lembrada | CA-04, CA-05, CA-06, CA-07 | T-05, T-10 | ADR-008 | T-05 ⚠️ · T-10 ⚠️ |
 | RN-07 | Tema do sistema, troca lembrada sem piscar | CA-08 | T-05, T-10 | ADR-009 | T-05 ⚠️ · T-10 ⚠️ |
@@ -62,7 +62,7 @@
 | CA-11 | Laço execução e review | — | UI-05 | T-15 | `tests/loop.spec.ts` | T-15 ⚠️ |
 | CA-12 | Focar um ID destaca a cadeia | RN-10 | UI-06 | T-16 | `tests/trace.spec.ts` | T-16 ✅ |
 | CA-13 | Elo quebrado aparece com rótulo | RN-02 | UI-06 | T-16 | `tests/trace.spec.ts` | T-16 ✅ |
-| CA-14 | Referência dos 12 comandos | RN-04 | UI-07 | T-17 | `tests/commands.spec.ts` | T-17 ✅ |
+| ~~CA-14~~ | ~~Referência dos 12 comandos~~ — revogado, ver CA-28 do PRD-002 | ~~RN-04~~ | UI-07 | T-17 (histórico) | o teste virou o do CA-28 | T-17 ✅ |
 | CA-15 | Prévia da saída de um comando | — | UI-07 | T-17 | `tests/commands.spec.ts` | T-17 ✅ |
 | CA-16 | Diagrama da arquitetura interativo | — | UI-09 | T-19 | `tests/architecture.spec.ts` | T-19 ✅ |
 | CA-17 | Diagrama sem JavaScript | — | UI-09 | T-18 | `tests/architecture.spec.ts` | T-18 ⚠️ |
@@ -144,6 +144,9 @@ graph LR
 | R-01 (REVIEW-T-18-2026-10-07) — acordeão abaixo de 1024 px | Sugestão | Aceito: o SVG ficaria ilegível entre 768 e 1023 px |
 
 ## Observações (verificadas; não são elos quebrados)
+
+- **Revisão 2 (2026-10-07):** a lista de comandos passou a ser a do kit 0.3.1, definida no PRD-002. RN-04 e CA-14 estão riscados no PRD-001, registrados com `−` na seção Revisões, e saem da cobertura (regra de revogados do `sdd-trace`). Nenhum teste cita o CA-14. Matriz do PRD-002: `MATRIX-002-site-kit-0-3-1.md`.
+- **Marca `estrutural`:** o PLAN-001 é anterior à convenção da 0.3.0 e, por decisão do responsável, não foi alterado depois de concluído. Por isso as tarefas estruturais aparecem como abaixo.
 
 - **Tarefas sem `Implementa` nem `Valida`:** a T-01 (projeto Astro), a T-02 (`/sdd-setup`), a T-03 (infraestrutura de testes), a T-24 (README) e a T-26 (licença do repositório) são estruturais. A T-01 se apoia nos ADR-001, ADR-003 e ADR-011, a T-03 no ADR-012, a T-24 no ADR-011 e a T-26 no ADR-014. As cinco têm review aprovado.
 - **ADR-010 sem citação:** foi substituído pelo ADR-013 (fontes geradas a partir do pacote oficial), e é o ADR-013 que as tarefas citam.

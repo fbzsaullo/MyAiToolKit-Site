@@ -5,7 +5,7 @@
 - **Stack:** Node 24 · Astro 7 · Preact · Motion · Shiki · CSS próprio · Playwright + axe · Netlify
 - **Responsável:** Fabrizio
 - **Data:** 2026-10-07
-- **Status:** Em execução
+- **Status:** Concluído
 - **Estimativa total (informada pelo usuário):**
 
 ---
@@ -129,4 +129,4 @@ Autonomia concedida pelo responsável (2026-10-06): viram autoverificações reg
 | --- | --- | --- | --- | --- |
 | T-27 | Concluído | 2026-10-07 | `61fa6be` | Review aprovado |
 | T-28 | Concluído | 2026-10-07 | `6bcd1d0` | Review aprovado |
-| T-29 | Concluído | 2026-10-07 | — | Review aprovado; validação da Fase 1 feita (autoverificação) |
+| T-29 | Concluído | 2026-10-07 | `dabc63a` | Review aprovado; validação da Fase 1 feita (autoverificação) |
