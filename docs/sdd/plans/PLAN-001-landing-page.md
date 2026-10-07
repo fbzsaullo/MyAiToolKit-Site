@@ -415,7 +415,7 @@ As 6 fases como lista completa (comando, entrada, documento, IDs), para as duas 
 
 #### T-14 — Criar a ilha do pipeline com seletor e rolagem conduzida
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Alta
 - **Estimativa:**
 - **Depende de:** T-13
@@ -429,8 +429,8 @@ As 6 fases como lista completa (comando, entrada, documento, IDs), para as duas 
   - `tests/pipeline.spec.ts` *(novo)*
 
 **Critério de aceite (testável):**
-- [ ] CA-09 e CA-10 verdes
-- [ ] Sem salto de layout na hidratação; ilha dentro do orçamento
+- [x] CA-09 e CA-10 verdes
+- [x] Sem salto de layout na hidratação; ilha dentro do orçamento
 
 **Testes a escrever:**
 - *E2E:* `test("CA-09: …")`, `test("CA-10: …")`
@@ -683,7 +683,7 @@ Não há migration nem dados. Reverter é publicar o deploy anterior na Netlify.
 Autonomia concedida pelo responsável: viram autoverificações registradas no histórico.
 
 - [x] Depois da **T-05** — conferir na prática que não há flash de tema nem de idioma
-- [ ] Depois da **T-14** — medir o JS da ilha e o CLS antes de seguir para as demais ilhas
+- [x] Depois da **T-14** — medir o JS da ilha e o CLS antes de seguir para as demais ilhas
 - [ ] Antes da **T-24** — revisar a página inteira nos dois idiomas e temas
 
 ## 10. Pontos em aberto (opcional)
@@ -706,4 +706,5 @@ Autonomia concedida pelo responsável: viram autoverificações registradas no h
 | T-10 | Concluído | 2026-10-06 | `8de2c69` | Aprovado com ressalvas: R-01 (seção ativa testada na T-23) |
 | T-11 | Concluído | 2026-10-06 | `243a16a` | Review aprovado |
 | T-12 | Concluído | 2026-10-06 | `44b44bf` | Review aprovado |
-| T-13 | Concluído | 2026-10-06 | (ver T-14) | Aprovado com ressalvas: R-01 (ilha criada já na T-13 para evitar CLS) |
+| T-13 | Concluído | 2026-10-06 | `aadd023` | Aprovado com ressalvas: R-01 (ilha criada já na T-13 para evitar CLS) |
+| T-14 | Concluído | 2026-10-06 | (ver T-15) | Review aprovado; ilha 12,4 KB, CLS < 0,02 |

@@ -293,3 +293,29 @@
     }
   }
 }
+
+/* Escrita da fase ao chegar nela (T-14). `pending` só mexe em opacidade e escala: sem salto de layout. */
+@layer components {
+  .phase__id-link {
+    display: inline-block;
+    width: 1.25rem;
+    border-top: var(--border) solid currentColor;
+    transform-origin: right center;
+    transition: transform var(--dur-explain) var(--ease);
+    transition-delay: calc(700ms + var(--k, 0) * 100ms);
+  }
+  .phase[data-pending='true'] .phase__doc-line,
+  .phase[data-pending='true'] .phase__id {
+    opacity: 0;
+  }
+  .phase[data-pending='true'] .phase__id-link {
+    transform: scaleX(0);
+  }
+  .phase,
+  .pipeline__node-box {
+    transition:
+      border-color var(--dur-fast) var(--ease),
+      background-color var(--dur-fast) var(--ease),
+      color var(--dur-fast) var(--ease);
+  }
+}
