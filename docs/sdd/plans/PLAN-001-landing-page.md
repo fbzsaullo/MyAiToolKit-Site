@@ -111,7 +111,7 @@ Projeto Astro 7 estático com `@astrojs/preact`, TypeScript estrito, `site: http
 
 #### T-02 — Configurar o projeto com o `/sdd-setup` do kit
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Baixa
 - **Estimativa:**
 - **Depende de:** T-01
@@ -127,8 +127,8 @@ Projeto Astro 7 estático com `@astrojs/preact`, TypeScript estrito, `site: http
 Rodar o roteiro do `sdd-setup` com o perfil Node: versões reais (Node, Astro, Preact), comandos do `package.json`, convenção de teste `test("CA-XX: …")`, `git commit` **permitido** (decisão da demanda), migrations não se aplicam. IAs: Claude Code e Codex.
 
 **Critério de aceite (testável):**
-- [ ] `config.yml` tem stacks, versões com origem, comandos existentes e `testing.ca_naming`
-- [ ] `AGENTS.md` com marcadores `myaitoolkit:start/end`; `CLAUDE.md` importa `@AGENTS.md`
+- [x] `config.yml` tem stacks, versões com origem, comandos existentes e `testing.ca_naming`
+- [x] `AGENTS.md` com marcadores `myaitoolkit:start/end`; `CLAUDE.md` importa `@AGENTS.md`
 
 **Testes a escrever:**
 - *Não se aplica* — configuração.

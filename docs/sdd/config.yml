@@ -1,0 +1,76 @@
+# Gerado pelo /sdd-setup do MyAiToolKit. Edite à vontade; o setup preserva chaves desconhecidas.
+version: 1
+generated_at: 2026-10-06
+
+project:
+  name: myaitoolkit-site
+  language: pt-BR
+  ais: [claude-code, codex]
+  monorepo: false
+
+stacks:
+  - name: node
+    role: primary
+    path: .
+    profile: stacks/node/profile.md
+    versions:
+      node: { value: "24.13.0", source: "node --version (ambiente); .nvmrc = 24; netlify.toml NODE_VERSION = 24" }
+      npm: { value: "11.6.2", source: "npm --version (ambiente)" }
+      astro: { value: "7.3.6", source: "package-lock.json" }
+      preact: { value: "10.29.8", source: "package-lock.json" }
+      astrojs_preact: { value: "6.0.6", source: "package-lock.json" }
+    libraries:
+      framework: astro (output static)
+      islands: preact via @astrojs/preact (client:visible)
+      styling: CSS próprio com tokens (sem framework)
+      highlighting: shiki (integrado ao Astro)
+    package_manager: npm
+    modules: []
+
+commands:
+  setup: npm ci
+  run: npm run dev
+  build: npm run build
+  preview: npm run preview
+  copy_brand: npm run copy:brand
+  test: null            # TODO: Playwright entra na T-03 (ADR-012)
+  test_single: null     # TODO: T-03
+  lint: null            # o projeto não usa linter separado; `astro check` entra se adotado
+  security: npm audit
+  dependency_audit: npm audit
+  migrate: null         # não se aplica (site estático, sem banco)
+
+testing:
+  framework: playwright   # decidido no ADR-012; instalado na T-03
+  paths: [tests]
+  ca_naming:
+    pattern: 'test("CA-XX: <descrição>")'
+    grep: 'CA-[0-9]{2}'
+
+code_review:
+  default_base_branch: main
+  candidate_branches: [main]
+  tools:
+    - { name: npm-audit, command: "npm audit", scope: dependencies }
+    - { name: build, command: "npm run build", scope: project }
+  checklists:
+    - stacks/_generic/profile.md   # o perfil Node do kit ainda não tem checklists próprios
+
+spike:
+  hours_per_day: 6
+  include_overheads: true
+  overheads_pct: { code_review: 10, qa: 15, deploy: 5 }
+  heuristics: null
+
+sdd:
+  docs_root: docs/sdd
+  task_status_language: pt-BR
+
+permissions:
+  claude:
+    file: .claude/settings.json
+    git_commit: allow     # decisão da demanda do site
+    migrations: n/a
+  codex:
+    config: .codex/config.toml
+    rules: .codex/rules/myaitoolkit.rules

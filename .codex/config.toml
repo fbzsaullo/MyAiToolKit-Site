@@ -1,0 +1,17 @@
+# .codex/config.toml — gerado pelo /sdd-setup do MyAiToolKit.
+# Carregado apenas quando o projeto é confiável para o Codex.
+default_permissions = "myaitoolkit"
+
+[permissions.myaitoolkit.filesystem]
+":minimal" = "read"
+
+[permissions.myaitoolkit.filesystem.":workspace_roots"]
+"." = "write"
+"**/.env" = "deny"
+"**/.env.*" = "deny"
+"**/*.pem" = "deny"
+"**/*.key" = "deny"
+"**/.npmrc" = "deny"
+
+[permissions.myaitoolkit.network]
+enabled = true
