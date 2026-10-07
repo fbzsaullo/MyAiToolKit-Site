@@ -216,7 +216,9 @@
   .phase__doc-lines {
     margin: 0;
     padding: var(--space-3) var(--space-4);
-    overflow-x: auto;
+    /* Quebra em vez de rolar: um bloco rolável precisaria receber foco pelo teclado. */
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
     font-size: var(--fs-code);
     line-height: var(--lh-code);
     color: var(--text);

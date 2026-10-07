@@ -1,0 +1,213 @@
+---
+// UI-07 — Comandos. HTML estático: a prévia abre com hover ou foco só por CSS; o script só trata o Esc.
+import Section from '../components/Section.astro';
+import CommandChip from '../components/CommandChip.astro';
+import { t, type Locale } from '../i18n';
+import { commandGroups } from '../lib/commands';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const ui = t(locale);
+const c = ui.commands;
+const groups = commandGroups();
+---
+<Section id="comandos" {...ui.sections.comandos} lead={c.intro}>
+  <div class="commands" data-commands>
+    {groups.map(({ group, commands }) => (
+      <section class="commands__group" aria-labelledby={`comandos-${group}`} data-group={group}>
+        <header class="commands__group-header">
+          <h3 id={`comandos-${group}`} class="commands__group-title">{c.groups[group]}</h3>
+          <p class="commands__group-note">{c.groupNotes[group]}</p>
+        </header>
+        <ul class="commands__list" role="list">
+          {commands.map((command) => {
+            const item = c.items[command.name as keyof typeof c.items];
+            return (
+              <li class="cmd" data-command={command.name} tabindex="0"
+                aria-labelledby={`cmd-${command.name}`} aria-describedby={`cmd-${command.name}-preview`}>
+                <h4 class="cmd__name" id={`cmd-${command.name}`}>
+                  <CommandChip command={command.claude} />
+                </h4>
+                <dl class="cmd__facts">
+                  <div>
+                    <dt class="label">{c.labels.when}</dt>
+                    <dd>{item.when}</dd>
+                  </div>
+                  <div>
+                    <dt class="label">{c.labels.generates}</dt>
+                    <dd>{item.generates}</dd>
+                  </div>
+                  <div class="cmd__codex">
+                    <dt class="label">{c.labels.codex}</dt>
+                    <dd><code data-codex>{command.codex}</code></dd>
+                  </div>
+                </dl>
+                <div class="cmd__preview" id={`cmd-${command.name}-preview`} data-preview>
+                  <p class="label">{c.labels.preview}</p>
+                  <pre class="cmd__preview-lines"><code>{item.preview.map((line) => <span class="cmd__preview-line">{line}{'\n'}</span>)}</code></pre>
+                </div>
+              </li>
+            );
+          })}
+        </ul>
+      </section>
+    ))}
+  </div>
+</Section>
+
+<script>
+  import { setupCommands } from '../scripts/commands';
+  setupCommands();
+</script>
+
+<style>
+  .commands {
+    display: grid;
+    gap: var(--space-8);
+  }
+  .commands__group-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--space-2) var(--space-4);
+    margin-bottom: var(--space-4);
+    padding-bottom: var(--space-3);
+    border-bottom: var(--border) solid var(--line-strong);
+  }
+  .commands__group-title {
+    font-size: var(--fs-h3);
+    line-height: var(--lh-h3);
+    letter-spacing: var(--ls-h3);
+  }
+  .commands__group-note {
+    color: var(--text-muted);
+    font-size: var(--fs-small);
+  }
+  .commands__list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+  .cmd {
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: var(--space-4);
+    padding: var(--space-5);
+    border: var(--border) solid var(--line-strong);
+    background: var(--bg);
+    transition: border-color var(--dur-fast) var(--ease);
+  }
+  .cmd:hover,
+  .cmd:focus-visible,
+  .cmd:focus-within {
+    border-color: var(--ink);
+    z-index: 2;
+  }
+  .cmd__name {
+    font-size: inherit;
+  }
+  .cmd__facts {
+    display: grid;
+    gap: var(--space-3);
+    font-size: var(--fs-small);
+    line-height: var(--lh-small);
+  }
+  .cmd__facts dd {
+    margin-top: var(--space-1);
+    color: var(--text-2);
+  }
+  .cmd__codex {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+  }
+  .cmd__codex dd {
+    margin: 0;
+  }
+  .cmd__codex code {
+    font-family: var(--font-mono);
+    font-size: var(--fs-id);
+    color: var(--text);
+  }
+
+  /* Prévia (UI-07.previa): painel logo abaixo do card, por cima do que vem depois — sem deslocar a grade.
+     Escondida só visualmente: continua no texto acessível do card (aria-describedby). */
+  .cmd__preview {
+    position: absolute;
+    top: calc(100% - 1px);
+    left: -1px;
+    right: -1px;
+    padding: var(--space-3) var(--space-5) var(--space-4);
+    border: var(--border) solid var(--ink);
+    background: var(--ink);
+    color: var(--bg);
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+    transform: translateY(-4px);
+    pointer-events: none;
+    transition:
+      opacity 180ms var(--ease),
+      clip-path 180ms var(--ease),
+      transform 180ms var(--ease);
+  }
+  .cmd__preview .label {
+    color: inherit;
+    opacity: 0.75;
+  }
+  .cmd:hover .cmd__preview,
+  .cmd:focus-visible .cmd__preview {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+    transform: none;
+    pointer-events: auto;
+  }
+  .cmd[data-dismissed] .cmd__preview {
+    opacity: 0;
+    clip-path: inset(0 0 100% 0);
+    pointer-events: none;
+  }
+  .cmd__preview-lines {
+    margin-top: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    line-height: var(--lh-code);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .cmd__preview-line {
+    display: block;
+    padding-left: 2ch;
+    text-indent: -2ch;
+  }
+
+  @media (max-width: 63.99rem) {
+    .commands__list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  /* Celular e telas sem hover (UI-07.celular): lista, prévia sempre visível dentro do card. */
+  @media (max-width: 47.99rem), (hover: none) {
+    .commands__list {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .cmd__preview,
+    .cmd[data-dismissed] .cmd__preview {
+      position: static;
+      margin: 0 calc(-1 * var(--space-5)) calc(-1 * var(--space-5));
+      opacity: 1;
+      clip-path: none;
+      transform: none;
+      pointer-events: auto;
+    }
+  }
+  @media (min-width: 48rem) and (max-width: 63.99rem) and (hover: none) {
+    .commands__list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+</style>

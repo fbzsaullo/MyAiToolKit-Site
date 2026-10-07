@@ -486,7 +486,7 @@ As 6 fases como lista completa (comando, entrada, documento, IDs), para as duas 
 
 #### T-17 — Construir a referência dos comandos com prévia
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Média
 - **Estimativa:**
 - **Depende de:** T-07, T-08
@@ -499,7 +499,7 @@ As 6 fases como lista completa (comando, entrada, documento, IDs), para as duas 
   - `tests/commands.spec.ts` *(novo)*
 
 **Critério de aceite (testável):**
-- [ ] CA-14 e CA-15 verdes; lista igual ao snapshot
+- [x] CA-14 e CA-15 verdes; lista igual ao snapshot
 
 **Testes a escrever:**
 - *E2E:* `test("CA-14: …")`, `test("CA-15: …")`
@@ -709,4 +709,5 @@ Autonomia concedida pelo responsável: viram autoverificações registradas no h
 | T-13 | Concluído | 2026-10-06 | `aadd023` | Aprovado com ressalvas: R-01 (ilha criada já na T-13 para evitar CLS) |
 | T-14 | Concluído | 2026-10-06 | `793fc82` | Review aprovado; ilha 12,4 KB, CLS < 0,02 |
 | T-15 | Concluído | 2026-10-07 | `d29d2d3` | Aprovado com ressalvas: R-01 (laço vive dentro da ilha do pipeline) |
-| T-16 | Concluído | 2026-10-07 | (ver T-17) | Review aprovado; ilha 8,3 KB |
+| T-16 | Concluído | 2026-10-07 | `660f23a` | Review aprovado; ilha 8,3 KB |
+| T-17 | Concluído | 2026-10-07 | (ver T-18) | Review aprovado; CA-07 completado (nomes iguais em pt e en) |

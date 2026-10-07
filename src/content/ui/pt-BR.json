@@ -282,5 +282,135 @@
     "none": "nenhuma",
     "brokenLabel": "Elo quebrado",
     "status": "{id}: {n} IDs ligados destacados"
+  },
+  "commands": {
+    "intro": "Os nomes são os mesmos em qualquer idioma. No Claude Code, chame com barra; no Codex, com cifrão. Passe o mouse ou foque um comando para ver uma prévia do que ele entrega.",
+    "groups": {
+      "fases": "Fases",
+      "navegacao": "Navegação",
+      "apoio": "Apoio"
+    },
+    "groupNotes": {
+      "fases": "Uma por vez, na ordem do pipeline. O protótipo é opcional.",
+      "navegacao": "Dizem onde você está e o que falta.",
+      "apoio": "Fora do laço das fases, quando precisar."
+    },
+    "labels": {
+      "when": "Quando usar",
+      "generates": "O que gera",
+      "claude": "Claude Code",
+      "codex": "Codex",
+      "preview": "Prévia da saída"
+    },
+    "items": {
+      "sdd-architect": {
+        "when": "Sistema novo ou mudança estrutural",
+        "generates": "Proposta arquitetural, um ADR por decisão e diagramas C4",
+        "preview": [
+          "docs/sdd/architecture/proposta-arquitetural.md",
+          "ADR-001 … ADR-004 — Status: Proposto",
+          "C4 de contexto e de contêineres em Mermaid"
+        ]
+      },
+      "sdd-prd": {
+        "when": "Uma demanda precisa virar requisito",
+        "generates": "PRD com regras RN-XX e cenários CA-XX em Gherkin",
+        "preview": [
+          "docs/sdd/prds/PRD-007-recuperacao-de-senha.md",
+          "RN-01 … RN-04 · CA-01 … CA-05",
+          "Status: Rascunho"
+        ]
+      },
+      "sdd-prototype": {
+        "when": "O PRD tem interface (fase opcional)",
+        "generates": "SPEC-UI com as telas UI-XX e seus estados",
+        "preview": [
+          "docs/sdd/prototype/SPEC-UI-007-recuperacao-de-senha.md",
+          "UI-01 Pedido · UI-02 Nova senha",
+          "UI-02.expirado ← RN-02, CA-03"
+        ]
+      },
+      "sdd-plan": {
+        "when": "PRD aprovado, antes de escrever código",
+        "generates": "Plano com tarefas T-XX pequenas e testáveis",
+        "preview": [
+          "docs/sdd/plans/PLAN-007-recuperacao-de-senha.md",
+          "T-01 … T-05 · cada uma implementa RN e valida CA",
+          "Ponto de validação humana após a T-03"
+        ]
+      },
+      "sdd-execute": {
+        "when": "Implementar uma tarefa do plano",
+        "generates": "Código e testes de uma única T-XX",
+        "preview": [
+          "T-03 — Validar token e trocar a senha",
+          "bin/rspec spec/requests/password_resets_spec.rb — 0 falhas",
+          "Status: Concluído · commit sugerido: T-03: …"
+        ]
+      },
+      "sdd-review": {
+        "when": "Fechar uma tarefa executada",
+        "generates": "REVIEW-T-XX com apontamentos R-XX por severidade",
+        "preview": [
+          "docs/sdd/reviews/REVIEW-T-03-2026-09-18.md",
+          "R-01 Bloqueante — token comparado com ==",
+          "Recomendação: Bloqueado → round 2"
+        ]
+      },
+      "sdd-start": {
+        "when": "Começar uma demanda",
+        "generates": "Pergunta o ponto de entrada e chama a fase certa",
+        "preview": [
+          "A — sistema novo: arquitetura e depois PRD",
+          "B — funcionalidade em sistema existente: PRD",
+          "C — já tenho o PRD: plano"
+        ]
+      },
+      "sdd-next": {
+        "when": "Não sabe o que fazer agora",
+        "generates": "Onde o pipeline está e a próxima ação",
+        "preview": [
+          "PLAN-007: 3 de 5 tarefas concluídas",
+          "Review pendente: T-04",
+          "Próximo passo: /sdd-review T-04"
+        ]
+      },
+      "sdd-trace": {
+        "when": "Conferir se tudo se liga",
+        "generates": "Matriz RN → CA → UI → T → teste, com os elos quebrados",
+        "preview": [
+          "docs/sdd/traceability/MATRIX-007-recuperacao-de-senha.md",
+          "RN-01 … RN-03: cadeia completa",
+          "RN-04 sem teste — elo quebrado"
+        ]
+      },
+      "sdd-setup": {
+        "when": "Primeira vez no projeto, ou a stack mudou",
+        "generates": "config.yml, AGENTS.md, CLAUDE.md, permissões e relatório da stack",
+        "preview": [
+          "Rails 8.0 · Ruby 3.4 · rspec · Solid Queue",
+          "docs/sdd/config.yml · AGENTS.md · CLAUDE.md",
+          ".claude/settings.json — diff mostrado antes de gravar"
+        ]
+      },
+      "spike": {
+        "when": "Estimar um card antes de assumir",
+        "generates": "As partes do trabalho com as horas que você decidir",
+        "preview": [
+          "docs/sdd/spikes/SPIKE-PROJ-123-recuperacao-de-senha.md",
+          "Sugestão da IA: 3 h + 5 h + 2 h = 10 h",
+          "Você decide: 12 h — só o seu valor é salvo"
+        ]
+      },
+      "code-review": {
+        "when": "Revisar uma branch ou PR fora do plano",
+        "generates": "Relatório CR-XX com severidade e quadrante Q1–Q4",
+        "preview": [
+          "Comparar com: main · história: PROJ-123",
+          "CR-01 Bloqueante · Q1 — corrigir antes do merge",
+          "docs/sdd/code-reviews/CR-feature-reset-2026-09-20.md"
+        ]
+      }
+    }
   }
 }
