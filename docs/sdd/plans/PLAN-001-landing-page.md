@@ -277,7 +277,7 @@ Script sem dependências: lê `KIT_PATH` (padrão `../MyAiToolKit`) ou clona `KI
 
 #### T-08 — Construir os componentes base e os ícones
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Média
 - **Estimativa:**
 - **Depende de:** T-04
@@ -290,8 +290,8 @@ Script sem dependências: lê `KIT_PATH` (padrão `../MyAiToolKit`) ou clona `KI
   - `src/icons/` *(novo — 6 ícones de fase + Lucide inline)*
 
 **Critério de aceite (testável):**
-- [ ] Logo usa os SVGs de `brand/` sem alteração, preto no claro e branco no escuro
-- [ ] Ícones com traço quadrado, `miter`, 1,75 px em 24 px
+- [x] Logo usa os SVGs de `brand/` sem alteração, preto no claro e branco no escuro
+- [x] Ícones com traço quadrado, `miter`, 1,75 px em 24 px
 
 **Testes a escrever:**
 - *E2E:* `test("logo troca com o tema")`
@@ -700,4 +700,5 @@ Autonomia concedida pelo responsável: viram autoverificações registradas no h
 | T-04 | Concluído | 2026-10-06 | `f84e441` | Aprovado com ressalvas: R-01 (preload na T-05); fontes via ADR-013 |
 | T-05 | Concluído | 2026-10-06 | `6beda28` | Aprovado com ressalvas: R-01 (CA-07 completado nas T-12 e T-17) |
 | T-06 | Concluído | 2026-10-06 | `1e0915a` | Review aprovado |
-| T-07 | Concluído | 2026-10-06 | (ver T-08) | Review aprovado |
+| T-07 | Concluído | 2026-10-06 | `e0febd8` | Review aprovado |
+| T-08 | Concluído | 2026-10-06 | (ver T-09) | Aprovado com ressalvas: R-01 (GitHub em texto) |

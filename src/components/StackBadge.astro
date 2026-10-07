@@ -1,0 +1,46 @@
+---
+// Selo de stack em texto. A referência ganha o quadrado preenchido e o rótulo escrito.
+interface Props {
+  name: string;
+  reference?: boolean;
+  referenceLabel?: string;
+}
+
+const { name, reference = false, referenceLabel } = Astro.props;
+---
+<span class:list={['stack-badge', { 'stack-badge--reference': reference }]}>
+  <span class="stack-badge__mark" aria-hidden="true"></span>
+  <span>{name}</span>
+  {reference && referenceLabel && <span class="stack-badge__note">{referenceLabel}</span>}
+</span>
+
+<style>
+  .stack-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border: var(--border) solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    font-size: var(--fs-small);
+    font-weight: 500;
+  }
+  .stack-badge__mark {
+    width: 0.5rem;
+    height: 0.5rem;
+    border: var(--border) solid currentColor;
+  }
+  .stack-badge--reference {
+    border-color: var(--ink);
+  }
+  .stack-badge--reference .stack-badge__mark {
+    background: currentColor;
+  }
+  .stack-badge__note {
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    letter-spacing: var(--ls-label);
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+</style>

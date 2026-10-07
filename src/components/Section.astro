@@ -1,0 +1,52 @@
+---
+// Seção numerada como um documento ("01 — Arquitetura"), com grid aparente opcional.
+interface Props {
+  id: string;
+  number: string;
+  label: string;
+  title: string;
+  lead?: string;
+  grid?: boolean;
+  class?: string;
+}
+
+const { id, number, label, title, lead, grid = false, class: className } = Astro.props;
+const headingId = `${id}-titulo`;
+---
+<section id={id} class:list={['section', { 'spec-grid': grid }, className]} aria-labelledby={headingId}>
+  <div class="container section__inner">
+    <header class="section__header">
+      <p class="label section__label"><span class="tabular">{number}</span> — {label}</p>
+      <h2 id={headingId}>{title}</h2>
+      {lead && <p class="lead section__lead">{lead}</p>}
+    </header>
+    <slot />
+  </div>
+</section>
+
+<style>
+  .section {
+    border-top: var(--border) solid var(--line);
+    padding-block: var(--space-9);
+  }
+  .section__header {
+    display: grid;
+    gap: var(--space-3);
+    margin-bottom: var(--space-7);
+  }
+  .section__label {
+    display: flex;
+    gap: var(--space-2);
+  }
+  .section__lead {
+    margin-top: var(--space-2);
+  }
+  @media (max-width: 767px) {
+    .section {
+      padding-block: var(--space-8);
+    }
+    .section__header {
+      margin-bottom: var(--space-6);
+    }
+  }
+</style>

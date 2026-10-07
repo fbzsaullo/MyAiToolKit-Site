@@ -1,0 +1,38 @@
+---
+// Chip de comando: o nome nunca é traduzido (RN-04). Comandos /sdd-* sublinhados (identidade visual).
+interface Props {
+  command: string;
+  size?: 'sm' | 'md';
+  class?: string;
+}
+
+const { command, size = 'md', class: className } = Astro.props;
+const isSdd = command.startsWith('/sdd-') || command.startsWith('$sdd-');
+---
+<code class:list={['chip', `chip--${size}`, { 'chip--sdd': isSdd }, className]}>{command}</code>
+
+<style is:global>
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.25rem 0.5rem;
+    border: var(--border) solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    background: var(--surface);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: var(--fs-code);
+    font-weight: 500;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+  .chip--sm {
+    padding: 0.125rem 0.375rem;
+    font-size: var(--fs-id);
+  }
+  .chip--sdd {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+  }
+</style>

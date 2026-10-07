@@ -15,4 +15,10 @@ export default defineConfig({
     routing: { prefixDefaultLocale: false },
   },
   integrations: [preact()],
+  vite: {
+    build: {
+      // Arquivos da marca nunca viram data: URI — o Vite reescreveria o SVG ao embutir (RN-01).
+      assetsInlineLimit: (file) => (file.replaceAll('\\', '/').includes('/brand/') ? false : undefined),
+    },
+  },
 });

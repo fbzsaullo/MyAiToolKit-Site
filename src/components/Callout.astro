@@ -1,0 +1,37 @@
+---
+// Aviso com ícone. Sem cor: borda de 1 px e marcador em `ink`.
+import Icon from './Icon.astro';
+
+interface Props {
+  icon?: 'Info' | 'Languages' | 'GraduationCap' | 'Scale';
+  class?: string;
+}
+
+const { icon = 'Info', class: className } = Astro.props;
+---
+<aside class:list={['callout', className]}>
+  <Icon name={icon} size={20} class="callout__icon" />
+  <div class="callout__body"><slot /></div>
+</aside>
+
+<style>
+  .callout {
+    display: flex;
+    gap: var(--space-3);
+    align-items: flex-start;
+    padding: var(--space-4);
+    border: var(--border) solid var(--line-strong);
+    border-left: 2px solid var(--ink);
+    background: var(--surface);
+    max-width: var(--measure);
+  }
+  .callout :global(.callout__icon) {
+    flex: none;
+    margin-top: 0.15rem;
+  }
+  .callout__body {
+    color: var(--text-2);
+    font-size: var(--fs-small);
+    line-height: var(--lh-small);
+  }
+</style>

@@ -1,0 +1,44 @@
+---
+// Etiqueta de ID (`RN-03`): Geist Mono 13 px. Estados: default, ativo (invertido), esmaecido, quebrado (tracejado).
+interface Props {
+  id: string;
+  state?: 'default' | 'active' | 'muted' | 'broken';
+  class?: string;
+}
+
+const { id, state = 'default', class: className } = Astro.props;
+---
+<span class:list={['id-tag', `id-tag--${state}`, className]} data-id={id}>{id}</span>
+
+<style is:global>
+  .id-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1);
+    padding: 0.125rem 0.375rem;
+    border: var(--border) solid var(--line-strong);
+    border-radius: var(--radius-sm);
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-mono);
+    font-size: var(--fs-id);
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: var(--ls-id);
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+  .id-tag--active {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--bg);
+  }
+  .id-tag--muted {
+    color: var(--text-muted);
+    border-color: var(--line);
+  }
+  .id-tag--broken {
+    border-style: dashed;
+    color: var(--text-2);
+  }
+</style>
