@@ -37,3 +37,9 @@ Endereço provisório: `https://myaitoolkit.netlify.app`. Para trocar de domíni
 - Os textos ficam em `src/content/ui/` (um JSON por idioma) e as duas demandas de exemplo em `src/content/examples/`.
 - A lista de comandos e a versão do kit vêm de `src/data/kit.json`. Para atualizar a partir do repositório do kit, rode `npm run sync:kit` (`KIT_PATH`, padrão `../MyAiToolKit`).
 - `brand/` guarda a marca original e não deve ser alterada; os ícones são copiados para `public/` no build.
+
+## Licença
+
+Este repositório é público **somente para consulta**: dá para ler o código e os documentos de `docs/sdd/`, mas não é permitido copiar, modificar, redistribuir ou reutilizar o conteúdo sem autorização por escrito. Veja [`LICENSE`](LICENSE) e o [ADR-014](docs/sdd/architecture/adrs/ADR-014-repositorio-publico-somente-leitura.md).
+
+A licença MIT citada no site é a do [MyAiToolKit](https://github.com/fbzsaullo/MyAiToolKit), um projeto separado.
