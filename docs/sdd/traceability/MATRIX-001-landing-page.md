@@ -3,10 +3,10 @@
 - **PRD:** [`PRD-001-landing-page.md`](../prds/PRD-001-landing-page.md)
 - **Plano:** [`PLAN-001-landing-page.md`](../plans/PLAN-001-landing-page.md)
 - **SPEC-UI:** [`SPEC-UI-001-landing-page.md`](../prototype/SPEC-UI-001-landing-page.md)
-- **ADRs:** [`architecture/adrs/`](../architecture/adrs/) — 13 arquivos (12 Aceito, ADR-010 Substituído por ADR-013)
-- **Reviews:** [`reviews/`](../reviews/) — 24 arquivos, um por tarefa
+- **ADRs:** [`architecture/adrs/`](../architecture/adrs/) — 14 arquivos (13 Aceito, ADR-010 Substituído por ADR-013)
+- **Reviews:** [`reviews/`](../reviews/) — 26 arquivos, um por tarefa
 - **Testes:** `tests/*.spec.ts`, nome no formato `test("CA-XX: …")`
-- **Gerada por:** skill `sdd-trace` do MyAiToolKit, em 2026-10-07, depois da T-24 (commit `0956390`)
+- **Gerada por:** skill `sdd-trace` do MyAiToolKit, em 2026-10-07, depois da T-26 (commit `d662b86`), sobre o PRD revisado (RN-16, CA-27) e o ADR-014
 
 > A matriz é uma fotografia. Quando PRD, SPEC-UI ou plano mudarem, gere de novo.
 
@@ -16,13 +16,13 @@
 
 | Conjunto | Total | Ligado |
 | --- | --- | --- |
-| Regras (RN) | 15 | 15 com cenário e com tarefa |
-| Cenários (CA) | 26 | 26 com tarefa e 26 com teste |
+| Regras (RN) | 16 | 16 com cenário e com tarefa |
+| Cenários (CA) | 27 | 27 com tarefa e 27 com teste |
 | Telas (UI) | 13 | 13 com tarefa |
 | Estados de tela | 54 | 54 declarados em alguma tarefa |
-| Tarefas (T) | 24 | 24 `Concluído`, 24 com review |
+| Tarefas (T) | 26 | 26 `Concluído`, 26 com review |
 | Apontamentos (R) | 12 | 0 em aberto, 0 Bloqueante |
-| ADRs citados | 12 | 12 existem e estão `Aceito` |
+| ADRs citados | 13 | 13 existem e estão `Aceito` |
 
 ### Tabela 1 — Da regra ao review
 
@@ -43,6 +43,7 @@
 | RN-13 | Versão do kit lida do snapshot | CA-25 | T-07, T-10 | ADR-007 | T-07 ✅ · T-10 ⚠️ |
 | RN-14 | Bloco "feito com o MyAiToolKit" | CA-25 | T-20 | — | T-20 ✅ |
 | RN-15 | Copiar o texto exato, com retorno ■ → ✓ | CA-20 | T-09, T-21 | — | T-09 ⚠️ · T-21 ✅ |
+| RN-16 | Crédito ao leanwork-sdd no rodapé | CA-26, CA-27 | T-25 | — | T-25 ✅ |
 
 ### Tabela 2 — Do cenário ao teste
 
@@ -73,7 +74,8 @@
 | CA-23 | Nada de terceiros nem cookies | RN-09 | página inteira | T-23 | `tests/quality.spec.ts` | T-23 ✅ |
 | CA-24 | Orçamento de desempenho | RN-11 | página inteira | T-23 | `tests/quality.spec.ts` | T-23 ✅ |
 | CA-25 | Rodapé, versão e prova de conceito | RN-13, RN-14 | UI-12, UI-13 | T-20 | `tests/footer-open-source.spec.ts` | T-20 ✅ |
-| CA-26 | Links e âncoras íntegros | — | página inteira | T-23 | `tests/quality.spec.ts` | T-23 ✅ |
+| CA-26 | Links e âncoras íntegros | RN-16 | página inteira | T-23, T-25 | `tests/quality.spec.ts` | T-23 ✅ · T-25 ✅ |
+| CA-27 | Crédito ao pipeline de origem no rodapé | RN-16 | UI-13 | T-25 | `tests/footer-open-source.spec.ts` | T-25 ✅ |
 
 ### Tabela 3 — Execução por tarefa
 
@@ -103,6 +105,8 @@
 | T-22 | Concluído | Sim — `REVIEW-T-22-2026-10-07.md` | — | 0 |
 | T-23 | Concluído | Sim — `REVIEW-T-23-2026-10-07.md` | — | 0 |
 | T-24 | Concluído | Sim — `REVIEW-T-24-2026-10-07.md` | — | 0 |
+| T-25 | Concluído | Sim — `REVIEW-T-25-2026-10-07.md` | — | 0 |
+| T-26 | Concluído | Sim — `REVIEW-T-26-2026-10-07.md` | — | 0 |
 
 ### Diagrama — uma cadeia completa
 
@@ -141,10 +145,10 @@ graph LR
 
 ## Observações (verificadas; não são elos quebrados)
 
-- **Tarefas sem `Implementa` nem `Valida`:** a T-01 (projeto Astro), a T-02 (`/sdd-setup`), a T-03 (infraestrutura de testes) e a T-24 (README) são estruturais. A T-01 se apoia nos ADR-001, ADR-003 e ADR-011, a T-03 no ADR-012 e a T-24 no ADR-011. As quatro têm review aprovado.
+- **Tarefas sem `Implementa` nem `Valida`:** a T-01 (projeto Astro), a T-02 (`/sdd-setup`), a T-03 (infraestrutura de testes), a T-24 (README) e a T-26 (licença do repositório) são estruturais. A T-01 se apoia nos ADR-001, ADR-003 e ADR-011, a T-03 no ADR-012, a T-24 no ADR-011 e a T-26 no ADR-014. As cinco têm review aprovado.
 - **ADR-010 sem citação:** foi substituído pelo ADR-013 (fontes geradas a partir do pacote oficial), e é o ADR-013 que as tarefas citam.
 - **UI-04 e UI-08 sem RN nem CA:** são conteúdo estático, aceito na seção 8 da SPEC-UI (lacuna 3) e coberto pelos CA-22 (acessibilidade) e CA-26 (links).
-- **Cenários sem RN citada no texto:** os CA-11, CA-15, CA-16, CA-17 e CA-26 descrevem comportamento de tela. Não é elo quebrado: toda RN tem cenário. As regras que eles exercitam aparecem nas tarefas que os validam (RN-08 na T-15 e na T-19; RN-03 e RN-04 na T-17; RN-10 na T-18).
+- **Cenários sem RN citada no texto:** os CA-11, CA-15, CA-16 e CA-17 descrevem comportamento de tela (o CA-26 passou a citar o RN-16 na revisão). Não é elo quebrado: toda RN tem cenário. As regras que eles exercitam aparecem nas tarefas que os validam (RN-08 na T-15 e na T-19; RN-03 e RN-04 na T-17; RN-10 na T-18).
 - **Correção feita durante esta análise:** a T-12 declarava `UI-04, UI-08` sem os estados. O campo `Telas:` passou a listar os estados que ela entregou, `UI-04 (default, celular), UI-08 (default, celular)`, e assim os 54 estados da SPEC-UI ficaram declarados em tarefas.
 - **Medição pendente fora do repositório:** a meta "Lighthouse ≥ 95" do PRD (seção 2) depende do deploy na Netlify. As métricas que ela cobre (JS, CLS, acessibilidade, nenhum terceiro) têm testes (CA-22, CA-23, CA-24).
 
@@ -158,4 +162,4 @@ A extração é estática e só conta o que está escrito. Foram lidos:
 - os `R-XX` e a severidade de cada review;
 - os `test("CA-XX: …")` em `tests/`.
 
-O status de cada bloco de tarefa confere com o histórico do plano nas 24 tarefas.
+O status de cada bloco de tarefa confere com o histórico do plano nas 26 tarefas.
