@@ -74,3 +74,21 @@ test('stacks e IAs com movimento reduzido e sem JS já aparecem acesas', async (
     await expect(hub.locator('.hub__link').first()).toHaveCSS('transform', 'none');
   }
 });
+
+test('CA-27: crédito ao pipeline de origem no rodapé', async ({ browser }) => {
+  for (const [path, locale, text] of [
+    ['/', 'pt-BR', 'Pipeline SDD baseado no leanwork-sdd'],
+    ['/en/', 'en-US', 'SDD pipeline based on leanwork-sdd'],
+  ] as const) {
+    const page = await visit(browser, { path, locale });
+    const links = page.getByRole('contentinfo').locator('.site-footer__links li a');
+    const labels = await links.allTextContents();
+    // Logo depois do link da licença (RN-16).
+    const license = labels.findIndex((label) => /MIT/.test(label));
+    expect(license).toBeGreaterThanOrEqual(0);
+    expect(labels[license + 1]).toBe(text);
+    const credit = links.nth(license + 1);
+    await expect(credit).toHaveAttribute('href', 'https://github.com/leanwork/leanwork-sdd');
+    await expect(credit).toHaveAttribute('rel', 'noopener');
+  }
+});

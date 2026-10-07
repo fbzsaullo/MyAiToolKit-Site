@@ -97,6 +97,7 @@
     "links": "Links",
     "github": "Kit on GitHub",
     "license": "MIT license",
+    "sddOrigin": "SDD pipeline based on leanwork-sdd",
     "docs": "docs/sdd of this site",
     "version": "Kit version",
     "madeWith": "This site was built with MyAiToolKit."

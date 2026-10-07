@@ -164,11 +164,14 @@ test('CA-26: links e âncoras íntegros', async ({ browser }) => {
   const report = execFileSync(process.execPath, ['scripts/check-links.mjs'], { encoding: 'utf8' });
   expect(report).toContain('externos dentro da lista permitida');
 
-  // Os links do GitHub apontam para os repositórios do projeto.
+  // Os links do GitHub apontam para os repositórios do projeto; a única exceção é o crédito
+  // ao pipeline de origem no rodapé (RN-16).
   const page = await visit(browser);
   const github = await page.locator('a[href*="github.com"]').evaluateAll((els) => els.map((el) => el.getAttribute('href')!));
   expect(github.length).toBeGreaterThan(0);
-  for (const href of github) expect(href).toMatch(/^https:\/\/github\.com\/fbzsaullo\/MyAiToolKit(-Site)?(\/|$)/);
+  const outside = github.filter((href) => !/^https:\/\/github\.com\/fbzsaullo\/MyAiToolKit(-Site)?(\/|$)/.test(href));
+  expect(outside).toEqual(['https://github.com/leanwork/leanwork-sdd']);
+  await expect(page.locator('a[href="https://github.com/leanwork/leanwork-sdd"]')).toHaveAttribute('data-sdd-origin', '');
   expect(github).toContain('https://github.com/fbzsaullo/MyAiToolKit');
 });
 

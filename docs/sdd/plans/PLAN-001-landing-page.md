@@ -673,7 +673,7 @@ As 6 fases como lista completa (comando, entrada, documento, IDs), para as duas 
 
 #### T-25 — Acrescentar o crédito ao leanwork-sdd no rodapé
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Baixa
 - **Estimativa:**
 - **Depende de:** T-24
@@ -687,7 +687,7 @@ As 6 fases como lista completa (comando, entrada, documento, IDs), para as duas 
   - `tests/footer-open-source.spec.ts`, `tests/quality.spec.ts` *(editados)*
 
 **Critério de aceite (testável):**
-- [ ] CA-27 verde nos dois idiomas; CA-26 aceita só o link do crédito fora dos repositórios do projeto
+- [x] CA-27 verde nos dois idiomas; CA-26 aceita só o link do crédito fora dos repositórios do projeto
 
 **Testes a escrever:**
 - *E2E:* `test("CA-27: …")`
@@ -768,3 +768,4 @@ Autonomia concedida pelo responsável: viram autoverificações registradas no h
 | T-22 | Concluído | 2026-10-07 | `70efb08` | Review aprovado; R-02 da T-03 resolvido (404 no verificador de links) |
 | T-23 | Concluído | 2026-10-07 | `f0817ce` | Review aprovado; R-01 da T-10 resolvido (seção ativa testada); validação antes da T-24 feita |
 | T-24 | Concluído | 2026-10-07 | `0956390` | Review aprovado |
+| T-25 | Concluído | 2026-10-07 | (ver T-26) | Review aprovado |

@@ -10,6 +10,8 @@ const ALLOWED_EXTERNAL = [
   /^https:\/\/github\.com\/fbzsaullo\/MyAiToolKit(\/.*)?$/,
   /^https:\/\/github\.com\/fbzsaullo\/MyAiToolKit-Site(\/.*)?$/,
   /^https:\/\/myaitoolkit\.netlify\.app(\/.*)?$/,
+  // Crédito ao pipeline de origem no rodapé (RN-16) — só o endereço exato do repositório.
+  /^https:\/\/github\.com\/leanwork\/leanwork-sdd$/,
 ];
 
 function htmlFiles(dir) {

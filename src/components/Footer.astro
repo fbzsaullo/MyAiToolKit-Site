@@ -1,9 +1,10 @@
 ---
-// UI-13 — Rodapé: logo, links, versão do kit (do snapshot, RN-13) e troca de idioma.
+// UI-13 — Rodapé: logo, links (com o crédito ao pipeline de origem, RN-16), versão do kit
+// (do snapshot, RN-13) e troca de idioma.
 import Logo from './Logo.astro';
 import kit from '../data/kit.json';
 import { homePath, t, type Locale } from '../i18n';
-import { KIT_LICENSE, KIT_REPO, SITE_DOCS } from '../lib/links';
+import { KIT_LICENSE, KIT_REPO, SDD_ORIGIN, SITE_DOCS } from '../lib/links';
 
 interface Props {
   locale: Locale;
@@ -23,6 +24,7 @@ const ui = t(locale);
       <ul role="list">
         <li><a href={KIT_REPO} rel="noopener">{ui.footer.github}</a></li>
         <li><a href={KIT_LICENSE} rel="noopener">{ui.footer.license}</a></li>
+        <li><a href={SDD_ORIGIN} rel="noopener" data-sdd-origin>{ui.footer.sddOrigin}</a></li>
         <li><a href={SITE_DOCS} rel="noopener"><code>{ui.footer.docs}</code></a></li>
       </ul>
     </nav>
