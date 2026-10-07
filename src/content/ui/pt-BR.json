@@ -11,5 +11,94 @@
     "copy": "Copiar",
     "copied": "Copiado",
     "copyFailed": "Selecionado — use Ctrl+C"
+  },
+  "header": {
+    "home": "MyAiToolKit — início",
+    "nav": "Seções",
+    "navLabel": "Navegação principal",
+    "menu": "Seções",
+    "close": "Fechar",
+    "github": "GitHub",
+    "theme": {
+      "label": "Tema",
+      "system": "Tema: seguir o sistema",
+      "light": "Tema: claro",
+      "dark": "Tema: escuro"
+    },
+    "language": {
+      "label": "Idioma",
+      "pt": "PT",
+      "en": "EN",
+      "ptName": "Português",
+      "enName": "English"
+    }
+  },
+  "nav": {
+    "pipeline": "Como funciona",
+    "rastreabilidade": "Rastreabilidade",
+    "comandos": "Comandos",
+    "arquitetura": "Arquitetura",
+    "instalar": "Instalar"
+  },
+  "sections": {
+    "problema": {
+      "number": "01",
+      "label": "O problema",
+      "title": "IA sem contexto improvisa"
+    },
+    "o-que-e": {
+      "number": "02",
+      "label": "O que é",
+      "title": "A demanda vira documentação antes de virar código"
+    },
+    "pipeline": {
+      "number": "03",
+      "label": "Como funciona",
+      "title": "Seis fases, uma tarefa por vez"
+    },
+    "rastreabilidade": {
+      "number": "04",
+      "label": "Rastreabilidade",
+      "title": "Tudo se liga por IDs — e o que falta aparece"
+    },
+    "comandos": {
+      "number": "05",
+      "label": "Comandos",
+      "title": "Doze comandos, três grupos"
+    },
+    "por-que": {
+      "number": "06",
+      "label": "Por que assim",
+      "title": "Oito motivos para especificar antes"
+    },
+    "arquitetura": {
+      "number": "07",
+      "label": "Arquitetura",
+      "title": "Como o kit é organizado"
+    },
+    "stacks": {
+      "number": "08",
+      "label": "Stacks e IAs",
+      "title": "Um contexto comum, várias IAs"
+    },
+    "instalar": {
+      "number": "09",
+      "label": "Instalação",
+      "title": "Instale e comece"
+    },
+    "contribuir": {
+      "number": "10",
+      "label": "Open source",
+      "title": "Feito em aberto"
+    }
+  },
+  "footer": {
+    "label": "Rodapé",
+    "links": "Links",
+    "github": "GitHub do kit",
+    "license": "Licença MIT",
+    "docs": "docs/sdd deste site",
+    "version": "Versão do kit",
+    "madeWith": "Este site foi feito com o MyAiToolKit."
   }
 }

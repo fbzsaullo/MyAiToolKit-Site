@@ -1,0 +1,92 @@
+---
+// UI-13 — Rodapé: logo, links, versão do kit (do snapshot, RN-13) e troca de idioma.
+import Logo from './Logo.astro';
+import kit from '../data/kit.json';
+import { homePath, t, type Locale } from '../i18n';
+import { KIT_LICENSE, KIT_REPO, SITE_DOCS } from '../lib/links';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const ui = t(locale);
+---
+<footer class="site-footer" aria-label={ui.footer.label}>
+  <div class="container site-footer__inner">
+    <div class="site-footer__brand">
+      <Logo height={56} />
+      <p class="small site-footer__made">{ui.footer.madeWith}</p>
+    </div>
+
+    <nav class="site-footer__links" aria-label={ui.footer.links}>
+      <ul role="list">
+        <li><a href={KIT_REPO} rel="noopener">{ui.footer.github}</a></li>
+        <li><a href={KIT_LICENSE} rel="noopener">{ui.footer.license}</a></li>
+        <li><a href={SITE_DOCS} rel="noopener"><code>{ui.footer.docs}</code></a></li>
+      </ul>
+    </nav>
+
+    <div class="site-footer__meta">
+      <p class="label">{ui.footer.version}</p>
+      <p class="site-footer__version tabular" data-kit-version>MyAiToolKit <code>{kit.version}</code></p>
+      <ul role="list" class="lang-switch" aria-label={ui.header.language.label}>
+        <li><a href={homePath('pt-BR')} hreflang="pt-BR" lang="pt-BR" data-lang="pt-BR" aria-current={locale === 'pt-BR' ? 'true' : undefined}>{ui.header.language.ptName}</a></li>
+        <li aria-hidden="true">·</li>
+        <li><a href={homePath('en')} hreflang="en" lang="en" data-lang="en" aria-current={locale === 'en' ? 'true' : undefined}>{ui.header.language.enName}</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: var(--border) solid var(--line-strong);
+    padding-block: var(--space-8);
+  }
+  .site-footer__inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--space-7);
+    align-items: start;
+  }
+  .site-footer__brand {
+    display: grid;
+    gap: var(--space-5);
+    justify-items: start;
+  }
+  .site-footer__made {
+    color: var(--text-2);
+  }
+  .site-footer__links ul {
+    display: grid;
+    gap: var(--space-1);
+    margin: 0;
+  }
+  .site-footer__links a,
+  .site-footer .lang-switch a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: var(--fs-small);
+  }
+  .site-footer__meta {
+    display: grid;
+    gap: var(--space-2);
+  }
+  .site-footer .lang-switch {
+    display: flex;
+    gap: var(--space-2);
+    margin: 0;
+    color: var(--text-muted);
+  }
+  .site-footer .lang-switch a[aria-current='true'] {
+    font-weight: 600;
+  }
+  @media (max-width: 767px) {
+    .site-footer__inner {
+      grid-template-columns: 1fr;
+      gap: var(--space-6);
+    }
+  }
+</style>

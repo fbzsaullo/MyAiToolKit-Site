@@ -11,5 +11,94 @@
     "copy": "Copy",
     "copied": "Copied",
     "copyFailed": "Selected — press Ctrl+C"
+  },
+  "header": {
+    "home": "MyAiToolKit — home",
+    "nav": "Sections",
+    "navLabel": "Main navigation",
+    "menu": "Sections",
+    "close": "Close",
+    "github": "GitHub",
+    "theme": {
+      "label": "Theme",
+      "system": "Theme: follow system",
+      "light": "Theme: light",
+      "dark": "Theme: dark"
+    },
+    "language": {
+      "label": "Language",
+      "pt": "PT",
+      "en": "EN",
+      "ptName": "Português",
+      "enName": "English"
+    }
+  },
+  "nav": {
+    "pipeline": "How it works",
+    "rastreabilidade": "Traceability",
+    "comandos": "Commands",
+    "arquitetura": "Architecture",
+    "instalar": "Install"
+  },
+  "sections": {
+    "problema": {
+      "number": "01",
+      "label": "The problem",
+      "title": "AI without context improvises"
+    },
+    "o-que-e": {
+      "number": "02",
+      "label": "What it is",
+      "title": "The request becomes documentation before it becomes code"
+    },
+    "pipeline": {
+      "number": "03",
+      "label": "How it works",
+      "title": "Six phases, one task at a time"
+    },
+    "rastreabilidade": {
+      "number": "04",
+      "label": "Traceability",
+      "title": "Everything links by IDs — and gaps show up"
+    },
+    "comandos": {
+      "number": "05",
+      "label": "Commands",
+      "title": "Twelve commands, three groups"
+    },
+    "por-que": {
+      "number": "06",
+      "label": "Why this way",
+      "title": "Eight reasons to specify first"
+    },
+    "arquitetura": {
+      "number": "07",
+      "label": "Architecture",
+      "title": "How the kit is organized"
+    },
+    "stacks": {
+      "number": "08",
+      "label": "Stacks and AIs",
+      "title": "One shared context, many AIs"
+    },
+    "instalar": {
+      "number": "09",
+      "label": "Install",
+      "title": "Install and start"
+    },
+    "contribuir": {
+      "number": "10",
+      "label": "Open source",
+      "title": "Built in the open"
+    }
+  },
+  "footer": {
+    "label": "Footer",
+    "links": "Links",
+    "github": "Kit on GitHub",
+    "license": "MIT license",
+    "docs": "docs/sdd of this site",
+    "version": "Kit version",
+    "madeWith": "This site was built with MyAiToolKit."
   }
 }

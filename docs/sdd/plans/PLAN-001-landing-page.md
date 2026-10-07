@@ -323,7 +323,7 @@ Script sem dependências: lê `KIT_PATH` (padrão `../MyAiToolKit`) ou clona `KI
 
 #### T-10 — Montar cabeçalho e rodapé
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Média
 - **Estimativa:**
 - **Depende de:** T-05, T-07, T-08
@@ -336,9 +336,9 @@ Script sem dependências: lê `KIT_PATH` (padrão `../MyAiToolKit`) ou clona `KI
   - `tests/header-footer.spec.ts` *(novo)*
 
 **Critério de aceite (testável):**
-- [ ] CA-06 verde: escolha manual de idioma vence a detecção
-- [ ] CA-08 verde: tema do sistema e escolha manual sem piscar
-- [ ] Rodapé mostra a versão do snapshot
+- [x] CA-06 verde: escolha manual de idioma vence a detecção
+- [x] CA-08 verde: tema do sistema e escolha manual sem piscar
+- [x] Rodapé mostra a versão do snapshot
 
 **Testes a escrever:**
 - *E2E:* `test("CA-06: …")`, `test("CA-08: …")`
@@ -702,4 +702,5 @@ Autonomia concedida pelo responsável: viram autoverificações registradas no h
 | T-06 | Concluído | 2026-10-06 | `1e0915a` | Review aprovado |
 | T-07 | Concluído | 2026-10-06 | `e0febd8` | Review aprovado |
 | T-08 | Concluído | 2026-10-06 | `b3c2792` | Aprovado com ressalvas: R-01 (GitHub em texto) |
-| T-09 | Concluído | 2026-10-06 | (ver T-10) | Aprovado com ressalvas: R-01 (Terminal e FileTree testados na T-11) |
+| T-09 | Concluído | 2026-10-06 | `fcf0dab` | Aprovado com ressalvas: R-01 (Terminal e FileTree testados na T-11) |
+| T-10 | Concluído | 2026-10-06 | (ver T-11) | Aprovado com ressalvas: R-01 (seção ativa testada na T-23) |

@@ -15,8 +15,8 @@ export default defineConfig({
     trace: 'retain-on-failure',
   },
   projects: [
-    { name: 'desktop', use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 } } },
-    { name: 'celular', use: { ...devices['Pixel 7'] } },
+    { name: 'desktop', use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 }, locale: 'pt-BR' } },
+    { name: 'celular', use: { ...devices['Pixel 7'], locale: 'pt-BR' } },
   ],
   webServer: {
     command: `npx astro preview --port ${PORT}`,

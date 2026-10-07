@@ -1,26 +1,46 @@
 ---
-// Página única, renderizada nas duas rotas. As seções entram nas tarefas T-10 a T-21.
+// Página única, renderizada nas duas rotas. Cada seção é preenchida pela sua tarefa (T-11 a T-21).
 import Base from '../layouts/Base.astro';
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import Section from './Section.astro';
 import Logo from './Logo.astro';
 import CodeBlock from './CodeBlock.astro';
-import type { Locale } from '../i18n';
+import { t, type Locale } from '../i18n';
 
 interface Props {
   locale: Locale;
 }
 
 const { locale } = Astro.props;
+const ui = t(locale);
+const s = ui.sections;
 ---
 <Base locale={locale}>
-  <main id="conteudo" class="container">
-    <h1><Logo height={64} /></h1>
-    <CodeBlock
-      locale={locale}
-      filename="terminal"
-      highlight={[2]}
-      code={`# provisório: substituído pela seção de instalação (T-21)
+  <Header locale={locale} />
+  <main id="conteudo">
+    <section id="inicio" class="container">
+      <h1><Logo height={64} /></h1>
+    </section>
+    <Section id="problema" {...s.problema} />
+    <Section id="o-que-e" {...s['o-que-e']} />
+    <Section id="pipeline" {...s.pipeline} />
+    <Section id="rastreabilidade" {...s.rastreabilidade} />
+    <Section id="comandos" {...s.comandos} />
+    <Section id="por-que" {...s['por-que']} />
+    <Section id="arquitetura" {...s.arquitetura} />
+    <Section id="stacks" {...s.stacks} />
+    <Section id="instalar" {...s.instalar}>
+      <CodeBlock
+        locale={locale}
+        filename="terminal"
+        highlight={[2]}
+        code={`# provisório: substituído pela seção de instalação (T-21)
 claude plugin marketplace add ./MyAiToolKit
 /sdd-start`}
-    />
+      />
+    </Section>
+    <Section id="contribuir" {...s.contribuir} />
   </main>
+  <Footer locale={locale} />
 </Base>
