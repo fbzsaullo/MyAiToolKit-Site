@@ -32,8 +32,17 @@ export async function visit(browser: Browser, options: Visit = {}): Promise<Page
   return page;
 }
 
-// Violações de WCAG 2.2 A e AA na página atual.
+// Violações de WCAG 2.2 A e AA na página atual. Antes de medir, espera terminarem as animações finitas
+// (um texto no meio de um fade daria um falso problema de contraste).
 export async function axeViolations(page: Page) {
+  await page.waitForFunction(
+    () =>
+      document
+        .getAnimations()
+        .filter((a) => a.playState === 'running' && Number.isFinite(Number(a.effect?.getComputedTiming().endTime))).length === 0,
+    undefined,
+    { timeout: 10_000 },
+  );
   const result = await new AxeBuilder({ page })
     .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
     .analyze();

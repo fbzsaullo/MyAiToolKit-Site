@@ -154,3 +154,230 @@
     }
   }
 }
+
+/* Ilha do diagrama (T-19): seleção, painel e "Ver o fluxo". */
+@layer components {
+  @media (min-width: 64rem) {
+    .arch__stage {
+      display: grid;
+      gap: var(--space-5);
+    }
+  }
+  @media (min-width: 80rem) {
+    .arch__stage {
+      grid-template-columns: minmax(0, 1fr) 17rem;
+      align-items: start;
+    }
+  }
+  html:not(.js) .arch__panel {
+    display: none;
+  }
+
+  .arch__block[role='button'] {
+    cursor: pointer;
+    outline: none;
+  }
+  .arch__ring {
+    fill: none;
+    stroke: none;
+  }
+  .arch__block:focus-visible .arch__ring,
+  .arch__block[data-state='selected'] .arch__ring,
+  .arch__block[data-state='current'] .arch__ring {
+    stroke: var(--ink);
+    stroke-width: 2;
+  }
+  .arch__block[data-state='selected'] .arch__ring {
+    stroke-dasharray: none;
+  }
+  .arch__block[data-state='selected'] .arch__box,
+  .arch__block[data-state='current'] .arch__box {
+    fill: var(--ink);
+    stroke: var(--ink);
+  }
+  .arch__block[data-state='selected'] text,
+  .arch__block[data-state='current'] text {
+    fill: var(--bg);
+  }
+  .arch__block[data-state='linked'] .arch__box,
+  .arch__block[data-state='done'] .arch__box {
+    stroke: var(--ink);
+    stroke-width: 2;
+  }
+  .arch__block[data-state='dim'],
+  .arch__edge[data-state='dim'],
+  .arch__edge-tag[data-state='dim'] {
+    opacity: 0.3;
+  }
+  .arch__edge[data-state='linked'] {
+    stroke: var(--ink);
+    stroke-width: 2;
+  }
+  .arch__edge-tag[data-state='linked'] {
+    fill: var(--text);
+    font-weight: 600;
+  }
+  .arch__block,
+  .arch__edge,
+  .arch__edge-tag {
+    transition: opacity var(--dur-fast) var(--ease);
+  }
+  .arch__box {
+    transition:
+      fill var(--dur-fast) var(--ease),
+      stroke var(--dur-fast) var(--ease);
+  }
+
+  /* Números do fluxo: só durante "Ver o fluxo", nos passos já percorridos. */
+  .arch__badge {
+    display: none;
+  }
+  .arch__block[data-state='current'] .arch__badge,
+  .arch__block[data-state='done'] .arch__badge {
+    display: inline;
+  }
+  .arch__badge rect {
+    fill: var(--ink);
+  }
+  .arch__badge text {
+    fill: var(--bg);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .arch__block[data-state='current'] .arch__badge rect {
+    fill: var(--bg);
+  }
+  .arch__block[data-state='current'] .arch__badge text {
+    fill: var(--ink);
+  }
+
+  /* Painel de detalhes (ao lado a partir de 1280 px; abaixo entre 1024 e 1279 px). */
+  .arch__panel {
+    display: grid;
+    gap: var(--space-4);
+    padding: var(--space-5);
+    border: var(--border) solid var(--line-strong);
+    background: var(--bg);
+    min-height: 12rem;
+  }
+  .arch__controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+  .arch__controls .motion-controls {
+    display: inline-flex;
+    gap: var(--space-1);
+  }
+  .arch__controls .motion-controls[hidden] {
+    display: none;
+  }
+  .arch__controls .icon-button:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+  .arch__flow-button {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 44px;
+    padding: 0 var(--space-4);
+    border: var(--border) solid var(--ink);
+    border-radius: var(--radius-sm);
+    background: var(--ink);
+    color: var(--bg);
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .arch__flow-button:disabled {
+    cursor: default;
+  }
+  .arch__flow-mark {
+    width: 0;
+    height: 0;
+    border-block: 5px solid transparent;
+    border-left: 8px solid currentColor;
+  }
+  .arch__detail {
+    display: grid;
+    gap: var(--space-2);
+    align-content: start;
+  }
+  .arch__detail-title {
+    font-size: var(--fs-h3);
+    line-height: var(--lh-h3);
+  }
+  .arch__detail-sub {
+    color: var(--text-muted);
+    font-size: var(--fs-small);
+  }
+  .arch__detail-text,
+  .arch__hint {
+    color: var(--text-2);
+    font-size: var(--fs-small);
+    line-height: var(--lh-small);
+  }
+  .arch__detail .label {
+    margin-top: var(--space-2);
+  }
+  .arch__files {
+    display: grid;
+    gap: var(--space-1);
+    font-family: var(--font-mono);
+    font-size: var(--fs-id);
+    overflow-wrap: anywhere;
+  }
+  .arch__command {
+    justify-self: start;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+  .arch__steps {
+    display: grid;
+    gap: var(--space-2);
+    font-size: var(--fs-small);
+    line-height: var(--lh-small);
+  }
+  .arch__step {
+    display: grid;
+    grid-template-columns: 1.5rem minmax(0, 1fr);
+    gap: var(--space-2);
+    color: var(--text-muted);
+  }
+  .arch__step-num {
+    display: inline-grid;
+    place-items: center;
+    width: 1.375rem;
+    height: 1.375rem;
+    border: var(--border) solid var(--line-strong);
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+  }
+  .arch__step[data-step-state='done'],
+  .arch__step[data-step-state='current'] {
+    color: var(--text);
+  }
+  .arch__step[data-step-state='done'] .arch__step-num {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--bg);
+  }
+  .arch__step[data-step-state='current'] {
+    font-weight: 600;
+  }
+  .arch__step[data-step-state='current'] .arch__step-num {
+    border: 2px solid var(--ink);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .arch__block,
+    .arch__edge,
+    .arch__edge-tag,
+    .arch__box {
+      transition: none;
+    }
+  }
+}

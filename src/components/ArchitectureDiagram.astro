@@ -1,5 +1,6 @@
 ---
-// UI-09 — Diagrama da arquitetura. O componente Preact gera o SVG e a lista no servidor.
+// UI-09 — Diagrama da arquitetura. Ilha Preact hidratada ao ficar visível (ADR-003); o HTML do servidor
+// já traz o SVG completo e a lista equivalente.
 import ArchitectureIsland from './islands/ArchitectureIsland';
 import { t, type Locale } from '../i18n';
 import '../styles/architecture.css';
@@ -11,4 +12,4 @@ interface Props {
 const { locale } = Astro.props;
 const ui = t(locale);
 ---
-<ArchitectureIsland labels={ui.architecture} phases={ui.pipeline.phases} />
+<ArchitectureIsland client:visible labels={ui.architecture} phases={ui.pipeline.phases} motion={ui.motion} />

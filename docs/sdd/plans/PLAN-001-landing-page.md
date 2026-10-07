@@ -530,7 +530,7 @@ As 6 fases como lista completa (comando, entrada, documento, IDs), para as duas 
 
 #### T-19 — Criar a ilha do diagrama com seleção, painel e "Ver o fluxo"
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Alta
 - **Estimativa:**
 - **Depende de:** T-18
@@ -543,7 +543,7 @@ As 6 fases como lista completa (comando, entrada, documento, IDs), para as duas 
   - `tests/architecture.spec.ts` *(editado)*
 
 **Critério de aceite (testável):**
-- [ ] CA-16 e CA-18 verdes, inclusive com teclado
+- [x] CA-16 e CA-18 verdes, inclusive com teclado
 
 **Testes a escrever:**
 - *E2E:* `test("CA-16: …")`, `test("CA-18: …")`
@@ -711,4 +711,5 @@ Autonomia concedida pelo responsável: viram autoverificações registradas no h
 | T-15 | Concluído | 2026-10-07 | `d29d2d3` | Aprovado com ressalvas: R-01 (laço vive dentro da ilha do pipeline) |
 | T-16 | Concluído | 2026-10-07 | `660f23a` | Review aprovado; ilha 8,3 KB |
 | T-17 | Concluído | 2026-10-07 | `06fa405` | Review aprovado; CA-07 completado (nomes iguais em pt e en) |
-| T-18 | Concluído | 2026-10-07 | (ver T-19) | Aprovado com ressalvas: R-01 (acordeão abaixo de 1024 px, não só ≤ 767 px) |
+| T-18 | Concluído | 2026-10-07 | `7d04f1a` | Aprovado com ressalvas: R-01 (acordeão abaixo de 1024 px, não só ≤ 767 px) |
+| T-19 | Concluído | 2026-10-07 | (ver T-20) | Review aprovado; ilha 10,4 KB |
