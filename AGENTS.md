@@ -12,7 +12,7 @@ Landing page oficial do MyAiToolKit: página única, em pt-BR (`/`) e en (`/en/`
 - **Interação:** ilhas Preact 10.29 com `client:visible`; Motion para animações dirigidas por rolagem
 - **Estilo:** CSS próprio com tokens em variáveis (sem framework de CSS)
 - **Código:** Shiki no build, tema monocromático próprio
-- **Testes:** Playwright + axe (a partir da T-03)
+- **Testes:** Playwright 1.63 + axe (`@axe-core/playwright`), linkinator
 - **Hospedagem:** Netlify (`netlify.toml`)
 
 Detalhes de versões: `docs/sdd/stack-report.md`.
@@ -24,10 +24,12 @@ npm ci                 # instalar
 npm run dev            # rodar local (copia os ícones da marca antes)
 npm run build          # gerar dist/
 npm run preview        # servir o build
+npm test               # build + orçamento de JS + links + Playwright (desktop e celular)
+npm run test:e2e -- tests/arquivo.spec.ts   # um arquivo (exige build feito)
+npm run check:budget   # orçamento de JS sobre dist/
+npm run check:links    # links e âncoras de dist/, sem rede
 npm audit              # auditoria de dependências
 ```
-
-<!-- TODO: comando de testes entra na T-03 (Playwright). Sem script `test` no package.json até lá. -->
 
 ## Convenções
 

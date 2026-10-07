@@ -137,7 +137,7 @@ Rodar o roteiro do `sdd-setup` com o perfil Node: versões reais (Node, Astro, P
 
 #### T-03 — Montar a infraestrutura de testes, links e orçamento de JavaScript
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Média
 - **Estimativa:**
 - **Depende de:** T-01
@@ -154,8 +154,8 @@ Rodar o roteiro do `sdd-setup` com o perfil Node: versões reais (Node, Astro, P
 Playwright contra o build. Orçamento: soma (gzip) do JS referenciado pelo HTML antes de interação; falha acima de 50 KB; ilhas medidas à parte. Links: verificação de âncoras internas e caminhos de `dist/` sem rede; links externos só do domínio esperado.
 
 **Critério de aceite (testável):**
-- [ ] `npm test` roda build, orçamento, links e Playwright em sequência
-- [ ] Um teste de fumaça abre `/` e `/en/` com status 200
+- [x] `npm test` roda build, orçamento, links e Playwright em sequência
+- [x] Um teste de fumaça abre `/` e `/en/` com status 200
 
 **Testes a escrever:**
 - *E2E:* `test("rotas respondem")`
@@ -695,3 +695,5 @@ Autonomia concedida pelo responsável: viram autoverificações registradas no h
 | Tarefa | Status | Data | Commit | Observação |
 | --- | --- | --- | --- | --- |
 | T-01 | Concluído | 2026-10-06 | `693bda6` | Review aprovado com ressalvas (R-01 para a T-05) |
+| T-02 | Concluído | 2026-10-06 | `e397a1a` | Review aprovado |
+| T-03 | Concluído | 2026-10-06 | (ver T-04) | Aprovado com ressalvas: R-01 (/en/ na T-05), R-02 (404 na T-22) |

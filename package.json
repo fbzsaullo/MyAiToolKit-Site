@@ -12,11 +12,20 @@
     "dev": "astro dev",
     "prebuild": "npm run copy:brand",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "check:budget": "node scripts/check-budget.mjs",
+    "check:links": "node scripts/check-links.mjs",
+    "test:e2e": "playwright test",
+    "test": "npm run build && npm run check:budget && npm run check:links && playwright test"
   },
   "dependencies": {
     "@astrojs/preact": "^6.0.6",
     "astro": "^7.3.6",
     "preact": "^10.29.8"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@playwright/test": "^1.63.0",
+    "linkinator": "^8.1.0"
   }
 }

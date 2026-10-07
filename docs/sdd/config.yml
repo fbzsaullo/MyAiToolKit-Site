@@ -33,15 +33,17 @@ commands:
   build: npm run build
   preview: npm run preview
   copy_brand: npm run copy:brand
-  test: null            # TODO: Playwright entra na T-03 (ADR-012)
-  test_single: null     # TODO: T-03
+  test: npm test          # build + orçamento de JS + links + Playwright
+  test_single: npm run test:e2e -- {file}   # exige build feito
+  check_budget: npm run check:budget
+  check_links: npm run check:links
   lint: null            # o projeto não usa linter separado; `astro check` entra se adotado
   security: npm audit
   dependency_audit: npm audit
   migrate: null         # não se aplica (site estático, sem banco)
 
 testing:
-  framework: playwright   # decidido no ADR-012; instalado na T-03
+  framework: playwright   # @playwright/test 1.63 + @axe-core/playwright (ADR-012)
   paths: [tests]
   ca_naming:
     pattern: 'test("CA-XX: <descrição>")'
@@ -53,6 +55,7 @@ code_review:
   tools:
     - { name: npm-audit, command: "npm audit", scope: dependencies }
     - { name: build, command: "npm run build", scope: project }
+    - { name: testes, command: "npm test", scope: project }
   checklists:
     - stacks/_generic/profile.md   # o perfil Node do kit ainda não tem checklists próprios
 
