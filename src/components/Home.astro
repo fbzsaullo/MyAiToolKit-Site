@@ -1,9 +1,8 @@
 ---
-// Página única, renderizada nas duas rotas. Cada seção é preenchida pela sua tarefa (T-11 a T-21).
+// Página única, renderizada nas duas rotas, na ordem das seções da SPEC-UI.
 import Base from '../layouts/Base.astro';
 import Header from './Header.astro';
 import Footer from './Footer.astro';
-import Section from './Section.astro';
 import Hero from '../sections/Hero.astro';
 import Problem from '../sections/Problem.astro';
 import WhatIs from '../sections/WhatIs.astro';
@@ -14,16 +13,14 @@ import Commands from '../sections/Commands.astro';
 import Architecture from '../sections/Architecture.astro';
 import StacksAndAIs from '../sections/StacksAndAIs.astro';
 import OpenSource from '../sections/OpenSource.astro';
-import CodeBlock from './CodeBlock.astro';
-import { t, type Locale } from '../i18n';
+import Install from '../sections/Install.astro';
+import type { Locale } from '../i18n';
 
 interface Props {
   locale: Locale;
 }
 
 const { locale } = Astro.props;
-const ui = t(locale);
-const s = ui.sections;
 ---
 <Base locale={locale}>
   <Header locale={locale} />
@@ -37,16 +34,7 @@ const s = ui.sections;
     <Why locale={locale} />
     <Architecture locale={locale} />
     <StacksAndAIs locale={locale} />
-    <Section id="instalar" {...s.instalar}>
-      <CodeBlock
-        locale={locale}
-        filename="terminal"
-        highlight={[2]}
-        code={`# provisório: substituído pela seção de instalação (T-21)
-claude plugin marketplace add ./MyAiToolKit
-/sdd-start`}
-      />
-    </Section>
+    <Install locale={locale} />
     <OpenSource locale={locale} />
   </main>
   <Footer locale={locale} />

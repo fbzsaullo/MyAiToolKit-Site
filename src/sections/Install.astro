@@ -1,0 +1,199 @@
+---
+// UI-11 — Instalação. Abas Claude Code · Codex · Outras IAs (padrão ARIA, via script) e o primeiro uso.
+// Sem JS, os três painéis aparecem em sequência, com títulos e sem botão copiar (UI-11.semJs).
+import Section from '../components/Section.astro';
+import CodeBlock from '../components/CodeBlock.astro';
+import { t, type Locale } from '../i18n';
+import { KIT_ADAPTERS } from '../lib/links';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const ui = t(locale);
+const i = ui.install;
+const TABS = ['claude', 'codex', 'others'] as const;
+---
+<Section id="instalar" {...ui.sections.instalar} lead={i.intro}>
+  <div class="install" data-tabs>
+    <div class="install__tabs" data-tab-list aria-label={i.tabsLabel}>
+      {TABS.map((tab, index) => (
+        <button type="button" class="install__tab" id={`instalar-aba-${tab}`} data-tab={tab}
+          aria-controls={`instalar-painel-${tab}`} aria-selected={index === 0 ? 'true' : 'false'} tabindex={index === 0 ? 0 : -1}>
+          <span class="install__tab-mark" aria-hidden="true"></span>
+          {i.tabs[tab]}
+        </button>
+      ))}
+    </div>
+
+    <section class="install__panel" id="instalar-painel-claude" data-tab-panel="claude" data-active="true">
+      <h3 class="install__panel-title">{i.tabs.claude}</h3>
+      <p class="label">{i.claude.install}</p>
+      <CodeBlock locale={locale} code={i.code.claudeInstall} filename="terminal" />
+      <p class="label">{i.claude.update}</p>
+      <CodeBlock locale={locale} code={i.code.claudeUpdate} filename="terminal" />
+      <p class="install__note">{i.claude.check}</p>
+    </section>
+
+    <section class="install__panel" id="instalar-painel-codex" data-tab-panel="codex">
+      <h3 class="install__panel-title">{i.tabs.codex}</h3>
+      <p class="label">{i.codex.sh}</p>
+      <CodeBlock locale={locale} code={i.code.codexSh} filename="bash" />
+      <p class="label">{i.codex.ps}</p>
+      <CodeBlock locale={locale} code={i.code.codexPs} lang="powershell" filename="PowerShell" />
+      <p class="install__note">{i.codex.note}</p>
+    </section>
+
+    <section class="install__panel" id="instalar-painel-others" data-tab-panel="others">
+      <h3 class="install__panel-title">{i.tabs.others}</h3>
+      <p class="install__text">{i.others.text}</p>
+      <p>
+        {i.others.contract}: <a href={KIT_ADAPTERS} rel="noopener"><code>adapters/README.md</code></a>
+      </p>
+      <p class="label">{i.others.nextTitle}</p>
+      <ul class="install__next" role="list" data-next-adapters>
+        {i.others.next.map((name) => (
+          <li class="install__next-item">
+            <span class="install__next-mark" aria-hidden="true"></span>
+            {name}
+          </li>
+        ))}
+      </ul>
+      <p class="install__note">{i.others.nextNote}</p>
+    </section>
+  </div>
+
+  <div class="install__first" data-first-use>
+    <h3 class="install__first-title">{i.firstUseTitle}</h3>
+    <p class="install__text">{i.firstUseText}</p>
+    <CodeBlock locale={locale} code={i.code.firstUse} lang="text" filename="claude" highlight={[2]} />
+  </div>
+</Section>
+
+<script>
+  import { setupTabs } from '../scripts/tabs';
+  setupTabs();
+</script>
+
+<style>
+  .install,
+  .install__first {
+    max-width: 52rem;
+  }
+  .install__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    margin-bottom: var(--space-5);
+    border-bottom: var(--border) solid var(--line-strong);
+  }
+  :global(html:not(.js)) .install__tabs {
+    display: none;
+  }
+  .install__tab {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    min-height: 44px;
+    padding: 0 var(--space-4);
+    margin-bottom: -1px;
+    border: var(--border) solid transparent;
+    border-bottom: 0;
+    color: var(--text-2);
+    font-weight: 500;
+    cursor: pointer;
+  }
+  .install__tab[aria-selected='true'] {
+    border-color: var(--line-strong);
+    background: var(--bg);
+    color: var(--text);
+    font-weight: 600;
+  }
+  .install__tab-mark {
+    width: 0.5rem;
+    height: 0.5rem;
+    border: var(--border) solid currentColor;
+  }
+  .install__tab[aria-selected='true'] .install__tab-mark {
+    background: currentColor;
+  }
+
+  .install__panel {
+    display: grid;
+    gap: var(--space-3);
+  }
+  :global(html:not(.js)) .install__panel + .install__panel {
+    margin-top: var(--space-7);
+  }
+  :global(.js) .install__panel:not([data-active]) {
+    display: none;
+  }
+  /* Com abas, o nome da IA já está na aba; o título continua para leitores de tela. */
+  :global(.js) .install__panel-title {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .install__panel-title,
+  .install__first-title {
+    font-size: var(--fs-h3);
+    line-height: var(--lh-h3);
+    letter-spacing: var(--ls-h3);
+  }
+  .install__panel .label {
+    margin-top: var(--space-2);
+  }
+  .install__note,
+  .install__text {
+    color: var(--text-2);
+  }
+  .install__note {
+    font-size: var(--fs-small);
+  }
+  .install__next {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+  }
+  .install__next-item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    border: var(--border) dashed var(--line-strong);
+    border-radius: var(--radius-sm);
+    font-size: var(--fs-small);
+  }
+  .install__next-mark {
+    width: 0.5rem;
+    height: 0.5rem;
+    border: var(--border) solid currentColor;
+  }
+
+  .install__first {
+    display: grid;
+    gap: var(--space-3);
+    margin-top: var(--space-8);
+    padding-top: var(--space-6);
+    border-top: var(--border) solid var(--line-strong);
+  }
+
+  @media (max-width: 47.99rem) {
+    .install__tabs {
+      gap: 0;
+    }
+    .install__tab {
+      padding: 0 var(--space-2);
+      font-size: var(--fs-small);
+    }
+  }
+
+  /* Sem JS, nada de copiar (UI-11.semJs). */
+  :global(html:not(.js) .code-block__copy) {
+    display: none;
+  }
+</style>

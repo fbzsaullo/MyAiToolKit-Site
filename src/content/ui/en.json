@@ -677,5 +677,44 @@
     "madeTitle": "This site was built with MyAiToolKit",
     "madeText": "The architecture, ADRs, PRD, SPEC-UI, plan, one review per task and the traceability matrix of this page are versioned in the site repository.",
     "madeLink": "See this site’s docs/sdd/"
+  },
+  "install": {
+    "intro": "Clone the kit repository and install it in your AI. The commands are the same as in the kit README.",
+    "tabsLabel": "Coding AI",
+    "tabs": {
+      "claude": "Claude Code",
+      "codex": "Codex",
+      "others": "Other AIs"
+    },
+    "claude": {
+      "install": "Install",
+      "update": "Update later",
+      "check": "After installing, run /plugin inside Claude Code to check that the 12 skills were loaded."
+    },
+    "codex": {
+      "sh": "Linux, macOS and Git Bash",
+      "ps": "Windows PowerShell",
+      "note": "Skills go to ~/.agents/skills/. With --scope repo, they live in the project’s .agents/skills/, versioned with it."
+    },
+    "others": {
+      "text": "Content is written once, in the portable skill format, and each AI gets an adapter. Until an adapter exists, the AI can already read the AGENTS.md that /sdd-setup writes.",
+      "contract": "Contract for a new adapter",
+      "nextTitle": "Next adapters",
+      "next": [
+        "Cursor",
+        "Gemini CLI",
+        "GitHub Copilot"
+      ],
+      "nextNote": "Not supported yet — contributions are welcome."
+    },
+    "firstUseTitle": "First use",
+    "firstUseText": "Inside your project: /sdd-setup writes the configuration and AGENTS.md; /sdd-start asks where the demand begins.",
+    "code": {
+      "claudeInstall": "git clone https://github.com/fbzsaullo/MyAiToolKit.git MyAiToolKit\nclaude plugin marketplace add ./MyAiToolKit\nclaude plugin install my-ai-toolkit@my-ai-toolkit",
+      "claudeUpdate": "claude plugin marketplace update my-ai-toolkit",
+      "codexSh": "git clone https://github.com/fbzsaullo/MyAiToolKit.git MyAiToolKit\n./MyAiToolKit/adapters/codex/install.sh --scope user",
+      "codexPs": "./MyAiToolKit/adapters/codex/install.ps1 -Scope user",
+      "firstUse": "/sdd-setup\n/sdd-start"
+    }
   }
 }

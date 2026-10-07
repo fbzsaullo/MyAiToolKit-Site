@@ -24,7 +24,7 @@ test('realce monocromático: nenhuma cor literal no código gerado', () => {
 
 test('comandos do kit sublinhados e linha destacada', async ({ page }) => {
   await page.goto('/');
-  const block = page.locator('[data-code-block]').first();
+  const block = page.locator('[data-first-use] [data-code-block]');
   await expect(block.locator('.tk-cmd', { hasText: '/sdd-start' })).toHaveCount(1);
   await expect(block.locator('.line.is-highlighted')).toHaveCount(1);
   const decoration = await block.locator('.tk-cmd').first().evaluate((el) => getComputedStyle(el).textDecorationLine);

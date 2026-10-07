@@ -575,7 +575,7 @@ As 6 fases como lista completa (comando, entrada, documento, IDs), para as duas 
 
 #### T-21 — Construir a instalação com abas e botão copiar
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Média
 - **Estimativa:**
 - **Depende de:** T-09
@@ -588,7 +588,7 @@ As 6 fases como lista completa (comando, entrada, documento, IDs), para as duas 
   - `tests/install.spec.ts` *(novo)*
 
 **Critério de aceite (testável):**
-- [ ] CA-19 e CA-20 verdes
+- [x] CA-19 e CA-20 verdes
 
 **Testes a escrever:**
 - *E2E:* `test("CA-19: …")`, `test("CA-20: …")`
@@ -713,4 +713,5 @@ Autonomia concedida pelo responsável: viram autoverificações registradas no h
 | T-17 | Concluído | 2026-10-07 | `06fa405` | Review aprovado; CA-07 completado (nomes iguais em pt e en) |
 | T-18 | Concluído | 2026-10-07 | `7d04f1a` | Aprovado com ressalvas: R-01 (acordeão abaixo de 1024 px, não só ≤ 767 px) |
 | T-19 | Concluído | 2026-10-07 | `30758d4` | Review aprovado; ilha 10,4 KB |
-| T-20 | Concluído | 2026-10-07 | (ver T-21) | Review aprovado |
+| T-20 | Concluído | 2026-10-07 | `2b3ba81` | Review aprovado |
+| T-21 | Concluído | 2026-10-07 | (ver T-22) | Review aprovado; bloco provisório da instalação removido |
