@@ -1,0 +1,34 @@
+---
+// Botões de pausar/continuar e repetir para animações automáticas com mais de 5 s (RN-08).
+// Ficam ocultos até o script ligar a animação; sem JS ou com movimento reduzido, não aparecem.
+import Icon from './Icon.astro';
+import { t, type Locale } from '../i18n';
+
+interface Props {
+  locale: Locale;
+  class?: string;
+}
+
+const { locale, class: className } = Astro.props;
+const ui = t(locale);
+---
+<div class:list={['motion-controls', className]} data-motion-controls hidden>
+  <button type="button" class="icon-button" data-motion-toggle
+    data-label-pause={ui.motion.pause} data-label-resume={ui.motion.resume} aria-label={ui.motion.pause}>
+    <span data-when="running"><Icon name="Pause" size={18} /></span>
+    <span data-when="paused" hidden><Icon name="Play" size={18} /></span>
+  </button>
+  <button type="button" class="icon-button" data-motion-replay aria-label={ui.motion.replay}>
+    <Icon name="RotateCcw" size={18} />
+  </button>
+</div>
+
+<style>
+  .motion-controls {
+    display: inline-flex;
+    gap: var(--space-1);
+  }
+  .motion-controls[hidden] {
+    display: none;
+  }
+</style>

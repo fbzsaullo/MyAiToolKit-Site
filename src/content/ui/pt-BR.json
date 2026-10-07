@@ -100,5 +100,46 @@
     "docs": "docs/sdd deste site",
     "version": "Versão do kit",
     "madeWith": "Este site foi feito com o MyAiToolKit."
+  },
+  "hero": {
+    "title": "Especifique antes. A IA implementa o que foi decidido.",
+    "subtitle": "Kit open source de skills para assistentes de IA de programação. Ele guia o trabalho por SDD (Spec-Driven Development): a demanda vira documentação — arquitetura, requisitos, plano — antes de virar código.",
+    "install": "Instalar",
+    "github": "Ver no GitHub",
+    "badges": [
+      "Open source",
+      "Claude Code",
+      "Codex",
+      "MIT"
+    ],
+    "badgesLabel": "Características",
+    "terminal": {
+      "title": "claude — meu-projeto",
+      "label": "Exemplo de uso no terminal",
+      "lines": [
+        {
+          "kind": "cmd",
+          "text": "/sdd-start"
+        },
+        {
+          "kind": "out",
+          "text": "Esta demanda é: A · B · C · D"
+        },
+        {
+          "kind": "note",
+          "text": "A — sistema novo"
+        },
+        {
+          "kind": "out",
+          "text": "Fase 1 → /sdd-architect"
+        }
+      ]
+    },
+    "treeLabel": "Arquivos criados em docs/sdd/"
+  },
+  "motion": {
+    "pause": "Pausar animação",
+    "resume": "Continuar animação",
+    "replay": "Repetir animação"
   }
 }

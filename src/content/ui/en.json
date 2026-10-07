@@ -100,5 +100,46 @@
     "docs": "docs/sdd of this site",
     "version": "Kit version",
     "madeWith": "This site was built with MyAiToolKit."
+  },
+  "hero": {
+    "title": "Specify first. The AI builds what was decided.",
+    "subtitle": "Open source skill kit for AI coding assistants. It guides the work through SDD (Spec-Driven Development): the request becomes documentation — architecture, requirements, plan — before it becomes code.",
+    "install": "Install",
+    "github": "View on GitHub",
+    "badges": [
+      "Open source",
+      "Claude Code",
+      "Codex",
+      "MIT"
+    ],
+    "badgesLabel": "Highlights",
+    "terminal": {
+      "title": "claude — my-project",
+      "label": "Terminal usage example",
+      "lines": [
+        {
+          "kind": "cmd",
+          "text": "/sdd-start"
+        },
+        {
+          "kind": "out",
+          "text": "This request is: A · B · C · D"
+        },
+        {
+          "kind": "note",
+          "text": "A — new system"
+        },
+        {
+          "kind": "out",
+          "text": "Phase 1 → /sdd-architect"
+        }
+      ]
+    },
+    "treeLabel": "Files created in docs/sdd/"
+  },
+  "motion": {
+    "pause": "Pause animation",
+    "resume": "Resume animation",
+    "replay": "Replay animation"
   }
 }

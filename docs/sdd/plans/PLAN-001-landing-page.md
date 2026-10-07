@@ -347,7 +347,7 @@ Script sem dependências: lê `KIT_PATH` (padrão `../MyAiToolKit`) ou clona `KI
 
 #### T-11 — Construir o hero com o terminal animado
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Média
 - **Estimativa:**
 - **Depende de:** T-09, T-10
@@ -360,8 +360,8 @@ Script sem dependências: lê `KIT_PATH` (padrão `../MyAiToolKit`) ou clona `KI
   - `tests/hero.spec.ts` *(novo)*
 
 **Critério de aceite (testável):**
-- [ ] CA-01 e CA-02 verdes
-- [ ] Animação com pausar e repetir; leitor de tela recebe o texto completo
+- [x] CA-01 e CA-02 verdes
+- [x] Animação com pausar e repetir; leitor de tela recebe o texto completo
 
 **Testes a escrever:**
 - *E2E:* `test("CA-01: …")`, `test("CA-02: …")`
@@ -703,4 +703,5 @@ Autonomia concedida pelo responsável: viram autoverificações registradas no h
 | T-07 | Concluído | 2026-10-06 | `e0febd8` | Review aprovado |
 | T-08 | Concluído | 2026-10-06 | `b3c2792` | Aprovado com ressalvas: R-01 (GitHub em texto) |
 | T-09 | Concluído | 2026-10-06 | `fcf0dab` | Aprovado com ressalvas: R-01 (Terminal e FileTree testados na T-11) |
-| T-10 | Concluído | 2026-10-06 | (ver T-11) | Aprovado com ressalvas: R-01 (seção ativa testada na T-23) |
+| T-10 | Concluído | 2026-10-06 | `8de2c69` | Aprovado com ressalvas: R-01 (seção ativa testada na T-23) |
+| T-11 | Concluído | 2026-10-06 | (ver T-12) | Review aprovado |

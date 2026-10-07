@@ -1,0 +1,218 @@
+---
+// UI-02 — Hero: o que é em 5 s, botões de ação e o terminal em que /sdd-start vira documentação.
+import Logo from '../components/Logo.astro';
+import Terminal, { type TerminalLine } from '../components/Terminal.astro';
+import FileTree, { type TreeNode } from '../components/FileTree.astro';
+import MotionControls from '../components/MotionControls.astro';
+import { t, type Locale } from '../i18n';
+import { KIT_REPO } from '../lib/links';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const ui = t(locale);
+
+// Mesma demanda A dos exemplos (Novo projeto): nomes de arquivo nas convenções do kit.
+const tree: TreeNode[] = [
+  {
+    name: 'docs', dir: true, children: [
+      {
+        name: 'sdd', dir: true, children: [
+          { name: 'config.yml' },
+          { name: 'architecture', dir: true, children: [
+            { name: 'proposta-arquitetural.md', isNew: true },
+            { name: 'adrs', dir: true, children: [
+              { name: 'ADR-001-monolito-modular.md', isNew: true },
+              { name: 'ADR-002-emails-em-fila.md', isNew: true },
+            ] },
+          ] },
+          { name: 'prds', dir: true, children: [{ name: 'PRD-001-inscricoes-em-eventos.md', isNew: true }] },
+          { name: 'prototype', dir: true, children: [{ name: 'SPEC-UI-001-inscricoes-em-eventos.md', isNew: true }] },
+          { name: 'plans', dir: true, children: [{ name: 'PLAN-001-inscricoes-em-eventos.md', isNew: true }] },
+          { name: 'reviews', dir: true, children: [{ name: 'REVIEW-T-02-2026-09-10.md', isNew: true }] },
+        ],
+      },
+    ],
+  },
+];
+const lines = ui.hero.terminal.lines as TerminalLine[];
+---
+<section id="inicio" class="hero" aria-labelledby="hero-titulo">
+  <div class="container hero__inner">
+    <div class="hero__text">
+      <Logo height={56} class="hero__logo" />
+      <h1 id="hero-titulo" class="hero__title">{ui.hero.title}</h1>
+      <p class="lead hero__subtitle">{ui.hero.subtitle}</p>
+      <div class="hero__actions">
+        <a class="button button--primary" href="#instalar">{ui.hero.install}</a>
+        <a class="button button--secondary" href={KIT_REPO} rel="noopener">{ui.hero.github}</a>
+      </div>
+      <ul class="hero__badges" role="list" aria-label={ui.hero.badgesLabel}>
+        {ui.hero.badges.map((badge) => <li>{badge}</li>)}
+      </ul>
+    </div>
+
+    <div class="hero__demo" data-hero-demo>
+      <Terminal title={ui.hero.terminal.title} lines={lines} label={ui.hero.terminal.label} class="hero__terminal">
+        <div class="hero__tree">
+          <FileTree nodes={tree} label={ui.hero.treeLabel} />
+        </div>
+      </Terminal>
+      <MotionControls locale={locale} class="hero__controls" />
+    </div>
+  </div>
+</section>
+
+<script>
+  import { setupHero } from '../scripts/hero';
+  setupHero();
+</script>
+
+<style>
+  .hero {
+    padding-block: var(--space-9) var(--space-10);
+  }
+  .hero__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: var(--space-8);
+    align-items: center;
+  }
+  .hero__text {
+    display: grid;
+    gap: var(--space-5);
+    justify-items: start;
+  }
+  .hero__title {
+    font-size: var(--fs-display);
+    line-height: var(--lh-display);
+    letter-spacing: var(--ls-display);
+    max-width: 16ch;
+  }
+  .hero__subtitle {
+    max-width: 52ch;
+  }
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+  .hero__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    margin: 0;
+    font-family: var(--font-mono);
+    font-size: var(--fs-label);
+    letter-spacing: var(--ls-label);
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  .hero__badges li + li::before {
+    content: '·';
+    padding-inline: var(--space-2);
+  }
+  .hero__demo {
+    display: grid;
+    gap: var(--space-2);
+    justify-items: end;
+  }
+  .hero__demo :global(.hero__terminal) {
+    width: 100%;
+  }
+  .hero__tree {
+    margin-top: var(--space-3);
+    padding-top: var(--space-3);
+    border-top: var(--border) solid var(--term-line);
+  }
+
+  /* Animação: só existe enquanto o script mantém .is-animating; o estado padrão é o final. */
+  .hero__demo:global(.is-animating) :global(.terminal__line--cmd .terminal__text) {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+    width: 0;
+    animation: hero-type 900ms steps(10, end) 200ms forwards;
+  }
+  .hero__demo:global(.is-animating) :global(.terminal__line:not(:first-child)),
+  .hero__demo:global(.is-animating) :global(.file-tree__item) {
+    opacity: 0;
+    animation: hero-reveal var(--dur-fast) var(--ease) forwards;
+  }
+  .hero__demo:global(.is-animating) :global(.terminal__line:not(:first-child)) {
+    animation-delay: calc(1300ms + (var(--i) - 1) * 450ms);
+  }
+  .hero__demo:global(.is-animating) :global(.file-tree__item) {
+    animation-delay: calc(2900ms + var(--i) * 260ms);
+  }
+  /* Arquivo novo entra vazio (□) e preenche (■) logo depois de aparecer */
+  .hero__demo:global(.is-animating) :global(.file-tree__item--new > .file-tree__row .file-tree__mark) {
+    background: transparent;
+    animation: hero-fill var(--dur-explain) var(--ease) forwards;
+    animation-delay: calc(3100ms + var(--i) * 260ms);
+  }
+  .hero__demo:global(.is-paused) :global(*) {
+    animation-play-state: paused !important;
+  }
+  @keyframes hero-type {
+    to {
+      width: 10ch;
+    }
+  }
+  @keyframes hero-reveal {
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes hero-fill {
+    to {
+      background: currentColor;
+    }
+  }
+
+  @media (max-width: 899px) {
+    .hero {
+      padding-block: var(--space-7) var(--space-8);
+    }
+    .hero__inner {
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--space-7);
+    }
+  }
+</style>
+
+<style is:global>
+  .button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    min-height: 44px;
+    padding: 0 var(--space-5);
+    border: var(--border) solid var(--ink);
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    text-decoration: none;
+    transition:
+      background-color var(--dur-fast) var(--ease),
+      color var(--dur-fast) var(--ease);
+  }
+  .button--primary {
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .button--primary:hover {
+    background: var(--bg);
+    color: var(--text);
+  }
+  .button--secondary {
+    background: transparent;
+    color: var(--text);
+  }
+  .button--secondary:hover {
+    background: var(--ink);
+    color: var(--bg);
+  }
+</style>
