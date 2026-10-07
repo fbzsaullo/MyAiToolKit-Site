@@ -16,6 +16,6 @@ const ui = t(locale);
 const demands = toPipelineDemands(await getExamples(), locale);
 ---
 <Section id="pipeline" {...ui.sections.pipeline} lead={ui.pipeline.intro} grid>
-  <PipelineIsland client:visible demands={demands} labels={ui.pipeline} />
+  <PipelineIsland client:visible demands={demands} labels={ui.pipeline} loop={ui.loop} motion={ui.motion} />
   <slot />
 </Section>

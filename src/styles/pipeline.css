@@ -319,3 +319,131 @@
       color var(--dur-fast) var(--ease);
   }
 }
+
+/* Laço execução ⇄ review (T-15, UI-05.laco). Linhas de altura fixa: trocar de estado não desloca nada. */
+@layer components {
+  .loop {
+    margin-top: var(--space-7);
+    padding: var(--space-5);
+    border: var(--border) solid var(--line-strong);
+    border-radius: var(--radius-0);
+    background: var(--surface);
+  }
+  .loop__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-bottom: var(--space-5);
+  }
+  .loop__title {
+    font-size: var(--fs-h3);
+    line-height: var(--lh-h3);
+    letter-spacing: var(--ls-h3);
+    font-weight: 600;
+  }
+  .loop__intro {
+    margin-top: var(--space-2);
+    max-width: var(--measure);
+    color: var(--text-2);
+  }
+  .loop .motion-controls {
+    display: inline-flex;
+    flex: none;
+    gap: var(--space-1);
+  }
+  .loop .motion-controls[hidden] {
+    display: none;
+  }
+  .loop .icon-button:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+  .loop__tasks {
+    display: grid;
+    gap: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--fs-small);
+  }
+  .loop__task {
+    display: grid;
+    grid-template-columns: 1rem 3.5rem 7rem minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-3);
+    min-height: 2rem;
+  }
+  .loop__box {
+    width: 1rem;
+    height: 1rem;
+    border: var(--border) solid var(--line-strong);
+    transition:
+      background-color var(--dur-fast) var(--ease),
+      border-color var(--dur-fast) var(--ease);
+  }
+  .loop__id {
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+  }
+  .loop__stage {
+    color: var(--text-muted);
+  }
+  .loop__task[data-stage='exec'] .loop__box,
+  .loop__task[data-stage='review'] .loop__box,
+  .loop__task[data-stage='finding'] .loop__box {
+    border-color: var(--ink);
+    border-width: 2px;
+  }
+  .loop__task[data-stage='exec'] .loop__stage,
+  .loop__task[data-stage='review'] .loop__stage,
+  .loop__task[data-stage='finding'] .loop__stage {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .loop__task[data-stage='done'] .loop__box {
+    background: var(--ink);
+    border-color: var(--ink);
+  }
+  .loop__task[data-stage='done'] .loop__stage {
+    color: var(--text);
+  }
+  .loop__task[data-stage='pending'] .loop__id {
+    color: var(--text-muted);
+  }
+  .loop__finding {
+    justify-self: start;
+    padding: 0.125rem 0.375rem;
+    border: var(--border) dashed var(--ink);
+    border-radius: var(--radius-sm);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+  }
+  .loop__finding[data-visible='false'] {
+    visibility: hidden;
+  }
+  .loop__task[data-stage='finding'] .loop__finding {
+    border-style: solid;
+    background: var(--ink);
+    color: var(--bg);
+  }
+  .loop__severity {
+    letter-spacing: 0.15em;
+  }
+
+  @media (max-width: 47.99rem) {
+    .loop {
+      padding: var(--space-4);
+    }
+    .loop__task {
+      grid-template-columns: 1rem 3rem minmax(0, 1fr);
+      grid-template-rows: auto auto;
+      row-gap: var(--space-1);
+    }
+    .loop__finding {
+      grid-column: 2 / -1;
+      white-space: normal;
+      overflow-wrap: anywhere;
+    }
+  }
+}

@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'preact/hooks';
 import { inView } from 'motion';
 import { animate } from 'motion/mini';
 import PhaseIcon from '../PhaseIcon';
+import { Loop, type LoopLabels, type MotionLabels } from './LoopIsland';
 import type { PipelineDemand } from '../../lib/pipeline';
 
 export type PipelineLabels = {
@@ -22,7 +23,7 @@ export type PipelineLabels = {
   phases: { name: string }[];
 };
 
-type Props = { demands: PipelineDemand[]; labels: PipelineLabels };
+type Props = { demands: PipelineDemand[]; labels: PipelineLabels; loop: LoopLabels; motion: MotionLabels };
 
 const pad = (n: number) => String(n).padStart(2, '0');
 const EASE = [0.2, 0, 0, 1] as const;
@@ -44,7 +45,7 @@ function writePhase(phase: HTMLElement) {
   phase.dataset.written = 'true';
 }
 
-export default function PipelineIsland({ demands, labels }: Props) {
+export default function PipelineIsland({ demands, labels, loop, motion }: Props) {
   const [selected, setSelected] = useState(demands[0]?.slug);
   const entryOf = (slug?: string) => demands.find((d) => d.slug === slug)?.entryPhase ?? 1;
   const [active, setActive] = useState<number>(entryOf(demands[0]?.slug));
@@ -253,6 +254,8 @@ export default function PipelineIsland({ demands, labels }: Props) {
                 })}
               </ol>
             </div>
+
+            <Loop tasks={demand.tasks} labels={loop} motion={motion} />
           </section>
         );
       })}

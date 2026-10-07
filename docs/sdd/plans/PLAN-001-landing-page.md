@@ -442,7 +442,7 @@ As 6 fases como lista completa (comando, entrada, documento, IDs), para as duas 
 
 #### T-15 — Criar o laço execução ⇄ review
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Média
 - **Estimativa:**
 - **Depende de:** T-14
@@ -455,7 +455,7 @@ As 6 fases como lista completa (comando, entrada, documento, IDs), para as duas 
   - `tests/loop.spec.ts` *(novo)*
 
 **Critério de aceite (testável):**
-- [ ] CA-11 verde, com pausar e repetir
+- [x] CA-11 verde, com pausar e repetir
 
 **Testes a escrever:**
 - *E2E:* `test("CA-11: …")`
@@ -707,4 +707,5 @@ Autonomia concedida pelo responsável: viram autoverificações registradas no h
 | T-11 | Concluído | 2026-10-06 | `243a16a` | Review aprovado |
 | T-12 | Concluído | 2026-10-06 | `44b44bf` | Review aprovado |
 | T-13 | Concluído | 2026-10-06 | `aadd023` | Aprovado com ressalvas: R-01 (ilha criada já na T-13 para evitar CLS) |
-| T-14 | Concluído | 2026-10-06 | (ver T-15) | Review aprovado; ilha 12,4 KB, CLS < 0,02 |
+| T-14 | Concluído | 2026-10-06 | `793fc82` | Review aprovado; ilha 12,4 KB, CLS < 0,02 |
+| T-15 | Concluído | 2026-10-07 | (ver T-16) | Aprovado com ressalvas: R-01 (laço vive dentro da ilha do pipeline) |

@@ -246,5 +246,16 @@
         "name": "Review"
       }
     ]
+  },
+  "loop": {
+    "title": "Execução ⇄ Review",
+    "intro": "Uma tarefa por vez: cada uma é executada, revisada e só então fechada. Um apontamento bloqueante devolve a tarefa uma vez antes de fechar.",
+    "exec": "execução",
+    "review": "review",
+    "done": "concluída",
+    "pending": "pendente",
+    "returned": "voltou 1× por",
+    "label": "Tarefas do plano",
+    "summary": "Estado final"
   }
 }

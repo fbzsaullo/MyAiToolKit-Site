@@ -246,5 +246,16 @@
         "name": "Review"
       }
     ]
+  },
+  "loop": {
+    "title": "Execution ⇄ Review",
+    "intro": "One task at a time: each one is executed, reviewed and only then closed. A blocking finding sends the task back once before it closes.",
+    "exec": "execution",
+    "review": "review",
+    "done": "done",
+    "pending": "pending",
+    "returned": "sent back 1× by",
+    "label": "Plan tasks",
+    "summary": "Final state"
   }
 }
