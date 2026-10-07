@@ -4,9 +4,8 @@
 - **Nível:** Épico
 - **Card de origem:** demanda escrita pelo responsável (`PROMPT.md` do projeto de marca)
 - **Responsável:** Fabrizio
-- **Data:** 2026-10-06
+- **Data:** 2026-10-07
 - **Status:** Aprovado
-- **Revisão:** 2026-10-07 — RN-16 e CA-27 (crédito ao leanwork-sdd no rodapé); CA-26 ajustado para aceitar esse link
 
 ---
 
@@ -142,7 +141,7 @@ flowchart TD
 - **RN-01:** A logo é sempre o SVG original de `brand/` (preto no tema claro, branco no escuro), nunca redigitada, colorida ou distorcida; 20–24 px de altura no cabeçalho e 48–72 px no hero ou rodapé, com espaço livre de pelo menos metade da altura das maiúsculas. O ícone MA/TK aparece só como ícone do navegador, nunca na página. (ADR-002)
 - **RN-02:** O site é monocromático: só os tokens de cor definidos. Estado, ênfase e gravidade são mostrados por inversão, preenchimento (□ → ■), peso, traço (contínuo/tracejado) e rótulo — nunca só por cor. Gravidade do `/code-review`: ■■■ Bloqueante · ■■□ Importante · ■□□ Sugestão. (ADR-002)
 - **RN-03:** Nomes de comandos, comandos de instalação, formatos de ID e estrutura de pastas mostrados no site são exatamente os do kit. Cursor, Gemini CLI e GitHub Copilot nunca aparecem como já suportados.
-- **RN-04:** A seção de comandos lista os 12 comandos do kit em três grupos — Fases (`/sdd-architect`, `/sdd-prd`, `/sdd-prototype`, `/sdd-plan`, `/sdd-execute`, `/sdd-review`), Navegação (`/sdd-start`, `/sdd-next`, `/sdd-trace`) e Apoio (`/sdd-setup`, `/spike`, `/code-review`) — cada um com quando usar, o que gera e como chamar no Codex (`$nome`). No Claude Code, o do kit aparece como `/my-ai-toolkit:code-review`. A lista é conferida com o snapshot do kit. (ADR-007)
+- **RN-04:** ~~A seção de comandos lista os 12 comandos do kit em três grupos — Fases (`/sdd-architect`, `/sdd-prd`, `/sdd-prototype`, `/sdd-plan`, `/sdd-execute`, `/sdd-review`), Navegação (`/sdd-start`, `/sdd-next`, `/sdd-trace`) e Apoio (`/sdd-setup`, `/spike`, `/code-review`) — cada um com quando usar, o que gera e como chamar no Codex (`$nome`). No Claude Code, o do kit aparece como `/my-ai-toolkit:code-review`. A lista é conferida com o snapshot do kit. (ADR-007)~~ (substituída — ver RN-17 do PRD-002, kit 0.3.1)
 - **RN-05:** As duas demandas fictícias ("Criação de um novo projeto" e "Recuperação de senha") são definidas uma única vez como dados e reutilizadas em todas as seções e nos dois idiomas, com os mesmos IDs nos formatos reais do kit e datas coerentes. "Novo projeto" entra pela fase 1 (opção A); "Recuperação de senha" entra pela fase 2 (opção B). Conteúdo no Anexo A. (ADR-006)
 - **RN-06:** pt-BR fica em `/` e en em `/en/`. Sem escolha salva, o primeiro acesso segue o idioma preferido do navegador (`pt*` → pt-BR, qualquer outro → en). A escolha manual (cabeçalho e rodapé) fica lembrada e sempre vence a detecção. Nomes de comandos não se traduzem. A versão en explica que skills e artefatos do kit são em português por padrão e que `project.language: en` gera artefatos em inglês. (ADR-008)
 - **RN-07:** O tema segue o sistema; a troca manual fica lembrada e é aplicada sem mostrar o tema errado ao carregar. (ADR-009)
@@ -248,7 +247,7 @@ Funcionalidade: Landing page do MyAiToolKit
     Então o elo quebrado aparece com linha tracejada
     E um rótulo escrito explica a falha, sem depender de cor (RN-02)
 
-  Cenário [CA-14]: Referência dos 12 comandos
+  Cenário [CA-14]: ~~Referência dos 12 comandos~~ (substituído — ver CA-28 do PRD-002)
     Dado que estou na seção "Comandos"
     Então vejo 12 chips nos grupos Fases, Navegação e Apoio (RN-04)
     E cada chip diz quando usar, o que gera e a chamada no Codex
@@ -397,6 +396,14 @@ Detalhes na proposta de arquitetura e nos ADR-001 a ADR-012.
 - ADRs: `docs/sdd/architecture/adrs/ADR-001` a `ADR-014`.
 - Kit: https://github.com/fbzsaullo/MyAiToolKit — `README.md` e `templates/id-conventions.md`.
 - Pipeline de origem: https://github.com/leanwork/leanwork-sdd (crédito no rodapé, RN-16).
+- Continuação: `docs/sdd/prds/PRD-002-site-kit-0-3-1.md` (site atualizado para o kit 0.3.1).
+
+## 18. Revisões
+
+| Nº | Data | O que mudou | IDs | Motivo / origem |
+| --- | --- | --- | --- | --- |
+| 1 | 2026-10-07 | Crédito ao leanwork-sdd no rodapé; o CA-26 aceita esse único link fora do projeto | +RN-16, +CA-27, ~CA-26 | Pedido do responsável |
+| 2 | 2026-10-07 | Lista de comandos passa a ser a do kit 0.3.1, definida em outro PRD | −RN-04, −CA-14 | Substituídos por RN-17 e CA-28 do PRD-002 |
 
 ---
 

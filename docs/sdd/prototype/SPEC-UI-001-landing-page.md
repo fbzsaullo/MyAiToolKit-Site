@@ -8,7 +8,6 @@
 - **Responsável:** Fabrizio
 - **Data:** 2026-10-06
 - **Status:** Aprovado
-- **Revisão:** 2026-10-07 — UI-13 ganha o crédito ao leanwork-sdd (RN-16, CA-27)
 
 ---
 
@@ -61,7 +60,7 @@ Definidos pela identidade e implementados em `src/styles/tokens.css` — valores
 | UI-04 | O que é | `#o-que-e` | Todos | — | — |
 | UI-05 | Como funciona (pipeline e laço) | `#pipeline` | Todos | RN-02, RN-05, RN-08, RN-12 | CA-03, CA-09, CA-10, CA-11, CA-21 |
 | UI-06 | Rastreabilidade | `#rastreabilidade` | Todos | RN-02, RN-05, RN-10 | CA-12, CA-13 |
-| UI-07 | Comandos | `#comandos` | Todos | RN-03, RN-04 | CA-14, CA-15 |
+| UI-07 | Comandos | `#comandos` | Todos | RN-03, ~~RN-04~~ RN-17 (PRD-002) | ~~CA-14~~ CA-28 (PRD-002), CA-15 |
 | UI-08 | Por que assim | `#por-que` | Todos | — | — |
 | UI-09 | Arquitetura do kit | `#arquitetura` | Todos | RN-08, RN-10, RN-12 | CA-03, CA-16, CA-17, CA-18, CA-21 |
 | UI-10 | Stacks e IAs | `#stacks` | Todos | RN-03, RN-08 | CA-03 |
@@ -152,11 +151,11 @@ Estados de página inteira (não são telas): idioma (`/` e `/en/`, CA-04, CA-05
 
 ### UI-07 — Comandos
 
-- **Conteúdo:** 12 chips (ver RN-04) em três grupos com títulos; cada chip: nome (Geist Mono), "quando usar", "o que gera", "Codex: `$nome`"; prévia de 2–3 linhas da saída.
+- **Conteúdo:** ~~12 chips (ver RN-04) em três grupos~~ um chip por comando do kit em quatro grupos — Fases, Navegação, Mudança e Apoio (RN-17 do PRD-002) — com títulos; cada chip: nome (Geist Mono), "quando usar", "o que gera", "Codex: `$nome`"; prévia de 2–3 linhas da saída.
 
 | Estado | ID | Quando acontece | O que aparece | Origem |
 | --- | --- | --- | --- | --- |
-| Padrão | `UI-07.default` | — | Grade de chips | CA-14 |
+| Padrão | `UI-07.default` | — | Grade de chips em quatro grupos | CA-28 (PRD-002) |
 | Prévia | `UI-07.previa` | Hover ou foco no chip | Painel abaixo do chip com a prévia (transição 150–200 ms) | CA-15 |
 | Celular / toque | `UI-07.celular` | ≤ 767 px | Chips em lista; prévia sempre visível (sem hover) | Derivado do RN-12 |
 
@@ -260,7 +259,7 @@ flowchart LR
 | RN-01 | UI-01, UI-02, UI-13 (`Logo`) | ✅ |
 | RN-02 | UI-05, UI-06 (`IdTag`), estados ativos | ✅ |
 | RN-03 | UI-07, UI-10, UI-11 | ✅ |
-| RN-04 | UI-07 | ✅ |
+| ~~RN-04~~ | UI-07 — substituída pela RN-17 do PRD-002 | — |
 | RN-05 | UI-05, UI-06 | ✅ |
 | RN-06 | UI-01, UI-13; rotas | ✅ |
 | RN-07 | UI-01; página inteira | ✅ |
@@ -289,7 +288,7 @@ flowchart LR
 | CA-11 | UI-05.laco | ✅ |
 | CA-12 | UI-06.foco | ✅ |
 | CA-13 | UI-06.eloQuebrado | ✅ |
-| CA-14 | UI-07 | ✅ |
+| ~~CA-14~~ | UI-07 — substituído pelo CA-28 do PRD-002 | — |
 | CA-15 | UI-07.previa | ✅ |
 | CA-16 | UI-09.selecionado | ✅ |
 | CA-17 | UI-09.semJs | ✅ |
@@ -323,3 +322,10 @@ flowchart LR
 - Ícones Lucide com `stroke-linecap="square"` e `stroke-linejoin="miter"`, 1,75 px a 24 px, desenhados como SVG inline; seis ícones próprios das fases.
 - Linhas de até ~68 caracteres; `tabular-nums` em tabelas e contadores.
 - Alvos de toque ≥ 44 × 44 px; texto ≥ 16 px no celular; margem lateral 16–20 px; nenhuma rolagem horizontal da página.
+
+## 10. Revisões
+
+| Nº | Data | O que mudou | IDs | Motivo / origem |
+| --- | --- | --- | --- | --- |
+| 1 | 2026-10-07 | UI-13 ganha o crédito ao leanwork-sdd | ~UI-13 | Revisão 1 do PRD-001 |
+| 2 | 2026-10-07 | UI-07 mostra os comandos do kit 0.3.1, em quatro grupos | ~UI-07 | PRD-002 (RN-17, CA-28) |
