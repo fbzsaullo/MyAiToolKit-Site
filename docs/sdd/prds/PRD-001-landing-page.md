@@ -6,6 +6,7 @@
 - **Responsável:** Fabrizio
 - **Data:** 2026-10-06
 - **Status:** Aprovado
+- **Revisão:** 2026-10-07 — RN-16 e CA-27 (crédito ao leanwork-sdd no rodapé); CA-26 ajustado para aceitar esse link
 
 ---
 
@@ -153,6 +154,7 @@ flowchart TD
 - **RN-13:** A versão do kit exibida é a do `plugin.json` do kit, lida do snapshot sincronizado (hoje `0.1.0`). (ADR-007)
 - **RN-14:** A seção Open source traz o bloco "Este site foi feito com o MyAiToolKit", com link para a pasta `docs/sdd/` do repositório do site.
 - **RN-15:** O botão copiar copia exatamente o texto do comando mostrado e dá retorno visual ■ → ✓ (e textual, para leitores de tela).
+- **RN-16:** O rodapé traz, ao lado do link da licença, o crédito "Pipeline SDD baseado no leanwork-sdd" (en: "SDD pipeline based on leanwork-sdd"), com link para `https://github.com/leanwork/leanwork-sdd`. É o único link externo fora dos repositórios do projeto.
 
 ## 9. Critérios de aceite — obrigatória
 
@@ -326,7 +328,12 @@ Funcionalidade: Landing page do MyAiToolKit
     Dado que o site foi construído
     Quando os links são verificados
     Então todas as âncoras internas e links do site existem
-    E os links do GitHub apontam para "github.com/fbzsaullo/MyAiToolKit"
+    E os links do GitHub apontam para "github.com/fbzsaullo/MyAiToolKit", exceto o crédito do rodapé, que aponta para "github.com/leanwork/leanwork-sdd" (RN-16)
+
+  Cenário [CA-27]: Crédito ao pipeline de origem no rodapé
+    Dado que chego ao rodapé
+    Então vejo, ao lado do link da licença, "Pipeline SDD baseado no leanwork-sdd" (en: "SDD pipeline based on leanwork-sdd")
+    E o link leva a "https://github.com/leanwork/leanwork-sdd" (RN-16)
 ```
 
 ## 10. Permissões
@@ -387,8 +394,9 @@ Detalhes na proposta de arquitetura e nos ADR-001 a ADR-012.
 
 - Demanda: `PROMPT.md` do projeto de marca.
 - Proposta: `docs/sdd/architecture/proposta-arquitetural.md`.
-- ADRs: `docs/sdd/architecture/adrs/ADR-001` a `ADR-012`.
+- ADRs: `docs/sdd/architecture/adrs/ADR-001` a `ADR-014`.
 - Kit: https://github.com/fbzsaullo/MyAiToolKit — `README.md` e `templates/id-conventions.md`.
+- Pipeline de origem: https://github.com/leanwork/leanwork-sdd (crédito no rodapé, RN-16).
 
 ---
 

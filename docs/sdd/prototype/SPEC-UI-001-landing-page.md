@@ -8,6 +8,7 @@
 - **Responsável:** Fabrizio
 - **Data:** 2026-10-06
 - **Status:** Aprovado
+- **Revisão:** 2026-10-07 — UI-13 ganha o crédito ao leanwork-sdd (RN-16, CA-27)
 
 ---
 
@@ -66,7 +67,7 @@ Definidos pela identidade e implementados em `src/styles/tokens.css` — valores
 | UI-10 | Stacks e IAs | `#stacks` | Todos | RN-03, RN-08 | CA-03 |
 | UI-11 | Instalação | `#instalar` | Todos | RN-03, RN-10, RN-15 | CA-19, CA-20 |
 | UI-12 | Open source | `#contribuir` | Todos | RN-14 | CA-25 |
-| UI-13 | Rodapé | — | Todos | RN-01, RN-06, RN-13 | CA-06, CA-25 |
+| UI-13 | Rodapé | — | Todos | RN-01, RN-06, RN-13, RN-16 | CA-06, CA-25, CA-27 |
 
 Estados de página inteira (não são telas): idioma (`/` e `/en/`, CA-04, CA-05, CA-07), tema (CA-08), acessibilidade (CA-22), privacidade (CA-23), desempenho (CA-24) e links (CA-26).
 
@@ -208,7 +209,7 @@ Estados de página inteira (não são telas): idioma (`/` e `/en/`, CA-04, CA-05
 
 ### UI-13 — Rodapé
 
-- **Conteúdo:** logo 48–72 px; links GitHub, Licença, `docs/sdd` do site; "MyAiToolKit 0.1.0" (do snapshot); troca de idioma.
+- **Conteúdo:** logo 48–72 px; links GitHub, Licença, "Pipeline SDD baseado no leanwork-sdd" (logo após a licença; RN-16), `docs/sdd` do site; "MyAiToolKit 0.1.0" (do snapshot); troca de idioma.
 - **Estados:** `UI-13.default`, `UI-13.celular` (colunas empilhadas).
 
 ---
@@ -271,6 +272,7 @@ flowchart LR
 | RN-13 | UI-13 | ✅ |
 | RN-14 | UI-12 | ✅ |
 | RN-15 | UI-11 (`CodeBlock`) | ✅ |
+| RN-16 | UI-13 | ✅ |
 
 ### Cenários
 
@@ -300,6 +302,7 @@ flowchart LR
 | CA-24 | Página inteira | ✅ (orçamento) |
 | CA-25 | UI-12, UI-13 | ✅ |
 | CA-26 | Página inteira | ✅ (checagem de links) |
+| CA-27 | UI-13 | ✅ |
 
 ---
 

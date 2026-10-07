@@ -5,7 +5,7 @@
 - **Stack:** Node 24 · Astro 7 · Preact · Motion · Shiki · CSS próprio · Playwright + axe · Netlify
 - **Responsável:** Fabrizio
 - **Data:** 2026-10-06
-- **Status:** Concluído
+- **Status:** Em execução
 - **Estimativa total (informada pelo usuário):**
 
 ---
@@ -67,6 +67,8 @@ graph TD
     T19 --> T23
     T22 --> T23
     T23 --> T24[T-24 README]
+    T24 --> T25[T-25 Crédito no rodapé]
+    T24 --> T26[T-26 Licença só leitura]
 ```
 
 ## 5. Fases — obrigatória
@@ -661,6 +663,54 @@ As 6 fases como lista completa (comando, entrada, documento, IDs), para as duas 
 - *Não se aplica* — coberto pela checagem de links (CA-26).
 
 > **Status aceitos (texto exato):** `Pendente` | `Em andamento` | `Concluído` | `Bloqueado`.
+
+### Fase 4 — Ajustes depois da entrega (revisão de 2026-10-07)
+
+- **Objetivo:** crédito ao pipeline de origem no rodapé (RN-16) e repositório público só para leitura (ADR-014).
+- **Fecha quando:** `npm test` inteiro verde e `/sdd-trace` sem elos quebrados, com RN-16 e CA-27 na matriz.
+
+---
+
+#### T-25 — Acrescentar o crédito ao leanwork-sdd no rodapé
+
+- **Status:** Pendente
+- **Complexidade:** Baixa
+- **Estimativa:**
+- **Depende de:** T-24
+- **Implementa:** RN-16
+- **Valida:** CA-27, CA-26
+- **Decisões base:** ADR-007, ADR-011
+- **Telas:** UI-13 (default, celular)
+- **Arquivos/camadas:**
+  - `src/components/Footer.astro`, `src/lib/links.ts`, `src/content/ui/*.json` *(editados)*
+  - `scripts/check-links.mjs` *(editado — destino permitido)*
+  - `tests/footer-open-source.spec.ts`, `tests/quality.spec.ts` *(editados)*
+
+**Critério de aceite (testável):**
+- [ ] CA-27 verde nos dois idiomas; CA-26 aceita só o link do crédito fora dos repositórios do projeto
+
+**Testes a escrever:**
+- *E2E:* `test("CA-27: …")`
+
+---
+
+#### T-26 — Declarar o repositório do site como público só para leitura
+
+- **Status:** Pendente
+- **Complexidade:** Baixa
+- **Estimativa:**
+- **Depende de:** T-24
+- **Implementa:** —
+- **Valida:** —
+- **Decisões base:** ADR-014
+- **Arquivos/camadas:**
+  - `LICENSE` *(novo)*, `package.json`, `README.md` *(editados)*
+
+**Critério de aceite (testável):**
+- [ ] `LICENSE` com todos os direitos reservados (pt-BR e en), `"license": "UNLICENSED"` no `package.json` e seção "Licença" no README
+
+**Testes a escrever:**
+- *Build:* `test("repositório do site com todos os direitos reservados")`
 
 ## 6. Testes que atravessam tarefas (opcional)
 

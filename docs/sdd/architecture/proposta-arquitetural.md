@@ -93,6 +93,7 @@ Atendidas pelo padrão da plataforma: disponibilidade e escala (CDN da Netlify),
 | ADR-011 | Netlify com cabeçalhos de cache e de segurança (CSP sem terceiros) | Aceito | [adrs/ADR-011-netlify-cache-e-seguranca.md](adrs/ADR-011-netlify-cache-e-seguranca.md) |
 | ADR-012 | Testes com Playwright e axe, checagem de links e orçamento de JavaScript | Aceito | [adrs/ADR-012-testes-e-orcamentos.md](adrs/ADR-012-testes-e-orcamentos.md) |
 | ADR-013 | Subconjuntos latin e latin-ext da Geist gerados a partir dos arquivos oficiais | Aceito | [adrs/ADR-013-fontes-geist-subconjuntos-proprios.md](adrs/ADR-013-fontes-geist-subconjuntos-proprios.md) |
+| ADR-014 | Repositório do site público só para leitura, com todos os direitos reservados | Aceito | [adrs/ADR-014-repositorio-publico-somente-leitura.md](adrs/ADR-014-repositorio-publico-somente-leitura.md) |
 
 O fio condutor: **o padrão é HTML estático pronto; tudo o que exige JavaScript é exceção justificada, carregada tarde e com alternativa estática.** As decisões de idioma, tema e fontes servem à mesma ideia de não depender de nada fora do próprio site.
 
