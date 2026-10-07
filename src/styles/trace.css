@@ -194,3 +194,14 @@
     }
   }
 }
+
+/* Alvos de toque de 44 × 44 px no celular e em telas de toque (CA-21). */
+@layer components {
+  @media (max-width: 47.99rem), (pointer: coarse) {
+    .trace__id.id-tag {
+      min-height: 44px;
+      min-width: 44px;
+      padding-inline: var(--space-3);
+    }
+  }
+}

@@ -624,7 +624,7 @@ As 6 fases como lista completa (comando, entrada, documento, IDs), para as duas 
 
 #### T-23 — Fechar as verificações transversais
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Média
 - **Estimativa:**
 - **Depende de:** T-03, T-19, T-21, T-22
@@ -635,7 +635,7 @@ As 6 fases como lista completa (comando, entrada, documento, IDs), para as duas 
   - `tests/quality.spec.ts` *(novo)*
 
 **Critério de aceite (testável):**
-- [ ] CA-03, CA-21, CA-22, CA-23, CA-24 e CA-26 verdes
+- [x] CA-03, CA-21, CA-22, CA-23, CA-24 e CA-26 verdes
 
 **Testes a escrever:**
 - *E2E:* `test("CA-03: …")`, `test("CA-21: …")`, `test("CA-22: …")`, `test("CA-23: …")`, `test("CA-24: …")`, `test("CA-26: …")`
@@ -684,7 +684,7 @@ Autonomia concedida pelo responsável: viram autoverificações registradas no h
 
 - [x] Depois da **T-05** — conferir na prática que não há flash de tema nem de idioma
 - [x] Depois da **T-14** — medir o JS da ilha e o CLS antes de seguir para as demais ilhas
-- [ ] Antes da **T-24** — revisar a página inteira nos dois idiomas e temas
+- [x] Antes da **T-24** — revisar a página inteira nos dois idiomas e temas
 
 ## 10. Pontos em aberto (opcional)
 
@@ -715,4 +715,5 @@ Autonomia concedida pelo responsável: viram autoverificações registradas no h
 | T-19 | Concluído | 2026-10-07 | `30758d4` | Review aprovado; ilha 10,4 KB |
 | T-20 | Concluído | 2026-10-07 | `2b3ba81` | Review aprovado |
 | T-21 | Concluído | 2026-10-07 | `23fb36b` | Review aprovado; bloco provisório da instalação removido |
-| T-22 | Concluído | 2026-10-07 | (ver T-23) | Review aprovado; R-02 da T-03 resolvido (404 no verificador de links) |
+| T-22 | Concluído | 2026-10-07 | `70efb08` | Review aprovado; R-02 da T-03 resolvido (404 no verificador de links) |
+| T-23 | Concluído | 2026-10-07 | (ver T-24) | Review aprovado; R-01 da T-10 resolvido (seção ativa testada); validação antes da T-24 feita |
