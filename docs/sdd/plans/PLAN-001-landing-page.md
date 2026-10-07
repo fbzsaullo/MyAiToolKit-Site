@@ -164,13 +164,13 @@ Playwright contra o build. Orçamento: soma (gzip) do JS referenciado pelo HTML 
 
 #### T-04 — Criar tokens, fontes, tipografia e estilos globais
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Média
 - **Estimativa:**
 - **Depende de:** T-01
 - **Implementa:** RN-02
 - **Valida:** —
-- **Decisões base:** ADR-002, ADR-010
+- **Decisões base:** ADR-002, ADR-013
 - **Arquivos/camadas:**
   - `src/styles/tokens.css`, `src/styles/fonts.css`, `src/styles/global.css` *(novos)*
 
@@ -178,8 +178,8 @@ Playwright contra o build. Orçamento: soma (gzip) do JS referenciado pelo HTML 
 Nove tokens de cor (claro/escuro por `prefers-color-scheme` e `[data-theme]`), escala tipográfica com `clamp()`, tokens de espaço, raio e movimento, grid aparente, foco visível 2 px + 2 px, link de pular conteúdo, `tabular-nums`. Fontes Geist/Geist Mono via Fontsource (pesos usados, latin + latin-ext, `swap`), preload só de Geist 600 latin.
 
 **Critério de aceite (testável):**
-- [ ] Nenhuma cor fora dos tokens em `src/` (checagem por busca)
-- [ ] Build contém só `.woff2` das fontes, latin e latin-ext
+- [x] Nenhuma cor fora dos tokens em `src/` (checagem por busca)
+- [x] Build contém só `.woff2` das fontes, latin e latin-ext
 
 **Testes a escrever:**
 - *E2E:* `test("fontes servidas localmente em woff2")`
@@ -696,4 +696,5 @@ Autonomia concedida pelo responsável: viram autoverificações registradas no h
 | --- | --- | --- | --- | --- |
 | T-01 | Concluído | 2026-10-06 | `693bda6` | Review aprovado com ressalvas (R-01 para a T-05) |
 | T-02 | Concluído | 2026-10-06 | `e397a1a` | Review aprovado |
-| T-03 | Concluído | 2026-10-06 | (ver T-04) | Aprovado com ressalvas: R-01 (/en/ na T-05), R-02 (404 na T-22) |
+| T-03 | Concluído | 2026-10-06 | `0d2513f` | Aprovado com ressalvas: R-01 (/en/ na T-05), R-02 (404 na T-22) |
+| T-04 | Concluído | 2026-10-06 | (ver T-05) | Aprovado com ressalvas: R-01 (preload na T-05); fontes via ADR-013 |

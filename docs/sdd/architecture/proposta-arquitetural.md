@@ -49,7 +49,7 @@ Desenvolvedores que usam assistentes de IA de programação (Claude Code, Codex 
 ### 3.3 Privacidade
 - **Meta:** nenhuma requisição a terceiros, nenhum cookie, nenhum armazenamento além de preferências locais (tema e idioma).
 - **Motivo:** o projeto não precisa de dados de visitantes, e não coletar nada elimina banner de consentimento e obrigações de LGPD.
-- **Resposta da arquitetura:** fontes, ícones e scripts servidos pelo próprio site; CSP sem terceiros; preferências em `localStorage` (ADR-008, ADR-009, ADR-010, ADR-011).
+- **Resposta da arquitetura:** fontes, ícones e scripts servidos pelo próprio site; CSP sem terceiros; preferências em `localStorage` (ADR-008, ADR-009, ADR-011, ADR-013).
 
 ### 3.4 Manutenibilidade do conteúdo
 - **Meta:** o site não pode descrever comandos ou versão diferentes dos que o kit tem; trocar um texto não exige mexer em componente.
@@ -89,9 +89,10 @@ Atendidas pelo padrão da plataforma: disponibilidade e escala (CDN da Netlify),
 | ADR-007 | Dados dos comandos e versão sincronizados do kit por script, com snapshot versionado | Aceito | [adrs/ADR-007-sincronizacao-com-o-kit.md](adrs/ADR-007-sincronizacao-com-o-kit.md) |
 | ADR-008 | Idioma por rota, com detecção no primeiro acesso por script inline e `localStorage` | Aceito | [adrs/ADR-008-idioma-por-rota-e-script-inline.md](adrs/ADR-008-idioma-por-rota-e-script-inline.md) |
 | ADR-009 | Tema do sistema com troca manual, aplicado antes da primeira pintura | Aceito | [adrs/ADR-009-tema-sem-piscar.md](adrs/ADR-009-tema-sem-piscar.md) |
-| ADR-010 | Fontes Geist hospedadas no site via Fontsource | Aceito | [adrs/ADR-010-fontes-geist-locais.md](adrs/ADR-010-fontes-geist-locais.md) |
+| ADR-010 | Fontes Geist hospedadas no site via Fontsource | Substituído por ADR-013 | [adrs/ADR-010-fontes-geist-locais.md](adrs/ADR-010-fontes-geist-locais.md) |
 | ADR-011 | Netlify com cabeçalhos de cache e de segurança (CSP sem terceiros) | Aceito | [adrs/ADR-011-netlify-cache-e-seguranca.md](adrs/ADR-011-netlify-cache-e-seguranca.md) |
 | ADR-012 | Testes com Playwright e axe, checagem de links e orçamento de JavaScript | Aceito | [adrs/ADR-012-testes-e-orcamentos.md](adrs/ADR-012-testes-e-orcamentos.md) |
+| ADR-013 | Subconjuntos latin e latin-ext da Geist gerados a partir dos arquivos oficiais | Aceito | [adrs/ADR-013-fontes-geist-subconjuntos-proprios.md](adrs/ADR-013-fontes-geist-subconjuntos-proprios.md) |
 
 O fio condutor: **o padrão é HTML estático pronto; tudo o que exige JavaScript é exceção justificada, carregada tarde e com alternativa estática.** As decisões de idioma, tema e fontes servem à mesma ideia de não depender de nada fora do próprio site.
 
@@ -162,7 +163,7 @@ flowchart TB
 | Gerador | Monta as duas versões da página, realça código e empacota as ilhas | Astro 7, Shiki, Preact | Saída estática com ilhas (ADR-001, ADR-003, ADR-005) |
 | Páginas | HTML e CSS de `/` e `/en/` | HTML, CSS com tokens | Carregamento rápido e legível sem JavaScript (ADR-002) |
 | Ilhas | Pipeline com rolagem conduzida, rastreabilidade clicável, diagrama interativo | Preact + Motion | Únicas partes que precisam de estado (ADR-003, ADR-004) |
-| Ativos | Fontes, logo, ícones do navegador | WOFF2, SVG, PNG | Tudo local, sem terceiros (ADR-010) |
+| Ativos | Fontes, logo, ícones do navegador | WOFF2, SVG, PNG | Tudo local, sem terceiros (ADR-013) |
 | Regras de entrega | Cache, CSP e cabeçalhos de segurança | `netlify.toml` | Política versionada junto com o código (ADR-011) |
 
 ---

@@ -146,7 +146,7 @@ flowchart TD
 - **RN-06:** pt-BR fica em `/` e en em `/en/`. Sem escolha salva, o primeiro acesso segue o idioma preferido do navegador (`pt*` → pt-BR, qualquer outro → en). A escolha manual (cabeçalho e rodapé) fica lembrada e sempre vence a detecção. Nomes de comandos não se traduzem. A versão en explica que skills e artefatos do kit são em português por padrão e que `project.language: en` gera artefatos em inglês. (ADR-008)
 - **RN-07:** O tema segue o sistema; a troca manual fica lembrada e é aplicada sem mostrar o tema errado ao carregar. (ADR-009)
 - **RN-08:** Animações explicam algo e rodam uma vez ao entrar na tela; toda animação automática com mais de 5 s tem botões de pausar e repetir; com `prefers-reduced-motion`, nada se move e todo o conteúdo final aparece pronto. (ADR-004)
-- **RN-09:** Nenhum script, fonte, imagem ou CDN de terceiros; nenhum cookie; nenhuma estatística de acesso; nenhuma métrica do GitHub. Preferências ficam só no navegador do visitante. (ADR-010, ADR-011)
+- **RN-09:** Nenhum script, fonte, imagem ou CDN de terceiros; nenhum cookie; nenhuma estatística de acesso; nenhuma métrica do GitHub. Preferências ficam só no navegador do visitante. (ADR-011, ADR-013)
 - **RN-10:** O site atende WCAG 2.2 AA: foco visível de 2 px com 2 px de afastamento, link "Pular para o conteúdo", títulos em ordem, abas no padrão ARIA, diagramas e IDs operáveis por teclado, terminal animado escondido dos leitores de tela que recebem o comando e a saída completos.
 - **RN-11:** Metas de desempenho: LCP < 2 s em 4G, menos de 50 KB de JavaScript no carregamento inicial, CLS perto de 0, Lighthouse ≥ 95 nas quatro categorias no celular. (ADR-003, ADR-012)
 - **RN-12:** No celular: alvos de toque de pelo menos 44 × 44 px, texto de pelo menos 16 px, margem lateral de 16–20 px, nenhuma rolagem horizontal da página e menu de seções recolhido.
@@ -366,7 +366,7 @@ Detalhes na proposta de arquitetura e nos ADR-001 a ADR-012.
 ## 14. Restrições e premissas (opcional)
 
 - **Restrição:** arquivos de `brand/` não são alterados (copiados para `public/` no build).
-- **Restrição:** fontes Geist e Geist Mono hospedadas no site (ADR-010).
+- **Restrição:** fontes Geist e Geist Mono hospedadas no site (ADR-013).
 - **Premissa:** URL base provisória `https://myaitoolkit.netlify.app`, definida pelo responsável.
 - **Premissa:** os textos curtos dos chips de comando são escritos nas coleções de conteúdo e conferidos contra as descrições dos `SKILL.md`; o snapshot garante a lista e a versão (ADR-007).
 

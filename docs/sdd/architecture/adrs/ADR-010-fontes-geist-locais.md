@@ -1,6 +1,6 @@
 # ADR-010: Hospedar Geist e Geist Mono no próprio site, via pacotes Fontsource
 
-- **Status:** Aceito
+- **Status:** Substituído por ADR-013
 - **Data:** 2026-10-06
 - **Responsável:** Fabrizio
 - **Proposta:** [../proposta-arquitetural.md](../proposta-arquitetural.md)

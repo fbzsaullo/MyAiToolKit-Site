@@ -1,0 +1,123 @@
+/* Tokens da identidade visual (ADR-002). Única fonte de cores do site: nada de cor fora daqui. */
+@layer tokens {
+  :root {
+    color-scheme: light dark;
+
+    /* Cores — tema claro (padrão) */
+    --bg: #ffffff;
+    --surface: #f5f5f5;
+    --surface-2: #ededed;
+    --line: #e5e5e5;
+    --line-strong: #d4d4d4;
+    --text-muted: #6b6b6b;
+    --text-2: #404040;
+    --text: #0a0a0a;
+    --ink: #000000;
+
+    /* Terminais são sempre escuros, nos dois temas */
+    --term-bg: #0a0a0a;
+    --term-surface: #161616;
+    --term-line: #262626;
+    --term-muted: #a3a3a3;
+    --term-text: #fafafa;
+
+    /* Tipografia */
+    --font-sans: 'Geist', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --font-mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+
+    /* Escala fluida: 375 px → 1440 px de largura */
+    --fs-display: clamp(2.5rem, 1.972rem + 2.254vw, 4rem);
+    --fs-h1: clamp(2rem, 1.648rem + 1.502vw, 3rem);
+    --fs-h2: clamp(1.75rem, 1.574rem + 0.751vw, 2.25rem);
+    --fs-h3: clamp(1.25rem, 1.206rem + 0.188vw, 1.375rem);
+    --fs-lead: clamp(1.125rem, 1.081rem + 0.188vw, 1.25rem);
+    --fs-body: clamp(1rem, 0.978rem + 0.094vw, 1.0625rem);
+    --fs-small: 0.875rem;
+    --fs-label: 0.75rem;
+    --fs-id: 0.8125rem;
+    --fs-code: clamp(0.8125rem, 0.791rem + 0.094vw, 0.875rem);
+
+    --lh-display: 1.05;
+    --lh-h1: 1.1;
+    --lh-h2: 1.15;
+    --lh-h3: 1.3;
+    --lh-lead: 1.55;
+    --lh-body: 1.65;
+    --lh-small: 1.5;
+    --lh-code: 1.6;
+
+    --ls-display: -0.03em;
+    --ls-h1: -0.025em;
+    --ls-h2: -0.02em;
+    --ls-h3: -0.01em;
+    --ls-label: 0.08em;
+    --ls-id: 0.02em;
+
+    --measure: 68ch;
+
+    /* Espaço */
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-5: 1.5rem;
+    --space-6: 2rem;
+    --space-7: 3rem;
+    --space-8: 4rem;
+    --space-9: 6rem;
+    --space-10: 8rem;
+    --gutter: clamp(1rem, 0.85rem + 0.6vw, 1.25rem);
+    --page-max: 76rem;
+
+    /* Forma: cantos retos; no máximo 4 px em botões e etiquetas; borda de 1 px; nenhuma sombra */
+    --radius-0: 0;
+    --radius-sm: 4px;
+    --border: 1px;
+    --stroke-icon: 1.75;
+
+    /* Movimento (ADR-004) */
+    --dur-fast: 180ms;
+    --dur-explain: 560ms;
+    --ease: cubic-bezier(0.2, 0, 0, 1);
+
+    /* Foco visível */
+    --focus-width: 2px;
+    --focus-offset: 2px;
+
+    /* Cabeçalho fixo */
+    --header-h: 3.5rem;
+  }
+
+  /* Tema escuro pelo sistema, quando não há escolha manual (ADR-009) */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) {
+      --bg: #0a0a0a;
+      --surface: #161616;
+      --surface-2: #1f1f1f;
+      --line: #262626;
+      --line-strong: #3a3a3a;
+      --text-muted: #a3a3a3;
+      --text-2: #d4d4d4;
+      --text: #fafafa;
+      --ink: #ffffff;
+    }
+  }
+
+  /* Tema escuro por escolha manual */
+  :root[data-theme='dark'] {
+    color-scheme: dark;
+    --bg: #0a0a0a;
+    --surface: #161616;
+    --surface-2: #1f1f1f;
+    --line: #262626;
+    --line-strong: #3a3a3a;
+    --text-muted: #a3a3a3;
+    --text-2: #d4d4d4;
+    --text: #fafafa;
+    --ink: #ffffff;
+  }
+
+  :root[data-theme='light'] {
+    color-scheme: light;
+  }
+}
