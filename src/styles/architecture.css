@@ -1,0 +1,156 @@
+/* UI-09 — Arquitetura do kit (T-18). Só tokens; estado por inversão, traço e opacidade (ADR-002). */
+@layer components {
+  .arch__svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    font-family: var(--font-sans);
+  }
+  .arch__col {
+    fill: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .arch__box {
+    fill: var(--bg);
+    stroke: var(--line-strong);
+    stroke-width: 1;
+  }
+  .arch__title {
+    fill: var(--text);
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .arch__title--mono {
+    font-family: var(--font-mono);
+    font-size: 14px;
+  }
+  .arch__sub,
+  .arch__folder {
+    fill: var(--text-2);
+    font-size: 13px;
+  }
+  .arch__folder {
+    font-family: var(--font-mono);
+    font-size: 12px;
+  }
+  .arch__block[data-inverted='true'] .arch__box {
+    fill: var(--ink);
+    stroke: var(--ink);
+  }
+  .arch__block[data-inverted='true'] text {
+    fill: var(--bg);
+  }
+  .arch__edge {
+    fill: none;
+    stroke: var(--line-strong);
+    stroke-width: 1.25;
+  }
+  .arch__edge-tag {
+    fill: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 11px;
+  }
+  .arch__phase-num {
+    fill: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 11px;
+  }
+  .arch__phase-name {
+    fill: var(--text);
+    font-size: 13px;
+    font-weight: 500;
+  }
+  .arch__arrow {
+    fill: var(--text-muted);
+    font-size: 14px;
+  }
+
+  /* Lista equivalente: só para leitores de tela no desktop; acordeão no celular (UI-09.celular). */
+  @media (min-width: 64rem) {
+    .arch__list {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+  }
+  .arch__group {
+    border-top: var(--border) solid var(--line-strong);
+  }
+  .arch__group:last-child {
+    border-bottom: var(--border) solid var(--line-strong);
+  }
+  .arch__summary {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    min-height: 44px;
+    padding-block: var(--space-3);
+    font-weight: 600;
+    cursor: pointer;
+    list-style: none;
+  }
+  .arch__summary::-webkit-details-marker {
+    display: none;
+  }
+  .arch__summary-mark {
+    width: 0.75rem;
+    height: 0.75rem;
+    border: var(--border) solid var(--ink);
+  }
+  .arch__group[open] .arch__summary-mark {
+    background: var(--ink);
+  }
+  .arch__items {
+    display: grid;
+    gap: var(--space-3);
+    padding-bottom: var(--space-4);
+  }
+  .arch__item {
+    display: grid;
+    gap: var(--space-2);
+    padding: var(--space-4);
+    border: var(--border) solid var(--line-strong);
+    background: var(--bg);
+  }
+  .arch__item[data-inverted='true'] {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--bg);
+  }
+  .arch__item[data-inverted='true'] .label,
+  .arch__item[data-inverted='true'] .arch__item-text {
+    color: inherit;
+  }
+  .arch__item-text {
+    color: var(--text-2);
+    font-size: var(--fs-small);
+    line-height: var(--lh-small);
+  }
+  .arch__item-meta {
+    font-size: var(--fs-small);
+    overflow-wrap: anywhere;
+  }
+  .arch__item-meta code {
+    font-family: var(--font-mono);
+    font-size: var(--fs-id);
+  }
+  .arch__phase-list {
+    display: grid;
+    gap: var(--space-2);
+    padding: 0 0 var(--space-4) 0;
+    list-style: none;
+  }
+
+  @media (max-width: 63.99rem) {
+    .arch__stage {
+      display: none;
+    }
+  }
+}

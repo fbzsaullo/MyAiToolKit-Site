@@ -412,5 +412,155 @@
         ]
       }
     }
+  },
+  "architecture": {
+    "intro": "The kit is a set of files your AI reads; the result lives in your repository. Activate a block to see its links, or follow the path of one command.",
+    "diagramLabel": "MyAiToolKit architecture diagram",
+    "columns": {
+      "kit": "my-ai-toolkit kit",
+      "ais": "Coding AIs",
+      "project": "Your project"
+    },
+    "edges": {
+      "usam": "use",
+      "instalam": "install",
+      "leem": "read",
+      "geram": "write"
+    },
+    "phasesLabel": "Phase flow",
+    "loop": "loop",
+    "listLabel": "The diagram as a list",
+    "panel": {
+      "hint": "Activate a block in the diagram — click, tap or Enter — to see what it does, its files and its command.",
+      "files": "Files",
+      "command": "Command",
+      "noCommand": "no command of its own"
+    },
+    "flow": {
+      "button": "Show the flow",
+      "title": "The path of /sdd-prd",
+      "steps": [
+        "The sdd-prd skill is loaded",
+        "It reads the ID conventions from templates",
+        "It reads the project stack profile",
+        "The AI writes the PRD",
+        "The PRD is saved in docs/sdd/prds/"
+      ]
+    },
+    "blocks": {
+      "skills": {
+        "title": "Skills",
+        "sub": "12 commands, one SKILL.md each",
+        "text": "Each command is a skill: a SKILL.md with the procedure and a references/ folder with templates. The same file works in Claude Code and Codex.",
+        "files": [
+          "skills/sdd-prd/SKILL.md",
+          "skills/sdd-prd/references/prd-template.md"
+        ],
+        "command": "/sdd-prd"
+      },
+      "templates": {
+        "title": "Templates",
+        "sub": "ID and folder conventions",
+        "text": "Rules every skill shares: ID formats, where each document lives and how to read a Jira, GitHub or plain-text card.",
+        "files": [
+          "templates/id-conventions.md",
+          "templates/folder-conventions.md",
+          "templates/card-ingestion.md"
+        ],
+        "command": "/sdd-trace"
+      },
+      "stacks": {
+        "title": "Stacks",
+        "sub": "Rails reference + 6 profiles",
+        "text": "One profile per stack with versions, commands, tests and a security checklist. Rails is the complete profile; Node, Python, .NET, Go, Java and PHP have light profiles; anything else uses the generic one.",
+        "files": [
+          "stacks/rails/profile.md",
+          "stacks/rails/security-checklist.md",
+          "stacks/_generic/profile.md"
+        ],
+        "command": "/sdd-setup"
+      },
+      "adapters": {
+        "title": "Adapters",
+        "sub": "Claude Code and Codex",
+        "text": "How each AI receives the kit. Claude Code uses the repository as a plugin; Codex gets the skills through an installer.",
+        "files": [
+          "adapters/claude-code/README.md",
+          "adapters/codex/install.sh",
+          "adapters/codex/install.ps1"
+        ],
+        "command": "./MyAiToolKit/adapters/codex/install.sh --scope user"
+      },
+      "claude": {
+        "title": "Claude Code",
+        "sub": "primary",
+        "text": "The reference AI: skills become slash commands and project permissions live in .claude/settings.json.",
+        "files": [
+          ".claude-plugin/plugin.json",
+          ".claude/settings.json"
+        ],
+        "command": "claude plugin install my-ai-toolkit@my-ai-toolkit"
+      },
+      "codex": {
+        "title": "Codex",
+        "sub": "supported",
+        "text": "Gets the same skills in .agents/skills/ and calls them with a dollar sign. Shared file paths are adjusted at install time.",
+        "files": [
+          ".agents/skills/",
+          ".codex/config.toml"
+        ],
+        "command": "$sdd-start"
+      },
+      "others": {
+        "title": "Other AIs",
+        "sub": "through the adapters/ contract",
+        "text": "No adapter yet. The contract says where a new AI keeps skills, the context file, permissions and arguments.",
+        "files": [
+          "adapters/README.md"
+        ],
+        "command": null
+      },
+      "agents": {
+        "title": "AGENTS.md",
+        "sub": "canonical context",
+        "text": "The file every AI reads first: stack, commands, conventions and where the pipeline documents are. Written by /sdd-setup.",
+        "files": [
+          "AGENTS.md"
+        ],
+        "command": "/sdd-setup"
+      },
+      "claudemd": {
+        "title": "CLAUDE.md",
+        "sub": "imports AGENTS.md",
+        "text": "Just points to AGENTS.md and adds what is specific to Claude Code.",
+        "files": [
+          "CLAUDE.md"
+        ],
+        "command": "/sdd-setup"
+      },
+      "config": {
+        "title": "docs/sdd/config.yml",
+        "sub": "stacks, language, AIs",
+        "text": "The kit configuration for the project: stacks and versions, test commands, document language, AIs in use and base branch.",
+        "files": [
+          "docs/sdd/config.yml"
+        ],
+        "command": "/sdd-setup"
+      },
+      "docs": {
+        "title": "docs/sdd/",
+        "sub": "the pipeline documents",
+        "text": "Everything the phases produce: architecture and ADRs, PRDs, SPEC-UI, plans, reviews and traceability matrices — versioned with the code.",
+        "files": [
+          "docs/sdd/architecture/",
+          "docs/sdd/prds/",
+          "docs/sdd/prototype/",
+          "docs/sdd/plans/",
+          "docs/sdd/reviews/",
+          "docs/sdd/traceability/"
+        ],
+        "command": "/sdd-next"
+      }
+    }
   }
 }

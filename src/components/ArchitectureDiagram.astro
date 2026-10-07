@@ -1,0 +1,14 @@
+---
+// UI-09 — Diagrama da arquitetura. O componente Preact gera o SVG e a lista no servidor.
+import ArchitectureIsland from './islands/ArchitectureIsland';
+import { t, type Locale } from '../i18n';
+import '../styles/architecture.css';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const ui = t(locale);
+---
+<ArchitectureIsland labels={ui.architecture} phases={ui.pipeline.phases} />
