@@ -271,4 +271,4 @@ Quem não tem JavaScript, ou pediu movimento reduzido, recebe o mesmo conteúdo 
 - Textos finais e exemplos fictícios → PRD e coleções de conteúdo.
 - Telas, estados e versões responsivas → SPEC-UI.
 - Ordem de construção e estimativas → plano (`/sdd-plan`).
-- Dados acadêmicos (instituição, curso, autores, orientador) → pendência do PRD.
+- Dados acadêmicos (instituição, curso, autores, orientador) → fora do site, por decisão do responsável (2026-10-06).
