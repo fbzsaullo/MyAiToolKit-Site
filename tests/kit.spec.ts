@@ -13,17 +13,17 @@ type Snapshot = {
 const snapshot: Snapshot = JSON.parse(readFileSync('src/data/kit.json', 'utf8'));
 const KIT = resolve(process.env.KIT_PATH ?? '../MyAiToolKit');
 
-// CA-31 (PRD-003) fixa o kit 0.4.0 (17 comandos): se o kit mudar, este teste lembra de abrir um PRD novo.
-test('CA-31: site no kit 0.4.0', async ({ browser }) => {
+// CA-34 (PRD-004) substitui o CA-31 do PRD-003 e fixa o kit 0.5.0 (17 comandos): se o kit mudar, este teste lembra de abrir um PRD novo.
+test('CA-34: site no kit 0.5.0', async ({ browser }) => {
   expect(snapshot.repository).toBe('https://github.com/fbzsaullo/MyAiToolKit');
-  expect(snapshot.version).toBe('0.4.0');
+  expect(snapshot.version).toBe('0.5.0');
   expect(snapshot.commands).toHaveLength(17);
   for (const command of snapshot.commands) {
     expect(command.claude).toBe(`/${command.name}`);
     expect(command.codex).toBe(`$${command.name}`);
     expect(command.description.length).toBeGreaterThan(20);
   }
-  // O verificador da revisão cruzada é um agente do plugin, não um comando (RN-20).
+  // O verificador da revisão cruzada é um agente do plugin, não um comando (RN-23).
   expect(snapshot.commands.map((c) => c.name)).not.toContain('review-verifier');
 
   for (const [path, locale] of [
@@ -32,7 +32,7 @@ test('CA-31: site no kit 0.4.0', async ({ browser }) => {
   ] as const) {
     const page = await visit(browser, { path, locale });
     // Rodapé com a versão do snapshot.
-    await expect(page.getByRole('contentinfo').locator('[data-kit-version] code')).toHaveText('0.4.0');
+    await expect(page.getByRole('contentinfo').locator('[data-kit-version] code')).toHaveText('0.5.0');
     // Um chip por comando do snapshot, nenhum para o verificador.
     await expect(page.locator('#comandos [data-command]')).toHaveCount(17);
     await expect(page.locator('#comandos')).not.toContainText('review-verifier');

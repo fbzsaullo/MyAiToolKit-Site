@@ -48,7 +48,7 @@ T-34 depende da T-33 (snapshot 0.5.0).
 
 #### T-33 — Sincronizar o snapshot do kit 0.5.0
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Baixa
 - **Estimativa:**
 - **Depende de:** —
@@ -61,7 +61,7 @@ T-34 depende da T-33 (snapshot 0.5.0).
   - `tests/kit.spec.ts` *(editado — o teste do CA-31, que fixava a 0.4.0, vira o do CA-34)*
 
 **Critério de aceite (testável):**
-- [ ] Snapshot em 0.5.0 (`912ca7a`) com os mesmos 17 comandos; rodapé com `0.5.0`; nenhum chip para o `review-verifier`; teste de sincronização com o kit verde
+- [x] Snapshot em 0.5.0 (`912ca7a`) com os mesmos 17 comandos; rodapé com `0.5.0`; nenhum chip para o `review-verifier`; teste de sincronização com o kit verde
 
 **Testes a escrever:**
 - *E2E:* `test("CA-34: …")`, nos dois idiomas
@@ -102,3 +102,4 @@ Autonomia concedida pelo responsável no site: viram autoverificações registra
 
 | Tarefa | Status | Data | Commit | Observação |
 | --- | --- | --- | --- | --- |
+| T-33 | Concluído | 2026-10-09 | — | 176 testes verdes (`npm test -- --workers=4`) |

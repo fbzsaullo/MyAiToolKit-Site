@@ -1,7 +1,7 @@
 {
   "repository": "https://github.com/fbzsaullo/MyAiToolKit",
-  "version": "0.4.0",
-  "commit": "64adde2",
+  "version": "0.5.0",
+  "commit": "912ca7a",
   "commands": [
     {
       "name": "code-review",
@@ -79,7 +79,7 @@
       "name": "sdd-review",
       "claude": "/sdd-review",
       "codex": "$sdd-review",
-      "description": "Revisa a implementação de uma tarefa T-XX do plano SDD comparando o código com o plano, o PRD, os ADRs e a SPEC-UI, e gera o relatório REVIEW-T-XX com apontamentos R-XX classificados em Bloqueante, Importante ou Sugestão. Avalia aderência ao plano, rastreabilidade, aderência à especificação, testes, qualidade do código, segurança (com checklist por stack) e, quando há SPEC-UI, conformidade de interface. Um apontamento Bloqueante devolve a tarefa como Bloqueado no plano. Use quando o usuário pedir \"review da T-XX\", \"revisar a tarefa\", \"validar a implementação contra o plano\", \"fechar a T-XX\" ou trouxer um diff dizendo qual tarefa ele entrega. Fase 6 do pipeline SDD do MyAiToolKit. Quando aprova, entrega a mensagem de commit pronta no padrão do projeto (o kit nunca commita) e preenche no histórico do plano o hash dos commits já feitos. Com a revisão cruzada ligada (review.cross_check no config.yml, ou a palavra cruzada na chamada), um verificador independente confere os apontamentos graves antes do veredito. Para review avulso, sem plano SDD (código próprio ou de colegas, ligado ou não a um card), use a skill code-review."
+      "description": "Revisa a implementação de uma tarefa T-XX do plano SDD comparando o código com o plano, o PRD, os ADRs e a SPEC-UI, e gera o relatório REVIEW-T-XX com apontamentos R-XX classificados em Bloqueante, Importante ou Sugestão. Avalia aderência ao plano, rastreabilidade, aderência à especificação, testes, qualidade do código, segurança (com checklist por stack) e, quando há SPEC-UI, conformidade de interface. Um apontamento Bloqueante devolve a tarefa como Bloqueado no plano. Use quando o usuário pedir \"review da T-XX\", \"revisar a tarefa\", \"validar a implementação contra o plano\", \"fechar a T-XX\" ou trouxer um diff dizendo qual tarefa ele entrega. Fase 6 do pipeline SDD do MyAiToolKit. Quando aprova, entrega a mensagem de commit pronta no padrão do projeto (o kit nunca commita) e preenche no histórico do plano o hash dos commits já feitos. Com a revisão cruzada ligada (review.cross_check no config.yml, ou a palavra cruzada na chamada), um verificador independente confere os apontamentos graves antes do veredito e, do round 2 em diante, se o que foi marcado como resolvido está mesmo resolvido. Para review avulso, sem plano SDD (código próprio ou de colegas, ligado ou não a um card), use a skill code-review."
     },
     {
       "name": "sdd-setup",
