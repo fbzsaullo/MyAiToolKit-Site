@@ -46,7 +46,7 @@ T-31 e T-32 dependem da T-30 (snapshot 0.4.0).
 
 #### T-30 — Sincronizar o snapshot do kit 0.4.0
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Baixa
 - **Estimativa:**
 - **Depende de:** —
@@ -60,7 +60,7 @@ T-31 e T-32 dependem da T-30 (snapshot 0.4.0).
   - `docs/sdd/config.yml` *(editado — `review.cross_check: auto`)*
 
 **Critério de aceite (testável):**
-- [ ] Snapshot em 0.4.0 (`64adde2`) com os mesmos 17 comandos; rodapé com `0.4.0`; nenhum chip para o `review-verifier`; teste de sincronização com o kit verde
+- [x] Snapshot em 0.4.0 (`64adde2`) com os mesmos 17 comandos; rodapé com `0.4.0`; nenhum chip para o `review-verifier`; teste de sincronização com o kit verde
 
 **Testes a escrever:**
 - *E2E:* `test("CA-31: …")`, nos dois idiomas
@@ -123,3 +123,4 @@ Autonomia concedida pelo responsável no site: viram autoverificações registra
 
 | Tarefa | Status | Data | Commit | Observação |
 | --- | --- | --- | --- | --- |
+| T-30 | Concluído | 2026-10-09 | | Review aprovado |

@@ -59,6 +59,9 @@ code_review:
   checklists:
     - stacks/_generic/profile.md   # o perfil Node do kit ainda não tem checklists próprios
 
+review:
+  cross_check: auto     # never | auto | always — revisão cruzada no /sdd-review e no /code-review (kit 0.4.0); escolha do responsável em 2026-10-09
+
 spike:
   hours_per_day: 6
   include_overheads: true
