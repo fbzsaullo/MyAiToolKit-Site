@@ -121,3 +121,27 @@ test('CA-29: o kit nunca commita', async ({ browser }) => {
     await expect(section.locator('[data-command="pr-description"] [data-preview] .cmd__preview-line')).toHaveCount(3);
   }
 });
+
+test('CA-32: revisão cruzada opcional nos reviews', async ({ browser }) => {
+  for (const [path, locale, optional, done, off, onByDefault] of [
+    ['/', 'pt-BR', 'revisão cruzada opcional', 'Revisão cruzada: feita', 'Revisão cruzada nos reviews: desligada (padrão)', /ligada por padrão|sempre ligada/i],
+    ['/en/', 'en-US', 'optional cross-review', 'Cross-review: done', 'Cross-review in reviews: off (default)', /on by default|always on/i],
+  ] as const) {
+    const page = await visit(browser, { path, locale });
+    const section = page.locator('#comandos');
+    for (const name of ['sdd-review', 'code-review']) {
+      const card = section.locator(`[data-command="${name}"]`);
+      // "O que gera" cita a revisão cruzada como opcional (RN-21).
+      await expect(card.locator('dd').nth(1)).toContainText(optional);
+      // A prévia mostra o campo do relatório com uma verificação feita, em 2 a 3 linhas.
+      const lines = card.locator('[data-preview] .cmd__preview-line');
+      await expect(lines.filter({ hasText: done })).toHaveCount(1);
+      expect(await lines.count()).toBeGreaterThanOrEqual(2);
+      expect(await lines.count()).toBeLessThanOrEqual(3);
+    }
+    // O /sdd-setup mostra a pergunta respondida com o padrão do kit: desligada.
+    await expect(section.locator('[data-command="sdd-setup"] [data-preview]')).toContainText(off);
+    // Nenhum texto do site mostra a revisão cruzada ligada por padrão.
+    expect(await page.locator('body').innerText()).not.toMatch(onByDefault);
+  }
+});

@@ -69,7 +69,7 @@ T-31 e T-32 dependem da T-30 (snapshot 0.4.0).
 
 #### T-31 — Mostrar a revisão cruzada como opcional nos cards dos reviews e do setup
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Baixa
 - **Estimativa:**
 - **Depende de:** T-30
@@ -82,7 +82,7 @@ T-31 e T-32 dependem da T-30 (snapshot 0.4.0).
   - `tests/commands.spec.ts` *(editado)*
 
 **Critério de aceite (testável):**
-- [ ] "O que gera" do `/sdd-review` e do `/code-review` cita a revisão cruzada como opcional; as prévias dos dois mostram o campo `Revisão cruzada` no formato do relatório do kit; a prévia do `/sdd-setup` mostra a revisão cruzada desligada (padrão); prévias continuam com 2 a 3 linhas
+- [x] "O que gera" do `/sdd-review` e do `/code-review` cita a revisão cruzada como opcional; as prévias dos dois mostram o campo `Revisão cruzada` no formato do relatório do kit; a prévia do `/sdd-setup` mostra a revisão cruzada desligada (padrão); prévias continuam com 2 a 3 linhas
 
 **Testes a escrever:**
 - *E2E:* `test("CA-32: …")`, nos dois idiomas
@@ -123,4 +123,5 @@ Autonomia concedida pelo responsável no site: viram autoverificações registra
 
 | Tarefa | Status | Data | Commit | Observação |
 | --- | --- | --- | --- | --- |
-| T-30 | Concluído | 2026-10-09 | | Review aprovado |
+| T-30 | Concluído | 2026-10-09 | `c17e04e` | Review aprovado; revisão cruzada sem candidatos |
+| T-31 | Concluído | 2026-10-09 | | Review aprovado com ressalvas (2 Sugestões); revisão cruzada feita |

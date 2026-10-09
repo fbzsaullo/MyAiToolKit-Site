@@ -353,10 +353,10 @@
       },
       "sdd-review": {
         "when": "Close an executed task",
-        "generates": "REVIEW-T-XX with R-XX findings by severity",
+        "generates": "REVIEW-T-XX with R-XX findings by severity and optional cross-review",
         "preview": [
-          "docs/sdd/reviews/REVIEW-T-03-2026-09-18.md",
           "R-01 Bloqueante — token compared with ==",
+          "Cross-review: done — 1 checked (1 confirmed)",
           "Recomendação: Bloqueado → round 2"
         ]
       },
@@ -392,8 +392,8 @@
         "generates": "config.yml, AGENTS.md, CLAUDE.md, permissions and a stack report",
         "preview": [
           "Rails 8.0 · Ruby 3.4 · rspec · Solid Queue",
-          "docs/sdd/config.yml · AGENTS.md · CLAUDE.md",
-          "Commits in Conventional Commits — the kit does not commit"
+          "Commits in Conventional Commits — the kit does not commit",
+          "Cross-review in reviews: off (default)"
         ]
       },
       "spike": {
@@ -407,11 +407,11 @@
       },
       "code-review": {
         "when": "Review a branch or PR outside the plan",
-        "generates": "CR-XX report with severity and Q1–Q4 quadrant",
+        "generates": "CR-XX report with severity, Q1–Q4 quadrant and optional cross-review",
         "preview": [
           "Compare with: main · story: PROJ-123",
           "CR-01 Bloqueante · Q1 — fix before merge",
-          "docs/sdd/code-reviews/CR-feature-reset-2026-09-20.md"
+          "Cross-review: done — 2 checked (1 confirmed, 1 discarded)"
         ]
       },
       "sdd-change": {
