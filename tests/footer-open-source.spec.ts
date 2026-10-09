@@ -92,3 +92,19 @@ test('CA-27: crédito ao pipeline de origem no rodapé', async ({ browser }) => 
     await expect(credit).toHaveAttribute('rel', 'noopener');
   }
 });
+
+test('CA-33: pasta agents/ na árvore do kit', async ({ browser }) => {
+  for (const [path, locale] of [
+    ['/', 'pt-BR'],
+    ['/en/', 'en-US'],
+  ] as const) {
+    const page = await visit(browser, { path, locale });
+    const tree = page.locator('#contribuir .file-tree');
+    // Pastas de primeiro nível, na ordem do README do kit: agents/ logo depois de skills/ (RN-22).
+    const names = await tree.locator(':scope > .file-tree__item > .file-tree__row .file-tree__name').allInnerTexts();
+    expect(names.indexOf('agents/')).toBe(names.indexOf('skills/') + 1);
+    // Com o verificador da revisão cruzada como nota.
+    const agents = tree.locator(':scope > .file-tree__item', { has: page.locator('.file-tree__name', { hasText: /^agents\/$/ }) });
+    await expect(agents.locator('.file-tree__note')).toHaveText('review-verifier.md');
+  }
+});

@@ -696,6 +696,11 @@
         "note": "{kit.commands} SKILL.md"
       },
       {
+        "name": "agents",
+        "dir": true,
+        "note": "review-verifier.md"
+      },
+      {
         "name": "templates",
         "dir": true
       },

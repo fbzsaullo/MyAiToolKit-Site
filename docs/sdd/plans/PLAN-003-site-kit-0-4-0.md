@@ -91,7 +91,7 @@ T-31 e T-32 dependem da T-30 (snapshot 0.4.0).
 
 #### T-32 — Mostrar a pasta agents/ na árvore do repositório do kit
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Baixa
 - **Estimativa:**
 - **Depende de:** T-30
@@ -104,7 +104,7 @@ T-31 e T-32 dependem da T-30 (snapshot 0.4.0).
   - `tests/footer-open-source.spec.ts` *(editado)*
 
 **Critério de aceite (testável):**
-- [ ] A árvore mostra `agents/` com a nota `review-verifier.md`, logo depois de `skills/`, nos dois idiomas
+- [x] A árvore mostra `agents/` com a nota `review-verifier.md`, logo depois de `skills/`, nos dois idiomas
 
 **Testes a escrever:**
 - *E2E:* `test("CA-33: …")`, nos dois idiomas
@@ -117,11 +117,12 @@ T-31 e T-32 dependem da T-30 (snapshot 0.4.0).
 
 Autonomia concedida pelo responsável no site: viram autoverificações registradas no histórico.
 
-- [ ] Depois da **T-32** — revisar a seção Comandos e a seção Open source nos dois idiomas, no desktop e no celular
+- [x] Depois da **T-32** — revisar a seção Comandos e a seção Open source nos dois idiomas, no desktop e no celular
 
 ## 11. Histórico de execução — preenchido durante a execução
 
 | Tarefa | Status | Data | Commit | Observação |
 | --- | --- | --- | --- | --- |
 | T-30 | Concluído | 2026-10-09 | `c17e04e` | Review aprovado; revisão cruzada sem candidatos |
-| T-31 | Concluído | 2026-10-09 | | Review aprovado com ressalvas (2 Sugestões); revisão cruzada feita |
+| T-31 | Concluído | 2026-10-09 | `a0373ae` | Review aprovado com ressalvas (2 Sugestões); revisão cruzada feita |
+| T-32 | Concluído | 2026-10-09 | | Review aprovado; validação da Fase 1 feita (autoverificação) |
