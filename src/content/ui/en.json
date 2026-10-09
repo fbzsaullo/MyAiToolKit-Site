@@ -355,9 +355,9 @@
         "when": "Close an executed task",
         "generates": "REVIEW-T-XX with R-XX findings by severity and optional cross-review",
         "preview": [
-          "R-01 Bloqueante — token compared with ==",
-          "Cross-review: done — 1 checked (1 confirmed)",
-          "Recomendação: Bloqueado → round 2"
+          "Round 2 · Reviewed commit: 9c41e7a",
+          "Previous round: R-01 Bloqueante — Resolvido · Verifier: Resolvido",
+          "Cross-review: done — 1 fix checked (1 resolved)"
         ]
       },
       "sdd-start": {

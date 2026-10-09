@@ -70,7 +70,7 @@ T-34 depende da T-33 (snapshot 0.5.0).
 
 #### T-34 — Mostrar a conferência das correções no round 2 na prévia do /sdd-review
 
-- **Status:** Pendente
+- **Status:** Concluído
 - **Complexidade:** Baixa
 - **Estimativa:**
 - **Depende de:** T-33
@@ -83,7 +83,7 @@ T-34 depende da T-33 (snapshot 0.5.0).
   - `tests/commands.spec.ts` *(editado)*
 
 **Critério de aceite (testável):**
-- [ ] A prévia do `/sdd-review` mostra, nos dois idiomas, o `Commit revisado` de um round 2, uma linha do "Round anterior" com um `Bloqueante` e a resposta do Verificador `Resolvido`, e o campo `Revisão cruzada` feito com a correção conferida; 2 a 3 linhas de até ~68 caracteres; a prévia em inglês sem rótulos do relatório em português; o CA-32 continua verde
+- [x] A prévia do `/sdd-review` mostra, nos dois idiomas, o `Commit revisado` de um round 2, uma linha do "Round anterior" com um `Bloqueante` e a resposta do Verificador `Resolvido`, e o campo `Revisão cruzada` feito com a correção conferida; 2 a 3 linhas de até ~68 caracteres; a prévia em inglês sem rótulos do relatório em português; o CA-32 continua verde
 
 **Testes a escrever:**
 - *E2E:* `test("CA-35: …")`, nos dois idiomas
@@ -96,10 +96,11 @@ T-34 depende da T-33 (snapshot 0.5.0).
 
 Autonomia concedida pelo responsável no site: viram autoverificações registradas no histórico.
 
-- [ ] Depois da **T-34** — revisar a seção Comandos nos dois idiomas, no desktop e no celular
+- [x] Depois da **T-34** — revisar a seção Comandos nos dois idiomas, no desktop e no celular
 
 ## 11. Histórico de execução — preenchido durante a execução
 
 | Tarefa | Status | Data | Commit | Observação |
 | --- | --- | --- | --- | --- |
-| T-33 | Concluído | 2026-10-09 | — | 176 testes verdes (`npm test -- --workers=4`) |
+| T-33 | Concluído | 2026-10-09 | `9588b29` | Review aprovado; revisão cruzada sem candidatos; 176 testes verdes (`npm test -- --workers=4`) |
+| T-34 | Concluído | 2026-10-09 | — | 178 testes verdes (`npm test -- --workers=4`); validação da Fase 1 feita (autoverificação: prévia do `/sdd-review` em pt e en, desktop e celular) |

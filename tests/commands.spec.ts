@@ -145,3 +145,26 @@ test('CA-32: revisão cruzada opcional nos reviews', async ({ browser }) => {
     expect(await page.locator('body').innerText()).not.toMatch(onByDefault);
   }
 });
+
+test('CA-35: correção conferida no round 2 do /sdd-review', async ({ browser }) => {
+  for (const [path, locale, commit, previous, crossCheck] of [
+    ['/', 'pt-BR', /^Round 2 · Commit revisado: [0-9a-f]{7}$/, /^Round anterior: R-\d{2} Bloqueante — .+ · Verificador: Resolvido$/, /^Revisão cruzada: feita — .*\d+ correç(ão|ões) conferidas? \(\d+ resolvidas?\)$/],
+    ['/en/', 'en-US', /^Round 2 · Reviewed commit: [0-9a-f]{7}$/, /^Previous round: R-\d{2} Bloqueante — .+ · Verifier: Resolvido$/, /^Cross-review: done — .*\d+ fix(es)? checked \(\d+ resolved\)$/],
+  ] as const) {
+    const page = await visit(browser, { path, locale });
+    const lines = page.locator('#comandos [data-command="sdd-review"] [data-preview] .cmd__preview-line');
+    const texts = (await lines.allInnerTexts()).map((text) => text.trim());
+    // Um round 2 no formato do relatório do kit 0.5.0, em 2 a 3 linhas de até ~68 caracteres (RN-24).
+    expect(texts.length).toBeGreaterThanOrEqual(2);
+    expect(texts.length).toBeLessThanOrEqual(3);
+    for (const text of texts) expect(text.length, text).toBeLessThanOrEqual(68);
+    // Campo "Commit revisado", linha do "Round anterior" com a coluna Verificador e o campo "Revisão cruzada".
+    for (const pattern of [commit, previous, crossCheck]) {
+      expect(texts.filter((text) => pattern.test(text)), String(pattern)).toHaveLength(1);
+    }
+    // Em inglês, nenhum rótulo do relatório em português (R-02 do REVIEW-T-31-2026-10-09).
+    if (locale === 'en-US') {
+      expect(texts.join('\n')).not.toMatch(/Recomendação|Revisão cruzada|Commit revisado|Round anterior|Verificador/);
+    }
+  }
+});

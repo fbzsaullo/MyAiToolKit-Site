@@ -355,9 +355,9 @@
         "when": "Fechar uma tarefa executada",
         "generates": "REVIEW-T-XX com apontamentos R-XX por severidade e revisão cruzada opcional",
         "preview": [
-          "R-01 Bloqueante — token comparado com ==",
-          "Revisão cruzada: feita — 1 verificado (1 confirmado)",
-          "Recomendação: Bloqueado → round 2"
+          "Round 2 · Commit revisado: 9c41e7a",
+          "Round anterior: R-01 Bloqueante — Resolvido · Verificador: Resolvido",
+          "Revisão cruzada: feita — 1 correção conferida (1 resolvida)"
         ]
       },
       "sdd-start": {
