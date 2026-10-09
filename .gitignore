@@ -23,3 +23,5 @@ Thumbs.db
 
 # configurações pessoais dos agentes
 .claude/settings.local.json
+
+/brag-output*
