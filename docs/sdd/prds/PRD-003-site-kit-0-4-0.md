@@ -58,7 +58,7 @@ Sem fluxo novo. A seção Comandos mantém o comportamento do PRD-001 (prévia c
 
 ## 8. Regras de negócio — obrigatória
 
-- **RN-20:** O site descreve o kit 0.4.0: o snapshot é o da versão 0.4.0 e a seção Comandos continua com os 17 comandos nos quatro grupos da RN-17 do PRD-002. O verificador da revisão cruzada é um agente do plugin (`agents/review-verifier.md`), não um comando, e não ganha chip. (ADR-007)
+- **RN-20:** ~~O site descreve o kit 0.4.0: o snapshot é o da versão 0.4.0 e a seção Comandos continua com os 17 comandos nos quatro grupos da RN-17 do PRD-002. O verificador da revisão cruzada é um agente do plugin (`agents/review-verifier.md`), não um comando, e não ganha chip. (ADR-007)~~ (substituída — ver RN-23 do PRD-004, kit 0.5.0)
 - **RN-21:** O site apresenta a revisão cruzada como opcional e desligada por padrão: o "O que gera" do `/sdd-review` e do `/code-review` cita a revisão cruzada como opcional; a prévia dos dois mostra o campo `Revisão cruzada` do relatório com uma verificação feita; a prévia do `/sdd-setup` mostra a revisão cruzada desligada, o padrão do kit (`review.cross_check: never`). Nenhum texto do site a mostra ligada por padrão.
 - **RN-22:** A árvore do repositório do kit, na seção Open source, mostra a pasta `agents/` com o `review-verifier.md`, logo depois de `skills/` — a ordem do README do kit.
 
@@ -69,7 +69,7 @@ A RN-17, a RN-18 e a RN-19 do PRD-002 continuam valendo sem mudança (a 0.4.0 n�
 ```gherkin
 Funcionalidade: Site atualizado para o MyAiToolKit 0.4.0
 
-  Cenário [CA-31]: Site no kit 0.4.0
+  Cenário [CA-31]: ~~Site no kit 0.4.0~~ (substituído — ver CA-34 do PRD-004)
     Dado que o site foi construído com o snapshot do kit 0.4.0
     Então o rodapé mostra a versão "0.4.0" (RN-20)
     E a seção Comandos mostra um chip por comando do snapshot, 17 no kit 0.4.0
@@ -106,3 +106,10 @@ Funcionalidade: Site atualizado para o MyAiToolKit 0.4.0
 - PRDs anteriores: `docs/sdd/prds/PRD-001-landing-page.md`, `docs/sdd/prds/PRD-002-site-kit-0-3-1.md` (nenhuma regra revogada por este PRD).
 - Interface: `docs/sdd/prototype/SPEC-UI-001-landing-page.md` (UI-07, UI-12, UI-13).
 - Kit: `CHANGELOG.md` (0.3.2 e 0.4.0), `templates/cross-check.md`, `agents/review-verifier.md`, `skills/sdd-setup/SKILL.md` (pergunta 6).
+- Continuação: `docs/sdd/prds/PRD-004-site-kit-0-5-0.md` (site atualizado para o kit 0.5.0).
+
+## 18. Revisões
+
+| Nº | Data | O que mudou | IDs | Motivo / origem |
+| --- | --- | --- | --- | --- |
+| 1 | 2026-10-09 | Snapshot e versão passam a ser os do kit 0.5.0, definidos em outro PRD | −RN-20, −CA-31 | Substituídos por RN-23 e CA-34 do PRD-004 |
